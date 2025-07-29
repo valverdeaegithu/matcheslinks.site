@@ -384,7 +384,8 @@
     { name: "SONY TEN 3 HD", logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Ten3_HD.png", url: "https://sonysportsten3.vercel.app/", category: "sports" },
     { name: "SONY TEN 5 HD", logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Six_HD.png", url: "https://sonyten5.vercel.app/", category: "sports" },
     { name: "BEIN SPORTS 1", logo: "https://i.ibb.co/hgVx5GL/Bein-1.png", url: "https://id-beinsports1.vercel.app/", category: "sports" },
-    { name: "PREMIER LEAGUE TV", logo: "https://ntvb.tmsimg.com/assets/p3605402_b_h8_ar.jpg?w=1280&h=720", url: "https://serene-begonia-843810.netlify.app/", category: "sports" }
+    { name: "PREMIER LEAGUE TV", logo: "https://ntvb.tmsimg.com/assets/p3605402_b_h8_ar.jpg?w=1280&h=720", url: "https://serene-begonia-843810.netlify.app/", category: "sports" },
+    { name: "BEIN EXTRA ES", logo: "https://www.freelivesports.tv/wp-content/uploads/2025/01/bein-extra-spain-212.png", url: "https://guileless-bublanina-1d2f99.netlify.app/", category: "sports" }
   ];
 
   function renderChannels() {
@@ -398,7 +399,7 @@
     channels.forEach((ch, index) => {
       const card = document.createElement('div');
       card.className = 'channel-card';
-      card.style.animationDelay = `${index * 0.05}s`; // Stagger animations
+      card.style.animationDelay = `${index * 0.05}s`;
       card.innerHTML = `
         <div class="channel-logo-container">
           <img src="${ch.logo}" alt="${ch.name} logo" class="channel-logo" />
