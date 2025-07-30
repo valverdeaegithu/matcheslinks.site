@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -351,42 +352,48 @@
   </div>
 
   <footer class="footer">
-    <p>© 2023 StreamHub. All rights reserved.</p>
+    <p>© 2025 @Matcheslinks. All rights reserved.</p>
   </footer>
 
   <!-- Particle.js -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
   <script>
-  const channels = [
-    { name: "USA East", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3U6vFqKlugKE9SLtLwnOf7sGhBI_UMhEKfwOsbNm93m9ffwngqZQ7Bh5q&s=10", url: "https://usa-east888-v2b2.vercel.app/", category: "international" },
-    { name: "NBC", logo: "https://upload.wikimedia.org/wikipedia/commons/3/3f/NBC_logo.svg", url: "https://flourishing-pudding-37c887.netlify.app/", category: "international" },
-    { name: "Universo", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBG2mqncvr4lOSb1xsyP1T-URBBvO5-4YKFQ&s", url: "https://kaleidoscopic-narwhal-9aa0ff.netlify.app/", category: "international" },
-    { name: "TELEMUNDO", logo: "https://i0.wp.com/thehill.com/wp-content/uploads/sites/2/2017/05/telemundologo.png?w=2000&ssl=1", url: "https://fantastic-chimera-85d2ed.netlify.app/", category: "international" },
-    { name: "TNT SPORTS 1", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI2NSvkyk8Fx2UMBXFdEXS36TNepD6Uy8pMQveJnYRbDnXedcg2tttKHz3&s=10", url: "https://guileless-trifle-c45bd0.netlify.app/", category: "sports" },
-    { name: "TNT SPORTS 2", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI2NSvkyk8Fx2UMBXFdEXS36TNepD6Uy8pMQveJnYRbDnXedcg2tttKHz3&s=10", url: "https://bright-gelato-1c2e32.netlify.app/", category: "sports" },
-    { name: "TNT SPORTS 3", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI2NSvkyk8Fx2UMBXFdEXS36TNepD6Uy8pMQveJnYRbDnXedcg2tttKHz3&s=10", url: "https://rad-elf-37d1bb.netlify.app/", category: "sports" },
-    { name: "TNT SPORTS 4", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI2NSvkyk8Fx2UMBXFdEXS36TNepD6Uy8pMQveJnYRbDnXedcg2tttKHz3&s=10", url: "https://incredible-meerkat-231a3b.netlify.app/", category: "sports" },
-    { name: "SSC 1", logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png", url: "https://gleaming-meringue-fba932.netlify.app/", category: "sports" },
-    { name: "SSC 2", logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png", url: "https://nimble-belekoy-a83e0c.netlify.app/", category: "sports" },
-    { name: "SSC 3", logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png", url: "https://shimmering-choux-f6c58c.netlify.app/", category: "sports" },
-    { name: "SSC 4", logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png", url: "https://courageous-longma-8f0f4c.netlify.app/", category: "sports" },
-    { name: "SSC 5", logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png", url: "https://mellifluous-donut-5c4b44.netlify.app/", category: "sports" },
-    { name: "SSC EXTRA 1", logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png", url: "https://ornate-tiramisu-95d7cc.netlify.app/", category: "sports" },
-    { name: "SSC EXTRA 2", logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png", url: "https://delightful-youtiao-330cfd.netlify.app/", category: "sports" },
-    { name: "SSC EXTRA 3", logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png", url: "https://sparkly-scone-29fbd8.netlify.app/", category: "sports" },
-    { name: "LALIGA TV", logo: "https://pbs.twimg.com/profile_images/1747989339764572160/7nxm03-2_200x200.jpg", url: "https://lovely-capybara-47b585.netlify.app/", category: "sports" },
-    { name: "ESPN 1", logo: "https://static.vecteezy.com/system/resources/previews/027/127/453/non_2x/espn-logo-espn-icon-transparent-free-png.png", url: "https://magical-unicorn-4663ed.netlify.app/", category: "sports" },
-    { name: "ESPN 2", logo: "https://static.vecteezy.com/system/resources/previews/027/127/453/non_2x/espn-logo-espn-icon-transparent-free-png.png", url: "https://capable-medovik-fc01f3.netlify.app/", category: "sports" },
-    { name: "ESPN 3", logo: "https://static.vecteezy.com/system/resources/previews/027/127/453/non_2x/espn-logo-espn-icon-transparent-free-png.png", url: "https://sweet-cocada-744c56.netlify.app/", category: "sports" },
-    { name: "SONY TEN 1 HD", logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Ten_HD.png", url: "https://sonyten1.vercel.app", category: "sports" },
-    { name: "SONY TEN 2 HD", logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Ten2_HD.png", url: "https://sonyten2-drab.vercel.app/", category: "sports" },
-    { name: "SONY TEN 3 HD", logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Ten3_HD.png", url: "https://sonysportsten3.vercel.app/", category: "sports" },
-    { name: "SONY TEN 5 HD", logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Six_HD.png", url: "https://sonyten5.vercel.app/", category: "sports" },
-    { name: "BEIN SPORTS 1", logo: "https://i.ibb.co/hgVx5GL/Bein-1.png", url: "https://id-beinsports1.vercel.app/", category: "sports" },
-    { name: "PREMIER LEAGUE TV", logo: "https://ntvb.tmsimg.com/assets/p3605402_b_h8_ar.jpg?w=1280&h=720", url: "https://serene-begonia-843810.netlify.app/", category: "sports" },
-    { name: "BEIN EXTRA ES", logo: "https://www.freelivesports.tv/wp-content/uploads/2025/01/bein-extra-spain-212.png", url: "https://guileless-bublanina-1d2f99.netlify.app/", category: "sports" }
-  ];
+const channels = [
+  { name: "USA East", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3U6vFqKlugKE9SLtLwnOf7sGhBI_UMhEKfwOsbNm93m9ffwngqZQ7Bh5q&s=10", url: "https://usa-east888-v2b2.vercel.app/", category: "international" },
+  { name: "NBC", logo: "https://upload.wikimedia.org/wikipedia/commons/3/3f/NBC_logo.svg", url: "https://flourishing-pudding-37c887.netlify.app/", category: "international" },
+  { name: "Universo", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBG2mqncvr4lOSb1xsyP1T-URBBvO5-4YKFQ&s", url: "https://kaleidoscopic-narwhal-9aa0ff.netlify.app/", category: "international" },
+  { name: "TELEMUNDO", logo: "https://i0.wp.com/thehill.com/wp-content/uploads/sites/2/2017/05/telemundologo.png?w=2000&ssl=1", url: "https://fantastic-chimera-85d2ed.netlify.app/", category: "international" },
+  { name: "TNT SPORTS 1", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI2NSvkyk8Fx2UMBXFdEXS36TNepD6Uy8pMQveJnYRbDnXedcg2tttKHz3&s=10", url: "https://guileless-trifle-c45bd0.netlify.app/", category: "sports" },
+  { name: "TNT SPORTS 2", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI2NSvkyk8Fx2UMBXFdEXS36TNepD6Uy8pMQveJnYRbDnXedcg2tttKHz3&s=10", url: "https://bright-gelato-1c2e32.netlify.app/", category: "sports" },
+  { name: "TNT SPORTS 3", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI2NSvkyk8Fx2UMBXFdEXS36TNepD6Uy8pMQveJnYRbDnXedcg2tttKHz3&s=10", url: "https://rad-elf-37d1bb.netlify.app/", category: "sports" },
+  { name: "TNT SPORTS 4", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI2NSvkyk8Fx2UMBXFdEXS36TNepD6Uy8pMQveJnYRbDnXedcg2tttKHz3&s=10", url: "https://incredible-meerkat-231a3b.netlify.app/", category: "sports" },
+  { name: "SSC 1", logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png", url: "https://gleaming-meringue-fba932.netlify.app/", category: "sports" },
+  { name: "SSC 2", logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png", url: "https://nimble-belekoy-a83e0c.netlify.app/", category: "sports" },
+  { name: "SSC 3", logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png", url: "https://shimmering-choux-f6c58c.netlify.app/", category: "sports" },
+  { name: "SSC 4", logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png", url: "https://courageous-longma-8f0f4c.netlify.app/", category: "sports" },
+  { name: "SSC 5", logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png", url: "https://mellifluous-donut-5c4b44.netlify.app/", category: "sports" },
+  { name: "SSC EXTRA 1", logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png", url: "https://ornate-tiramisu-95d7cc.netlify.app/", category: "sports" },
+  { name: "SSC EXTRA 2", logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png", url: "https://delightful-youtiao-330cfd.netlify.app/", category: "sports" },
+  { name: "SSC EXTRA 3", logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png", url: "https://sparkly-scone-29fbd8.netlify.app/", category: "sports" },
+  { name: "LALIGA TV", logo: "https://pbs.twimg.com/profile_images/1747989339764572160/7nxm03-2_200x200.jpg", url: "https://lovely-capybara-47b585.netlify.app/", category: "sports" },
+  { name: "ESPN 1", logo: "https://static.vecteezy.com/system/resources/previews/027/127/453/non_2x/espn-logo-espn-icon-transparent-free-png.png", url: "https://magical-unicorn-4663ed.netlify.app/", category: "sports" },
+  { name: "ESPN 2", logo: "https://static.vecteezy.com/system/resources/previews/027/127/453/non_2x/espn-logo-espn-icon-transparent-free-png.png", url: "https://capable-medovik-fc01f3.netlify.app/", category: "sports" },
+  { name: "ESPN 3", logo: "https://static.vecteezy.com/system/resources/previews/027/127/453/non_2x/espn-logo-espn-icon-transparent-free-png.png", url: "https://sweet-cocada-744c56.netlify.app/", category: "sports" },
+  { name: "SONY TEN 1 HD", logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Ten_HD.png", url: "https://sonyten1.vercel.app", category: "sports" },
+  { name: "SONY TEN 2 HD", logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Ten2_HD.png", url: "https://sonyten2-drab.vercel.app/", category: "sports" },
+  { name: "SONY TEN 3 HD", logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Ten3_HD.png", url: "https://sonysportsten3.vercel.app/", category: "sports" },
+  { name: "SONY TEN 5 HD", logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Six_HD.png", url: "https://sonyten5.vercel.app/", category: "sports" },
+  { name: "BEIN SPORTS 1", logo: "https://i.ibb.co/hgVx5GL/Bein-1.png", url: "https://id-beinsports1.vercel.app/", category: "sports" },
+  { name: "PREMIER LEAGUE TV", logo: "https://ntvb.tmsimg.com/assets/p3605402_b_h8_ar.jpg?w=1280&h=720", url: "https://serene-begonia-843810.netlify.app/", category: "sports" },
+  { name: "BEIN EXTRA ES", logo: "https://www.freelivesports.tv/wp-content/uploads/2025/01/bein-extra-spain-212.png", url: "https://guileless-bublanina-1d2f99.netlify.app/", category: "sports" },
+  { name: "Star Sports 1", logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Star_Sports_1.png", url: "https://benevolent-pegasus-271191.netlify.app/", category: "sports" },
+  { name: "Star Sports 1 HD", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Star_Sports_1_HD.png/2560px-Star_Sports_1_HD.png", url: "https://cheerful-lollipop-460d29.netlify.app/", category: "sports" },
+  { name: "Star Sports 2", logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Star_Sports_2.png", url: "https://astonishing-gnome-d829a9.netlify.app/", category: "sports" },
+  { name: "Star Sports 2 HD", logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Star_Sports_2.png", url: "https://illustrious-wisp-fb5105.netlify.app/", category: "sports" },
+  { name: "Star Sports 1 Hindi HD", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Star_Sports_1_HD.png/2560px-Star_Sports_1_HD.png", url: "https://bejewelled-cupcake-8cb09a.netlify.app/", category: "sports" }
+];
+
 
   function renderChannels() {
     const internationalContainer = document.getElementById('internationalChannels');
