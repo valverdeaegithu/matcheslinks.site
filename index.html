@@ -305,6 +305,28 @@
       opacity: 0;
     }
     
+    /* Visitor counter styles */
+    .visitor-counter {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 8px 12px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .visitor-counter i {
+      color: var(--primary);
+    }
+    
     /* Responsive adjustments */
     @media (min-width: 500px) {
       .header {
@@ -418,6 +440,11 @@
       .play-btn i {
         font-size: 0.8rem;
       }
+      
+      .visitor-counter {
+        font-size: 14px;
+        padding: 10px 15px;
+      }
     }
   </style>
 </head>
@@ -460,6 +487,12 @@
     <p>© 2025 @Matcheslinks. All rights reserved.</p>
   </footer>
 
+  <!-- Visitor counter -->
+  <div class="visitor-counter" id="visitorCounter">
+    <i class="fas fa-users"></i>
+    <span>Loading visitors...</span>
+  </div>
+
   <!-- Particle.js -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
@@ -500,6 +533,20 @@
       { name: "Star Sports 1 Hindi HD", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Star_Sports_1_HD.png/2560px-Star_Sports_1_HD.png", url: "https://bejewelled-cupcake-8cb09a.netlify.app/", category: "sports" }
     ];
 
+    // Visitor counter functionality
+    function updateVisitorCounter() {
+      // Generate a random visitor count between 1 and 50 for demonstration
+      // In a real implementation, you would use a server-side counter or service
+      const visitorCount = Math.floor(Math.random() * 50) + 1;
+      document.getElementById('visitorCounter').innerHTML = `
+        <i class="fas fa-users"></i>
+        <span>${visitorCount} visitors online</span>
+      `;
+      
+      // Update the counter every 30 seconds to simulate changing visitor counts
+      setTimeout(updateVisitorCounter, 30000);
+    }
+
     function renderChannels() {
       const internationalContainer = document.getElementById('internationalChannels');
       const sportsContainer = document.getElementById('sportsChannels');
@@ -532,6 +579,7 @@
 
     document.addEventListener('DOMContentLoaded', function() {
       renderChannels();
+      updateVisitorCounter();
       
       // Initialize particles.js
       particlesJS("particles-js", {
