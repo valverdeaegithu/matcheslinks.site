@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -427,6 +428,55 @@
       border: none;
     }
     
+    /* Telegram Popup */
+    .telegram-popup {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--card-border);
+      border-radius: 0.75rem;
+      padding: 1rem;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.5s ease;
+    }
+    
+    .telegram-popup.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .telegram-popup i {
+      color: #0088cc;
+      font-size: 1.5rem;
+    }
+    
+    .telegram-popup-content {
+      font-size: 0.9rem;
+    }
+    
+    .telegram-popup a {
+      color: #0088cc;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    
+    .close-telegram {
+      background: none;
+      border: none;
+      color: var(--gray);
+      font-size: 1rem;
+      cursor: pointer;
+      margin-left: auto;
+    }
+    
     /* Responsive adjustments */
     @media (min-width: 500px) {
       .header {
@@ -545,6 +595,10 @@
         font-size: 14px;
         padding: 10px 15px;
       }
+      
+      .telegram-popup {
+        max-width: 350px;
+      }
     }
   </style>
 </head>
@@ -599,6 +653,15 @@
     <span>Loading visitors...</span>
   </div>
 
+  <!-- Telegram Popup -->
+  <div class="telegram-popup" id="telegramPopup">
+    <i class="fab fa-telegram"></i>
+    <div class="telegram-popup-content">
+      Join our <a href="https://t.me/matcheslinks" target="_blank">Telegram Channel</a> for updates
+    </div>
+    <button class="close-telegram" onclick="closeTelegramPopup()">&times;</button>
+  </div>
+
   <!-- Modal for event player -->
   <div class="modal-overlay" id="eventModal">
     <div class="modal-container">
@@ -616,11 +679,46 @@
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
   <script>
+    // Security: Disable developer tools
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+      window.close();
+    });
+    
+    document.onkeydown = function(e) {
+      if (e.keyCode == 123) { // F12
+        window.close();
+        return false;
+      }
+      if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { // Ctrl+Shift+I
+        window.close();
+        return false;
+      }
+      if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { // Ctrl+Shift+J
+        window.close();
+        return false;
+      }
+      if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { // Ctrl+U
+        window.close();
+        return false;
+      }
+      if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) { // Ctrl+Shift+C
+        window.close();
+        return false;
+      }
+    };
+    
+    // Check for devtools opening
+    setInterval(function() {
+      if (window.outerWidth - window.innerWidth > 100 || window.outerHeight - window.innerHeight > 100) {
+        window.close();
+      }
+    }, 1000);
+
     const channels = [
       { name: "Sky Sports Cricket", logo: "https://media.info/l/f/1/1134.1507600280.png", url: "https://profound-horse-9b6397.netlify.app/", category: "sports" },
       { name: "Sky Sports Football", logo: "https://i.pinimg.com/736x/c2/e5/e8/c2e5e8e6927f9518040072db395b907c.jpg", url: "https://profound-horse-9b6397.netlify.app/", category: "sports" },
-      { name: "Sky Sports Premier League", logo: "https://archive.org/download/SkySportsPremierLeague_201708/sky%20sports%20premier%20league.png", url: "https://superlative-horse-d6a6c5.netlify.app/", category: "sports" },
-      { name: "USA East", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3U6vFqKlugKE9SLtLwnOf7sGhBI_UMhEKfwOsbNm93m9ffwngqZQ7Bh5q&s=10", url: "https://calm-nasturtium-cafbb0.netlify.app/", category: "international" },
+      { name: "Sky Sports Premier League", logo: "https://archive.org/download/SkySportsPremierLeague_201708/sky%20sports%20premier%20league.png", url: "https://superlative-horse-d6a6c5.netlify.app/", category: "sports" },      { name: "USA East", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3U6vFqKlugKE9SLtLwnOf7sGhBI_UMhEKfwOsbNm93m9ffwngqZQ7Bh5q&s=10", url: "https://usa-east888-v2b2.vercel.app/", category: "international" },
       { name: "NBC", logo: "https://upload.wikimedia.org/wikipedia/commons/3/3f/NBC_logo.svg", url: "https://flourishing-pudding-37c887.netlify.app/", category: "international" },
       { name: "Universo", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBG2mqncvr4lOSb1xsyP1T-URBBvO5-4YKFQ&s", url: "https://kaleidoscopic-narwhal-9aa0ff.netlify.app/", category: "international" },
       { name: "TELEMUNDO", logo: "https://i0.wp.com/thehill.com/wp-content/uploads/sites/2/2017/05/telemundologo.png?w=2000&ssl=1", url: "https://fantastic-chimera-85d2ed.netlify.app/", category: "international" },
@@ -652,8 +750,10 @@
       { name: "Star Sports 2", logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Star_Sports_2.png", url: "https://astonishing-gnome-d829a9.netlify.app/", category: "sports" },
       { name: "Star Sports 2 HD", logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Star_Sports_2.png", url: "https://illustrious-wisp-fb5105.netlify.app/", category: "sports" },
       { name: "Star Sports 1 Hindi HD", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Star_Sports_1_HD.png/2560px-Star_Sports_1_HD.png", url: "https://bejewelled-cupcake-8cb09a.netlify.app/", category: "sports" }
-
     ];
+
+    // Events data with Al Nassr vs Toulouse at the top
+    const events = 
 
     // Visitor counter functionality
     function updateVisitorCounter() {
