@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -757,30 +754,68 @@
     ];
 
     // Events data with '#" at the top
-const events = [
-  
-   {
-    name: "Fenerbahce vs Feyenoord",
-    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv0wYQ5AmAIQsO0Z7leONrXV9a5B2VjdAKQA&s",
-    url: "https://embedsports.top/embed/echo/fenerbahce-vs-feyenoord-football-1414144/1",
-    live: true
-  },
-  {
-    name: "ATP Masters 1000",
-    logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000005983/1754521233979904_ATP_Cincinnati_Open25_round3_7aug_landscape_thumb.jpg",
-    url: "https://sonyliv-event-3.vercel.app/",
-    live: true
-  }
-];
+    const events = [
+      {
+        name: "PSG VS SPURS-UPCOMING",
+        logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000006226/1754894435095289_UEFA_SuperCup_PSG_vs_Tottenham_8aug_Landscape_thumb_ton.jpg",
+        url: "#",
+        live: true
+      },
+      {
+        name: "ATP Masters 1000",
+        logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000005983/1754521233979904_ATP_Cincinnati_Open25_round3_7aug_landscape_thumb.jpg",
+        url: "https://sonyliv-event-3.vercel.app/",
+        live: true
+      }
+    ];
 
-    // Visitor counter functionality
+    // REAL VISITOR COUNTER using CountAPI
     function updateVisitorCounter() {
-      const visitorCount = Math.floor(Math.random() * 50) + 1;
-      document.getElementById('visitorCounter').innerHTML = `
-        <i class="fas fa-users"></i>
-        <span>${visitorCount} visitors online</span>
-      `;
-      setTimeout(updateVisitorCounter, 30000);
+      const visitorId = 'visitor_' + Math.random().toString(36).substr(2, 9);
+      const storageKey = 'matcheslinks_visitor_id';
+      
+      // Check if we already counted this visitor
+      if (!localStorage.getItem(storageKey)) {
+        // This is a new visitor
+        localStorage.setItem(storageKey, visitorId);
+        
+        // Hit the counter API to increment
+        fetch('https://api.countapi.xyz/hit/matcheslinks/visits')
+          .then(response => response.json())
+          .then(data => {
+            document.getElementById('visitorCounter').innerHTML = `
+              <i class="fas fa-users"></i>
+              <span>${data.value} visitors today</span>
+            `;
+          })
+          .catch(error => {
+            console.error('Visitor counter error:', error);
+            document.getElementById('visitorCounter').innerHTML = `
+              <i class="fas fa-users"></i>
+              <span>Many visitors online</span>
+            `;
+          });
+      } else {
+        // Existing visitor - just get the current count
+        fetch('https://api.countapi.xyz/get/matcheslinks/visits')
+          .then(response => response.json())
+          .then(data => {
+            document.getElementById('visitorCounter').innerHTML = `
+              <i class="fas fa-users"></i>
+              <span>${data.value} visitors today</span>
+            `;
+          })
+          .catch(error => {
+            console.error('Visitor counter error:', error);
+            document.getElementById('visitorCounter').innerHTML = `
+              <i class="fas fa-users"></i>
+              <span>Many visitors online</span>
+            `;
+          });
+      }
+      
+      // Update counter every 2 minutes
+      setTimeout(updateVisitorCounter, 120000);
     }
 
     // Modal functions
@@ -795,6 +830,11 @@ const events = [
       document.getElementById('eventModal').classList.remove('active');
       document.getElementById('eventFrame').src = '';
       document.body.style.overflow = 'auto';
+    }
+
+    function closeTelegramPopup() {
+      document.getElementById('telegramPopup').classList.remove('show');
+      localStorage.setItem('telegramPopupClosed', 'true');
     }
 
     function renderChannels() {
@@ -851,6 +891,13 @@ const events = [
     document.addEventListener('DOMContentLoaded', function() {
       renderChannels();
       updateVisitorCounter();
+      
+      // Show telegram popup if not closed before
+      if (!localStorage.getItem('telegramPopupClosed')) {
+        setTimeout(() => {
+          document.getElementById('telegramPopup').classList.add('show');
+        }, 5000);
+      }
       
       // Close modal when clicking outside
       document.getElementById('eventModal').addEventListener('click', function(e) {
