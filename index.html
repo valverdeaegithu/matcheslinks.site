@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -678,29 +679,6 @@
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
   <script>
-    // Domain verification system
-    function verifyDomain() {
-      const allowedDomains = ['matcheslinks-site.pages.dev', 'matcheslinks-site.pages.dev'];
-      const currentDomain = window.location.hostname;
-      
-      if (!allowedDomains.includes(currentDomain)) {
-        document.body.innerHTML = `
-          <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif; background: #0f172a; color: white; height: 100vh; display: flex; flex-direction: column; justify-content: center;">
-            <h1 style="color: #ef4444; font-size: 2.5rem; margin-bottom: 1rem;">Access Denied</h1>
-            <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">This website can only be accessed from matcheslinks.site</p>
-            <p style="font-size: 1rem; color: #94a3b8;">You are trying to access from: ${currentDomain}</p>
-          </div>
-        `;
-        return false;
-      }
-      return true;
-    }
-
-    // Only proceed if domain verification passes
-    if (!verifyDomain()) {
-      throw new Error("Domain verification failed");
-    }
-
     // Security: Disable developer tools
     document.addEventListener('contextmenu', function(e) {
       e.preventDefault();
