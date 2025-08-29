@@ -70,6 +70,12 @@
       line-height: 1.6;
     }
     
+    .blur-background {
+      filter: blur(10px);
+      pointer-events: none;
+      user-select: none;
+    }
+    
     .glass-heavy {
       background: rgba(15, 23, 42, 0.3);
       backdrop-filter: blur(20px);
@@ -566,6 +572,7 @@
       padding: 2rem;
       border-radius: 1rem;
       text-align: center;
+      z-index: 60;
     }
     
     .verify-title {
@@ -581,8 +588,20 @@
     
     .verify-description {
       color: hsl(var(--muted-foreground));
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
       line-height: 1.6;
+    }
+    
+    .tutorial-link {
+      display: block;
+      margin-bottom: 1.5rem;
+      color: hsl(var(--primary));
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .tutorial-link:hover {
+      text-decoration: underline;
     }
     
     .verify-button {
@@ -601,6 +620,31 @@
     .verify-button:hover {
       transform: translateY(-1px);
       box-shadow: 0 8px 15px hsl(224 71% 64% / 0.4);
+    }
+    
+    /* Telegram Popup */
+    .telegram-popup {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      z-index: 40;
+      padding: 0.75rem 1rem;
+      border-radius: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      background: linear-gradient(135deg, hsl(200, 100%, 50%), hsl(220, 90%, 55%));
+      color: white;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .telegram-popup:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
     }
     
     /* Responsive */
@@ -634,6 +678,10 @@
       
       .category-title {
         font-size: 1.5rem;
+      }
+      
+      .telegram-popup {
+        bottom: 5rem;
       }
     }
     
@@ -679,7 +727,7 @@
   </header>
 
   <!-- Main Content -->
-  <main class="container">
+  <main class="container" id="mainContent">
     <!-- Hero Section -->
     <section class="hero glass-heavy hero-gradient">
       <h1 class="hero-text-gradient">Premium Sports Channels Collection</h1>
@@ -750,6 +798,12 @@
     <span id="visitorCount">Loading...</span>
   </div>
 
+  <!-- Telegram Popup -->
+  <a href="https://t.me/+e3-eAje291cxNGNl" class="telegram-popup" target="_blank" id="telegramPopup">
+    <i class="fab fa-telegram"></i>
+    Join Telegram
+  </a>
+
   <!-- Video Modal -->
   <div class="modal-overlay" id="videoModal">
     <div class="modal-content modal-glass">
@@ -780,6 +834,9 @@
       <p class="verify-description">
         To access our premium sports channels and live events, please complete a quick verification process. This helps us maintain quality service and prevent abuse.
       </p>
+      <a href="https://t.me/tutorialbymatcheslinks/20" class="tutorial-link" target="_blank">
+        <i class="fas fa-question-circle"></i> Confused? Watch The Tutorial how To do verification
+      </a>
       <button class="verify-button" onclick="handleVerification()">
         VERIFY NOW
       </button>
@@ -791,7 +848,7 @@
     const liveEvents = [
       {
         name: "No Live Event",
-        logo: "ht",
+        logo: "https://academy.codinex.co.ug/wp-content/uploads/2023/03/no-event.jpg",
         url: "#",
         live: true
       }
@@ -883,7 +940,7 @@
       },
       {
         name: "TSN 1",
-        logo: "data:image/png;base64,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",
+        logo: "data:image/png;base64,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",
         url: "https://fluffy-cucurucho-df41e4.netlify.app/"
       },
       {
@@ -1082,11 +1139,21 @@
     function showVerificationModal() {
       document.getElementById('verifyModal').classList.add('active');
       document.body.style.overflow = 'hidden';
+      document.getElementById('mainContent').classList.add('blur-background');
+      document.querySelector('header').classList.add('blur-background');
+      document.querySelector('footer').classList.add('blur-background');
+      document.querySelector('.visitor-counter').classList.add('blur-background');
+      document.getElementById('telegramPopup').classList.add('blur-background');
     }
 
     function hideVerificationModal() {
       document.getElementById('verifyModal').classList.remove('active');
       document.body.style.overflow = 'auto';
+      document.getElementById('mainContent').classList.remove('blur-background');
+      document.querySelector('header').classList.remove('blur-background');
+      document.querySelector('footer').classList.remove('blur-background');
+      document.querySelector('.visitor-counter').classList.remove('blur-background');
+      document.getElementById('telegramPopup').classList.remove('blur-background');
     }
 
     function handleVerification() {
