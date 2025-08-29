@@ -3,39 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>Channels By @matcheslinks</title>
+  <title>MatchesLinks - Premium Sports Channels</title>
+  <meta name="description" content="Access premium sports channels and live events worldwide" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary: #6366f1;
-      --primary-dark: #4f46e5;
-      --primary-light: #c7d2fe;
-      --secondary: #f97316;
-      --dark: #0f172a;
-      --darker: #020617;
-      --light: #f8fafc;
-      --lighter: #ffffff;
-      --gray: #94a3b8;
-      --dark-gray: #334155;
-      --card-bg: rgba(15, 23, 42, 0.8);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --success: #22c55e;
-      --error: #ef4444;
-      --warning: #f59e0b;
+      --primary: 224 71% 64%;
+      --primary-foreground: 210 20% 98%;
+      --secondary: 215 28% 17%;
+      --secondary-foreground: 210 20% 98%;
+      --muted: 215 28% 17%;
+      --muted-foreground: 217 11% 65%;
+      --accent: 215 28% 17%;
+      --accent-foreground: 210 20% 98%;
+      --destructive: 0 84% 60%;
+      --destructive-foreground: 210 20% 98%;
+      --border: 215 28% 18%;
+      --input: 215 28% 18%;
+      --ring: 224 71% 64%;
+      --background: 222 84% 5%;
+      --foreground: 210 20% 98%;
+      --card: 222 84% 5%;
+      --card-foreground: 210 20% 98%;
+      --popover: 222 84% 5%;
+      --popover-foreground: 210 20% 98%;
     }
     
-    * { 
-      margin: 0; 
-      padding: 0; 
-      box-sizing: border-box; 
+    .light {
+      --background: 0 0% 100%;
+      --foreground: 222 84% 5%;
+      --card: 0 0% 100%;
+      --card-foreground: 222 84% 5%;
+      --popover: 0 0% 100%;
+      --popover-foreground: 222 84% 5%;
+      --primary: 224 71% 64%;
+      --primary-foreground: 210 20% 98%;
+      --secondary: 210 40% 96%;
+      --secondary-foreground: 222 84% 5%;
+      --muted: 210 40% 96%;
+      --muted-foreground: 215 16% 47%;
+      --accent: 210 40% 96%;
+      --accent-foreground: 222 84% 5%;
+      --destructive: 0 84% 60%;
+      --destructive-foreground: 210 20% 98%;
+      --border: 214 32% 91%;
+      --input: 214 32% 91%;
+      --ring: 224 71% 64%;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
     }
     
     body {
       font-family: 'Inter', sans-serif;
-      background-color: var(--dark);
-      color: var(--light);
+      background: hsl(var(--background));
+      color: hsl(var(--foreground));
       min-height: 100vh;
       overflow-x: hidden;
       transition: all 0.4s ease;
@@ -43,42 +70,87 @@
       line-height: 1.6;
     }
     
-    body.light-mode {
-      background-color: var(--light);
-      color: var(--dark);
-      --card-bg: rgba(255, 255, 255, 0.9);
-      --card-border: rgba(0, 0, 0, 0.08);
+    .glass-heavy {
+      background: rgba(15, 23, 42, 0.3);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
     
-    #particles-js {
-      position: fixed; 
-      width: 100%; 
-      height: 100%; 
-      z-index: -1;
-      background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 50%, #1e293b 100%);
+    .light .glass-heavy {
+      background: rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(0, 0, 0, 0.1);
     }
     
-    body.light-mode #particles-js {
-      background: linear-gradient(135deg, #e2e8f0 0%, #f1f5f9 50%, #e2e8f0 100%);
+    .glass-light {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
     }
     
-    /* Header Styles */
+    .light .glass-light {
+      background: rgba(0, 0, 0, 0.05);
+    }
+    
+    .hero-gradient {
+      background: linear-gradient(135deg, 
+        hsl(224 71% 64% / 0.1) 0%, 
+        hsl(262 71% 64% / 0.1) 100%);
+    }
+    
+    .hero-text-gradient {
+      background: linear-gradient(135deg, 
+        hsl(var(--foreground)) 0%, 
+        hsl(224 71% 64%) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .bg-gradient-primary {
+      background: linear-gradient(135deg, 
+        hsl(224 71% 64%) 0%, 
+        hsl(262 71% 64%) 100%);
+    }
+    
+    .modal-glass {
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .light .modal-glass {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .visitor-counter {
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .light .visitor-counter {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Header */
     .header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid hsl(var(--border));
+      background: hsl(var(--background) / 0.8);
+      backdrop-filter: blur(12px);
+      padding: 1rem 1.5rem;
+    }
+    
+    .header-content {
+      max-width: 1280px;
+      margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 1.5rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(15, 23, 42, 0.9);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--card-border);
-      transition: all 0.3s ease;
-    }
-    
-    body.light-mode .header {
-      background: rgba(255, 255, 255, 0.9);
+      gap: 1rem;
     }
     
     .logo {
@@ -86,394 +158,321 @@
       align-items: center;
       gap: 0.75rem;
       text-decoration: none;
+      color: hsl(var(--foreground));
     }
     
     .logo-icon {
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      border-radius: 0.75rem;
+      background: linear-gradient(135deg, hsl(224 71% 64%), hsl(262 71% 64%));
       color: white;
-      font-size: 1.2rem;
+      font-size: 1.25rem;
     }
     
     .logo-text {
-      font-size: 1.25rem;
+      font-size: 1.5rem;
       font-weight: 700;
-      background: linear-gradient(to right, var(--primary), #8b5cf6);
+      background: linear-gradient(135deg, hsl(224 71% 64%), hsl(262 71% 64%));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     
     .controls {
       display: flex;
-      gap: 0.75rem;
+      gap: 1rem;
       align-items: center;
     }
     
-    .search-bar {
+    .search-container {
       position: relative;
       display: flex;
       align-items: center;
     }
     
-    .search-bar input {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid var(--card-border);
+    .search-input {
+      background: hsl(var(--input));
+      border: 1px solid hsl(var(--border));
       border-radius: 2rem;
-      padding: 0.6rem 1rem 0.6rem 2.5rem;
-      color: var(--light);
-      width: 200px;
+      padding: 0.75rem 1rem 0.75rem 3rem;
+      color: hsl(var(--foreground));
+      width: 240px;
       transition: all 0.3s ease;
-      font-size: 0.9rem;
-    }
-    
-    body.light-mode .search-bar input {
-      background: rgba(0, 0, 0, 0.05);
-      color: var(--dark);
-    }
-    
-    .search-bar input:focus {
+      font-size: 0.875rem;
       outline: none;
-      border-color: var(--primary);
-      width: 250px;
-      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
     }
     
-    .search-bar i {
+    .search-input:focus {
+      border-color: hsl(var(--ring));
+      box-shadow: 0 0 0 3px hsl(var(--ring) / 0.2);
+    }
+    
+    .search-icon {
       position: absolute;
       left: 1rem;
-      color: var(--gray);
-      font-size: 0.9rem;
+      color: hsl(var(--muted-foreground));
+      font-size: 0.875rem;
     }
     
-    .toggle-mode {
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--card-border);
-      color: var(--light);
+    .theme-toggle {
       width: 40px;
       height: 40px;
       border-radius: 50%;
+      border: 1px solid hsl(var(--border));
+      background: hsl(var(--background));
+      color: hsl(var(--foreground));
+      cursor: pointer;
+      transition: all 0.3s ease;
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
     }
     
-    body.light-mode .toggle-mode {
-      color: var(--dark);
-    }
-    
-    .toggle-mode:hover {
-      background: var(--primary);
-      color: white;
+    .theme-toggle:hover {
+      background: hsl(var(--accent));
       transform: rotate(30deg);
     }
     
-    /* Main Container */
+    /* Main Layout */
     .container {
-      max-width: 1400px;
+      max-width: 1280px;
       margin: 0 auto;
       padding: 2rem 1.5rem;
-      position: relative;
     }
     
     .hero {
       text-align: center;
-      margin-bottom: 3rem;
-      padding: 0 1rem;
+      margin-bottom: 4rem;
+      padding: 3rem 1.5rem;
+      border-radius: 1.5rem;
     }
     
     .hero h1 {
-      font-size: 2.5rem;
+      font-size: 3rem;
       font-weight: 800;
-      margin-bottom: 1rem;
-      background: linear-gradient(to right, var(--light), var(--primary-light));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      line-height: 1.2;
-    }
-    
-    body.light-mode .hero h1 {
-      background: linear-gradient(to right, var(--primary-dark), var(--primary));
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
     }
     
     .hero p {
-      color: var(--gray);
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: 0 auto;
+      font-size: 1.25rem;
+      color: hsl(var(--muted-foreground));
+      max-width: 48rem;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
     }
     
-    body.light-mode .hero p {
-      color: var(--dark-gray);
+    .hero-badges {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: hsl(var(--muted-foreground) / 0.7);
+      flex-wrap: wrap;
     }
     
-    /* Category Styles */
-    .category {
-      margin-bottom: 3rem;
+    .hero-badge {
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+    }
+    
+    /* Categories */
+    .category-section {
+      margin-bottom: 4rem;
     }
     
     .category-header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1.5rem;
-      padding: 0 0.5rem;
-    }
-    
-    .category-title {
-      display: flex;
-      align-items: center;
       gap: 0.75rem;
-      font-size: 1.35rem;
-      font-weight: 600;
+      margin-bottom: 2rem;
     }
     
     .category-icon {
       width: 40px;
       height: 40px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      border-radius: 0.75rem;
+      background: linear-gradient(135deg, hsl(224 71% 64%), hsl(262 71% 64%));
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
     }
     
-    .view-all {
-      color: var(--primary);
-      font-size: 0.9rem;
-      font-weight: 500;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-      transition: all 0.3s ease;
+    .category-title {
+      font-size: 1.875rem;
+      font-weight: 700;
+      color: hsl(var(--foreground));
     }
     
-    .view-all:hover {
-      gap: 0.5rem;
-    }
-    
-    /* Channels Grid */
+    /* Channel Grid */
     .channels-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1.5rem;
     }
     
     .channel-card {
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--card-border);
-      border-radius: 1rem;
       padding: 1.5rem;
+      border-radius: 1rem;
+      border: 1px solid hsl(var(--border));
+      background: hsl(var(--card));
       text-align: center;
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    }
-    
-    .channel-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-      background: linear-gradient(to right, var(--primary), var(--primary-dark));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.5s ease;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
     
     .channel-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--primary);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
-    }
-    
-    .channel-card:hover::before {
-      transform: scaleX(1);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      border-color: hsl(var(--ring));
     }
     
     .channel-logo-container {
-      height: 90px;
+      height: 80px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1.25rem;
-      position: relative;
+      margin-bottom: 1rem;
     }
     
     .channel-logo {
       max-height: 100%;
       max-width: 100%;
       object-fit: contain;
-      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
-      transition: all 0.3s ease;
+      border-radius: 0.5rem;
+      transition: transform 0.3s ease;
     }
     
     .channel-card:hover .channel-logo {
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
     
     .channel-name {
       font-size: 1rem;
       font-weight: 600;
-      margin-bottom: 1.25rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      margin-bottom: 1rem;
+      color: hsl(var(--foreground));
     }
     
-    .play-btn {
-      background: linear-gradient(to right, var(--primary), var(--primary-dark));
-      border: none;
-      padding: 0.75rem 1.5rem;
-      color: white;
-      border-radius: 2rem;
-      cursor: pointer;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      box-shadow: 0 4px 6px rgba(99, 102, 241, 0.3);
+    .play-button {
       width: 100%;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      border: none;
+      background: linear-gradient(135deg, hsl(224 71% 64%), hsl(262 71% 64%));
+      color: white;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
       justify-content: center;
+      gap: 0.5rem;
     }
     
-    .play-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 15px rgba(99, 102, 241, 0.4);
-    }
-    
-    .play-btn:active {
-      transform: translateY(0);
-    }
-    
-    .play-btn i {
-      font-size: 0.8rem;
+    .play-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 15px hsl(224 71% 64% / 0.4);
     }
     
     .live-badge {
       position: absolute;
-      top: 15px;
-      right: 15px;
-      background: var(--error);
+      top: 1rem;
+      right: 1rem;
+      background: hsl(var(--destructive));
       color: white;
-      padding: 0.3rem 0.75rem;
+      padding: 0.25rem 0.75rem;
       border-radius: 1rem;
       font-size: 0.75rem;
       font-weight: 600;
       display: flex;
       align-items: center;
       gap: 0.25rem;
-      animation: pulse 1.5s infinite;
+      animation: pulse 2s infinite;
     }
     
     @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-      70% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
     }
     
     /* Footer */
     .footer {
+      border-top: 1px solid hsl(var(--border));
+      padding: 3rem 1.5rem;
       text-align: center;
-      padding: 2rem 1rem;
-      color: var(--gray);
-      font-size: 0.9rem;
-      margin-top: 2rem;
-      border-top: 1px solid var(--card-border);
-    }
-    
-    .footer-content {
-      max-width: 500px;
-      margin: 0 auto;
+      background: hsl(var(--muted) / 0.3);
     }
     
     .social-links {
       display: flex;
       justify-content: center;
       gap: 1rem;
-      margin: 1.5rem 0;
+      margin-bottom: 2rem;
     }
     
     .social-link {
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
+      border: 1px solid hsl(var(--border));
+      background: hsl(var(--background));
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--gray);
+      color: hsl(var(--muted-foreground));
       text-decoration: none;
       transition: all 0.3s ease;
     }
     
     .social-link:hover {
-      background: var(--primary);
+      background: hsl(var(--primary));
       color: white;
-      transform: translateY(-3px);
+      transform: translateY(-2px);
     }
     
-    /* Animation */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    .footer-text {
+      color: hsl(var(--muted-foreground));
+      font-size: 0.875rem;
     }
     
-    .channel-card {
-      animation: fadeIn 0.6s ease forwards;
-      opacity: 0;
-    }
-    
-    /* Visitor counter styles */
+    /* Visitor Counter */
     .visitor-counter {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      padding: 10px 15px;
-      font-size: 14px;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 40;
+      padding: 0.75rem 1rem;
+      border-radius: 2rem;
       display: flex;
       align-items: center;
-      gap: 8px;
-      z-index: 100;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 500;
     }
     
-    .visitor-counter i {
-      color: var(--primary);
+    .visitor-icon {
+      color: hsl(var(--primary));
     }
     
-    /* Modal styles for event player */
+    /* Modals */
     .modal-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.85);
+      inset: 0;
+      z-index: 50;
+      background: rgba(0, 0, 0, 0.8);
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 1000;
       opacity: 0;
       visibility: hidden;
       transition: all 0.3s ease;
@@ -484,20 +483,16 @@
       visibility: visible;
     }
     
-    .modal-container {
+    .modal-content {
       width: 90%;
-      max-width: 900px;
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--card-border);
+      max-width: 64rem;
       border-radius: 1rem;
       overflow: hidden;
-      transform: scale(0.9);
+      transform: scale(0.95);
       transition: transform 0.3s ease;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
     
-    .modal-overlay.active .modal-container {
+    .modal-overlay.active .modal-content {
       transform: scale(1);
     }
     
@@ -505,51 +500,57 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.25rem;
-      background: rgba(0, 0, 0, 0.2);
-      border-bottom: 1px solid var(--card-border);
+      padding: 1.5rem;
+      border-bottom: 1px solid hsl(var(--border));
     }
     
     .modal-title {
-      font-weight: 600;
-      font-size: 1.25rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: hsl(var(--foreground));
     }
     
-    .modal-title i {
-      color: var(--primary);
+    .modal-title-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 0.5rem;
+      background: linear-gradient(135deg, hsl(224 71% 64%), hsl(262 71% 64%));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
     }
     
-    .close-modal {
-      background: none;
+    .close-button {
+      width: 32px;
+      height: 32px;
       border: none;
-      color: var(--gray);
-      font-size: 1.5rem;
+      background: none;
+      border-radius: 0.5rem;
+      color: hsl(var(--muted-foreground));
       cursor: pointer;
-      transition: color 0.3s ease;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
+      transition: all 0.3s ease;
       display: flex;
       align-items: center;
       justify-content: center;
     }
     
-    .close-modal:hover {
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--primary);
+    .close-button:hover {
+      background: hsl(var(--destructive) / 0.1);
+      color: hsl(var(--destructive));
     }
     
-    .modal-content {
+    .video-container {
       position: relative;
-      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      padding-bottom: 56.25%;
       height: 0;
       overflow: hidden;
     }
     
-    .modal-iframe {
+    .video-iframe {
       position: absolute;
       top: 0;
       left: 0;
@@ -558,99 +559,64 @@
       border: none;
     }
     
-    /* Verification Popup */
-    #verifyPopup {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.95);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-    }
-
-    .verify-content {
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      border-radius: 1rem;
-      padding: 2rem;
+    /* Verification Modal */
+    .verify-modal {
       width: 90%;
-      max-width: 400px;
+      max-width: 28rem;
+      padding: 2rem;
+      border-radius: 1rem;
       text-align: center;
-      border: 1px solid var(--card-border);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
-
-    .verify-content h2 {
-      color: var(--primary);
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
+    
+    .verify-title {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: hsl(var(--primary));
+      margin-bottom: 1rem;
     }
-
-    .verify-content p {
-      color: var(--gray);
-      font-size: 1rem;
-      margin-bottom: 1.5rem;
+    
+    .verify-description {
+      color: hsl(var(--muted-foreground));
+      margin-bottom: 2rem;
+      line-height: 1.6;
     }
-
-    .verify-btn {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      border: none;
+    
+    .verify-button {
+      width: 100%;
       padding: 1rem;
       border-radius: 0.5rem;
+      border: none;
+      background: linear-gradient(135deg, hsl(224 71% 64%), hsl(262 71% 64%));
+      color: white;
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
-      width: 100%;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 6px rgba(99, 102, 241, 0.3);
-    }
-
-    .verify-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 15px rgba(99, 102, 241, 0.4);
-    }
-
-    /* Blur overlay for unverified */
-    .blur-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      backdrop-filter: blur(10px);
-      z-index: 1500;
-      display: none;
     }
     
-    /* Responsive adjustments */
+    .verify-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 15px hsl(224 71% 64% / 0.4);
+    }
+    
+    /* Responsive */
     @media (max-width: 768px) {
-      .header {
-        padding: 1rem;
+      .header-content {
+        flex-direction: column;
+        gap: 1rem;
       }
       
-      .logo-text {
-        font-size: 1.1rem;
+      .controls {
+        width: 100%;
+        justify-content: space-between;
       }
       
-      .search-bar input {
-        width: 150px;
-      }
-      
-      .search-bar input:focus {
-        width: 180px;
-      }
-      
-      .container {
-        padding: 1.5rem 1rem;
+      .search-input {
+        width: 200px;
       }
       
       .hero h1 {
@@ -661,514 +627,644 @@
         font-size: 1rem;
       }
       
-      .category-title {
-        font-size: 1.2rem;
-      }
-      
       .channels-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
         gap: 1rem;
       }
       
-      .channel-card {
-        padding: 1.25rem;
-      }
-      
-      .channel-logo-container {
-        height: 80px;
+      .category-title {
+        font-size: 1.5rem;
       }
     }
     
     @media (max-width: 640px) {
-      .header {
-        flex-wrap: wrap;
-        gap: 1rem;
-      }
-      
-      .logo {
-        margin-right: auto;
-      }
-      
-      .controls {
-        width: 100%;
-        justify-content: space-between;
-      }
-      
-      .search-bar {
-        flex-grow: 1;
-        max-width: calc(100% - 50px);
-      }
-      
-      .search-bar input {
-        width: 100%;
-      }
-      
-      .search-bar input:focus {
-        width: 100%;
-      }
-      
       .channels-grid {
         grid-template-columns: 1fr;
       }
       
-      .hero h1 {
-        font-size: 1.75rem;
+      .hero {
+        padding: 2rem 1rem;
       }
+      
+      .container {
+        padding: 1rem;
+      }
+    }
+    
+    .hidden {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <div class="blur-overlay" id="blurOverlay"></div>
-
+  <!-- Header -->
   <header class="header">
-    <a href="#" class="logo">
-      <div class="logo-icon">
-        <i class="fas fa-satellite-dish"></i>
-      </div>
-      <div class="logo-text">MatchesLinks</div>
-    </a>
-    <div class="controls">
-      <div class="search-bar">
-        <i class="fas fa-search"></i>
-        <input type="text" placeholder="Search channels..." id="searchInput">
-      </div>
-      <div class="toggle-mode" onclick="toggleMode()" title="Toggle Dark/Light Mode">
-        <i class="fas fa-moon"></i>
+    <div class="header-content">
+      <a href="#" class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-satellite-dish"></i>
+        </div>
+        <div class="logo-text">MatchesLinks</div>
+      </a>
+      <div class="controls">
+        <div class="search-container">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" placeholder="Search channels..." class="search-input" id="searchInput">
+        </div>
+        <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
       </div>
     </div>
   </header>
 
-  <div id="particles-js"></div>
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Hero Section -->
+    <section class="hero glass-heavy hero-gradient">
+      <h1 class="hero-text-gradient">Premium Sports Channels Collection</h1>
+      <p>Access the best live sports events and channels from around the world in one place. Watch your favorite teams compete in high-definition quality.</p>
+      <div class="hero-badges">
+        <span class="hero-badge glass-light">HD Quality</span>
+        <span class="hero-badge glass-light">Live Events</span>
+        <span class="hero-badge glass-light">Global Coverage</span>
+      </div>
+    </section>
 
-  <div class="container">
-    <section class="hero">
-      <h1>Premium Sports Channels Collection</h1>
-      <p>Access the best live sports events and channels from around the world in one place</p>
-    </section>
-    
-    <section class="category">
+    <!-- Live Events -->
+    <section class="category-section">
       <div class="category-header">
-        <h2 class="category-title">
-          <span class="category-icon"><i class="fas fa-bolt"></i></span>
-          Live Events
-        </h2>
-        <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+        <div class="category-icon">
+          <i class="fas fa-bolt"></i>
+        </div>
+        <h2 class="category-title">Live Events</h2>
       </div>
-      <div class="channels-grid" id="eventsChannels"></div>
+      <div class="channels-grid" id="liveEventsGrid"></div>
     </section>
-    
-    <section class="category">
-      <div class="category-header">
-        <h2 class="category-title">
-          <span class="category-icon"><i class="fas fa-globe-americas"></i></span>
-          International Channels
-        </h2>
-        <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
-      </div>
-      <div class="channels-grid" id="internationalChannels"></div>
-    </section>
-    
-    <section class="category">
-      <div class="category-header">
-        <h2 class="category-title">
-          <span class="category-icon"><i class="fas fa-trophy"></i></span>
-          Sports Channels
-        </h2>
-        <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
-      </div>
-      <div class="channels-grid" id="sportsChannels"></div>
-    </section>
-  </div>
 
+    <!-- International Channels -->
+    <section class="category-section">
+      <div class="category-header">
+        <div class="category-icon">
+          <i class="fas fa-globe"></i>
+        </div>
+        <h2 class="category-title">International Channels</h2>
+      </div>
+      <div class="channels-grid" id="internationalGrid"></div>
+    </section>
+
+    <!-- Sports Channels -->
+    <section class="category-section">
+      <div class="category-header">
+        <div class="category-icon">
+          <i class="fas fa-trophy"></i>
+        </div>
+        <h2 class="category-title">Sports Channels</h2>
+      </div>
+      <div class="channels-grid" id="sportsGrid"></div>
+    </section>
+  </main>
+
+  <!-- Footer -->
   <footer class="footer">
-    <div class="footer-content">
-      <div class="social-links">
-        <a href="https://t.me/+e3-eAje291cxNGNl" class="social-link"><i class="fab fa-telegram"></i></a>
-        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
-      </div>
-      <p>© 2025 @Matcheslinks. All rights reserved.</p>
+    <div class="social-links">
+      <a href="https://t.me/+e3-eAje291cxNGNl" class="social-link" target="_blank">
+        <i class="fab fa-telegram"></i>
+      </a>
+      <a href="#" class="social-link">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="#" class="social-link">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="#" class="social-link">
+        <i class="fas fa-envelope"></i>
+      </a>
     </div>
+    <p class="footer-text">© 2025 @Matcheslinks. All rights reserved.</p>
   </footer>
 
-  <!-- Visitor counter -->
-  <div class="visitor-counter" id="visitorCounter">
-    <i class="fas fa-users"></i>
-    <span>Loading visitors...</span>
+  <!-- Visitor Counter -->
+  <div class="visitor-counter">
+    <i class="fas fa-users visitor-icon"></i>
+    <span id="visitorCount">Loading...</span>
   </div>
 
-  <!-- Modal for event player -->
-  <div class="modal-overlay" id="eventModal">
-    <div class="modal-container">
+  <!-- Video Modal -->
+  <div class="modal-overlay" id="videoModal">
+    <div class="modal-content modal-glass">
       <div class="modal-header">
-        <div class="modal-title"><i class="fas fa-play-circle"></i> <span id="modalEventTitle">Event</span></div>
-        <button class="close-modal" onclick="closeModal()">&times;</button>
+        <div class="modal-title">
+          <div class="modal-title-icon">
+            <i class="fas fa-play"></i>
+          </div>
+          <span id="videoTitle">Live Event</span>
+        </div>
+        <button class="close-button" onclick="closeVideoModal()">
+          <i class="fas fa-times"></i>
+        </button>
       </div>
-      <div class="modal-content">
-        <iframe class="modal-iframe" id="eventFrame" allowfullscreen></iframe>
+      <div class="video-container">
+        <iframe class="video-iframe" id="videoFrame" allowfullscreen></iframe>
       </div>
     </div>
   </div>
 
-  <!-- Verification Popup -->
-  <div id="verifyPopup">
-    <div class="verify-content">
-      <h2><i class="fas fa-shield-alt"></i> VERIFICATION REQUIRED</h2>
-      <p>Please verify to continue watching the live channels</p>
-      <button class="verify-btn" id="verifyBtn">VERIFY NOW</button>
+  <!-- Verification Modal -->
+  <div class="modal-overlay" id="verifyModal">
+    <div class="verify-modal modal-glass">
+      <h2 class="verify-title">
+        <i class="fas fa-shield-alt"></i>
+        VERIFICATION REQUIRED
+      </h2>
+      <p class="verify-description">
+        To access our premium sports channels and live events, please complete a quick verification process. This helps us maintain quality service and prevent abuse.
+      </p>
+      <button class="verify-button" onclick="handleVerification()">
+        VERIFY NOW
+      </button>
     </div>
   </div>
-
-  <!-- Particle.js -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
   <script>
-    // Security: Disable developer tools
-    document.addEventListener('contextmenu', function(e) {
-      e.preventDefault();
-    });
-    
-    document.onkeydown = function(e) {
-      if (e.keyCode == 123) return false; // F12
-      if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
-      if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
-      if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
-      if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
-    };
-    
-    // Check for devtools opening
-    setInterval(function() {
-      if (window.outerWidth - window.innerWidth > 100 || window.outerHeight - window.innerHeight > 100) {
-        window.close();
-      }
-    }, 1000);
-
-    const channels = [
-      { name: "Fubo Sports", logo: "https://images.fubo.tv/station_logos/fubo-sports23_m.png", url: "https://fubo-sports.vercel.app/", category: "sports" },
-      { name: "SKY SPORTS LALIGA", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh1IoJO-olMV3VE5nHDw1NU8ExocnQS-wVwScHAwBbHjDSwaouUvu5eKb17DzuBUw98w&usqp=CAU", url: "https://sky-sports-laliga.vercel.app/", category: "sports" },
-      { name: "SKY SPORTS BUNDESLIGA", logo: "https://pbs.twimg.com/media/FYjlInYXEAIfUAT.jpg:large", url: "https://reliable-mousse-84f3ca.netlify.app/", category: "sports" },
-      { name: "PREMIER LEAGUE TV", logo: "https://ntvb.tmsimg.com/assets/p3605402_b_h8_ar.jpg?w=1280&h=720", url: "https://serene-begonia-843810.netlify.app/", category: "sports" },
-      { name: "REAL MADRID TV", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS95_GnP3XFTnrRGkU_XHi_UcoEwc92sLJmcg&s", url: "https://jolly-treacle-7b99e0.netlify.app/", category: "sports" },
-      { name: "LALIGA TV", logo: "https://pbs.twimg.com/profile_images/1747989339764572160/7nxm03-2_200x200.jpg", url: "https://laliga-tv.vercel.app/", category: "sports" },
-      { name: "ZIGGO SPORTS 1", logo: "https://www.planetzone.nl/wp-content/uploads/ziggosport.png", url: "https://beamish-meringue-ce6ba2.netlify.app/", category: "sports" },
-      { name: "ZIGGO SPORTS 2", logo: "https://www.planetzone.nl/wp-content/uploads/ziggosport.png", url: "https://poetic-nasturtium-c034b2.netlify.app/", category: "sports" },
-      { name: "Sky Sports Cricket", logo: "https://media.info/l/f/1/1134.1507600280.png", url: "https://profound-horse-9b6397.netlify.app/", category: "sports" },
-      { name: "Sky Sports Football", logo: "https://i.pinimg.com/736x/c2/e5/e8/c2e5e8e6927f9518040072db395b907c.jpg", url: "https://profound-horse-9b6397.netlify.app/", category: "sports" },
-      { name: "Sky Sports Main Event", logo: "https://i.pinimg.com/736x/c2/e5/e8/c2e5e8e6927f9518040072db395b907c.jpg", url: "https://sky-sports-main-eveent.vercel.app/", category: "sports" },
-      { name: "Sky Sports Premier League", logo: "https://archive.org/download/SkySportsPremierLeague_201708/sky%20sports%20premier%20league.png", url: "https://superlative-horse-d6a6c5.netlify.app/", category: "sports" },      { name: "USA East", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3U6vFqKlugKE9SLtLwnOf7sGhBI_UMhEKfwOsbNm93m9ffwngqZQ7Bh5q&s=10", url: "https://usa-east888-v2b2.vercel.app/", category: "international" },
-      { name: "NBC", logo: "https://upload.wikimedia.org/wikipedia/commons/3/3f/NBC_logo.svg", url: "https://flourishing-pudding-37c887.netlify.app/", category: "international" },
-      { name: "Universo", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBG2mqncvr4lOSb1xsyP1T-URBBvO5-4YKFQ&s", url: "https://kaleidoscopic-narwhal-9aa0ff.netlify.app/", category: "international" },
-      { name: "TELEMUNDO", logo: "https://i0.wp.com/thehill.com/wp-content/uploads/sites/2/2017/05/telemundologo.png?w=2000&ssl=1", url: "https://fantastic-chimera-85d2ed.netlify.app/", category: "international" },
-      { name: "TSN 1", logo: "data:image/png;base64,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", url: "https://fluffy-cucurucho-df41e4.netlify.app/", category: "sports" },
-      { name: "TSN 2", logo: "https://play-lh.googleusercontent.com/Wfh4tn-kWAGTUIMxVgyZ1g2BEHrdDtjyXwUdqJLwX6w640Lc3DJoLoZqoCSEbYWpTw", url: "https://calm-croissant-12afd7.netlify.app/", category: "sports" },
-      { name: "TSN 3", logo: "https://play-lh.googleusercontent.com/Wfh4tn-kWAGTUIMxVgyZ1g2BEHrdDtjyXwUdqJLwX6w640Lc3DJoLoZqoCSEbYWpTw", url: "https://lustrous-liger-25782c.netlify.app/", category: "sports" },
-      { name: "TSN 4", logo: "https://play-lh.googleusercontent.com/Wfh4tn-kWAGTUIMxVgyZ1g2BEHrdDtjyXwUdqJLwX6w640Lc3DJoLoZqoCSEbYWpTw", url: "https://superlative-alfajores-6896d4.netlify.app/", category: "sports" },
-      { name: "TSN 5", logo: "https://play-lh.googleusercontent.com/Wfh4tn-kWAGTUIMxVgyZ1g2BEHrdDtjyXwUdqJLwX6w640Lc3DJoLoZqoCSEbYWpTw", url: "https://imaginative-donut-233620.netlify.app/", category: "sports" },
-      { name: "TNT SPORTS 1", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI2NSvkyk8Fx2UMBXFdEXS36TNepD6Uy8pMQveJnYRbDnXedcg2tttKHz3&s=10", url: "https://guileless-trifle-c45bd0.netlify.app/", category: "sports" },
-      { name: "TNT SPORTS 2", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI2NSvkyk8Fx2UMBXFdEXS36TNepD6Uy8pMQveJnYRbDnXedcg2tttKHz3&s=10", url: "https://bright-gelato-1c2e32.netlify.app/", category: "sports" },
-      { name: "TNT SPORTS 3", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI2NSvkyk8Fx2UMBXFdEXS36TNepD6Uy8pMQveJnYRbDnXedcg2tttKHz3&s=10", url: "https://rad-elf-37d1bb.netlify.app/", category: "sports" },
-      { name: "TNT SPORTS 4", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI2NSvkyk8Fx2UMBXFdEXS36TNepD6Uy8pMQveJnYRbDnXedcg2tttKHz3&s=10", url: "https://incredible-meerkat-231a3b.netlify.app/", category: "sports" },
-      { name: "SSC 1", logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png", url: "https://gleaming-meringue-fba932.netlify.app/", category: "sports" },
-      { name: "SSC 2", logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png", url: "https://nimble-belekoy-a83e0c.netlify.app/", category: "sports" },
-      { name: "SSC 3", logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png", url: "https://shimmering-choux-f6c58c.netlify.app/", category: "sports" },
-      { name: "SSC 4", logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png", url: "https://courageous-longma-8f0f4c.netlify.app/", category: "sports" },
-      { name: "SSC 5", logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png", url: "https://mellifluous-donut-5c4b44.netlify.app/", category: "sports" },
-      { name: "SSC EXTRA 1", logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png", url: "https://ornate-tiramisu-95d7cc.netlify.app/", category: "sports" },
-      { name: "SSC EXTRA 2", logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png", url: "https://delightful-youtiao-330cfd.netlify.app/", category: "sports" },
-      { name: "SSC EXTRA 3", logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png", url: "https://sparkly-scone-29fbd8.netlify.app/", category: "sports" },
-      { name: "ESPN 1", logo: "https://static.vecteezy.com/system/resources/previews/027/127/453/non_2x/espn-logo-espn-icon-transparent-free-png.png", url: "https://magical-unicorn-4663ed.netlify.app/", category: "sports" },
-      { name: "ESPN 2", logo: "https://static.vecteezy.com/system/resources/previews/027/127/453/non_2x/espn-logo-espn-icon-transparent-free-png.png", url: "https://capable-medovik-fc01f3.netlify.app/", category: "sports" },
-      { name: "ESPN 3", logo: "https://static.vecteezy.com/system/resources/previews/027/127/453/non_2x/espn-logo-espn-icon-transparent-free-png.png", url: "https://sweet-cocada-744c56.netlify.app/", category: "sports" },
-      { name: "ESPN 3", logo: "https://static.vecteezy.com/system/resources/previews/027/127/453/non_2x/espn-logo-espn-icon-transparent-free-png.png", url: "https://sweet-cocada-744c56.netlify.app/", category: "sports" },
-      { name: "Astro Sports Plus", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Astro_Sports_Plus_%282024%29.png/960px-Astro_Sports_Plus_%282024%29.png", url: "https://astro-sports-plus.vercel.app/", category: "sports" },
-      { name: "Astro Sports UHD", logo: "https://upload.wikimedia.org/wikipedia/commons/b/bf/Astro_Sports_UHD_1_%282024%29.png", url: "https://astro-uhd.vercel.app/", category: "sports" },
-      { name: "SONY TEN 1 HD", logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Ten_HD.png", url: "https://sonyten1.vercel.app", category: "sports" },
-      { name: "SONY TEN 2 HD", logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Ten2_HD.png", url: "https://sonyten2-drab.vercel.app/", category: "sports" },
-      { name: "SONY TEN 3 HD", logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Ten3_HD.png", url: "https://sonysportsten3.vercel.app/", category: "sports" },
-      { name: "SONY TEN 5 HD", logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Six_HD.png", url: "https://sonyten5.vercel.app/", category: "sports" },
-      { name: "BEIN SPORTS 1", logo: "https://i.ibb.co/hgVx5GL/Bein-1.png", url: "https://id-beinsports1.vercel.app/", category: "sports" },
-      { name: "BEIN EXTRA ES", logo: "https://www.freelivesports.tv/wp-content/uploads/2025/01/bein-extra-spain-212.png", url: "https://elegant-froyo-b3bf63.netlify.app/", category: "sports" },
-      { name: "Star Sports 1 Tamil", logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Star_Sports_1_Tamil.png", url: "https://effervescent-mochi-361c1f.netlify.app/", category: "sports" },
-      { name: "Star Sports 1 Tamil HD", logo: "https://jiotv.catchup.cdn.jio.com/dare_images/images/Star_Sports_1_Tamil_HD.png", url: "https://elegant-froyo-b3bf63.netlify.app/", category: "sports" },
-      { name: "Star Sports 2 Tamil HD", logo: "https://jiotv.catchup.cdn.jio.com/dare_images/images/Star_Sports_2_Tamil_HD.png", url: "https://courageous-capybara-035b6e.netlify.app/", category: "sports" },
-      { name: "Star Sports 1", logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Star_Sports_1.png", url: "https://harmonious-cupcake-58efb2.netlify.app/", category: "sports" },
-      { name: "Star Sports 1 HD", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Star_Sports_1_HD.png/2560px-Star_Sports_1_HD.png", url: "https://amazing-meringue-46f410.netlify.app/", category: "sports" },
-      { name: "Star Sports 2", logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Star_Sports_2.png", url: "https://stupendous-smakager-3f0e78.netlify.app/", category: "sports" },
-      { name: "Star Sports 2 HD", logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Star_Sports_2.png", url: "https://magical-kangaroo-4fade2.netlify.app/", category: "sports" },
-      { name: "Star Sports 3", logo: "https://img.media.jio.com/tvpimages/78/2/302117_1753186010525_l_medium.jpg", url: "https://fascinating-bonbon-affcf0.netlify.app/", category: "sports" },
-      { name: "Star Sports 1 Hindi HD", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Star_Sports_1_HD.png/2560px-Star_Sports_1_HD.png", url: "https://splendorous-cendol-2469b3.netlify.app/", category: "sports" }
-
-    ];
-
-    // Events data with '#" at the top
-    const events = [  
+    // Channel Data
+    const liveEvents = [
       {
-        name: "East Bengal FC Vs Kalighat Club",
-        logo: "BwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNjtjZj13ZWJw/https://media.zenfs.com/en/playmakerstats_articles_264/08d66dc89b9953e21eacab25563d5b57",
-        url: "https://hls-player-three.vercel.app/?url=https://ssen-live.multitvsolution.com/match_1/EASTBENGALFCvsKALIGHATMILANSANGHA/HLS/master.m3u8",
+        name: "No Live Event",
+        logo: "ht",
+        url: "#",
         live: true
-      },
+      }
     ];
 
-    // Check verification status
+    const internationalChannels = [
+      {
+        name: "USA East",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3U6vFqKlugKE9SLtLwnOf7sGhBI_UMhEKfwOsbNm93m9ffwngqZQ7Bh5q&s=10",
+        url: "https://usa-east888-v2b2.vercel.app/"
+      },
+      {
+        name: "NBC",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/3/3f/NBC_logo.svg",
+        url: "https://flourishing-pudding-37c887.netlify.app/"
+      },
+      {
+        name: "Universo",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBG2mqncvr4lOSb1xsyP1T-URBBvO5-4YKFQ&s",
+        url: "https://kaleidoscopic-narwhal-9aa0ff.netlify.app/"
+      },
+      {
+        name: "TELEMUNDO",
+        logo: "https://i0.wp.com/thehill.com/wp-content/uploads/sites/2/2017/05/telemundologo.png?w=2000&ssl=1",
+        url: "https://fantastic-chimera-85d2ed.netlify.app/"
+      }
+    ];
+
+    const sportsChannels = [
+      {
+        name: "Fubo Sports",
+        logo: "https://images.fubo.tv/station_logos/fubo-sports23_m.png",
+        url: "https://fubo-sports.vercel.app/"
+      },
+      {
+        name: "SKY SPORTS LALIGA",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh1IoJO-olMV3VE5nHDw1NU8ExocnQS-wVwScHAwBbHjDSwaouUvu5eKb17DzuBUw98w&usqp=CAU",
+        url: "https://sky-sports-laliga.vercel.app/"
+      },
+      {
+        name: "SKY SPORTS BUNDESLIGA",
+        logo: "https://pbs.twimg.com/media/FYjlInYXEAIfUAT.jpg:large",
+        url: "https://reliable-mousse-84f3ca.netlify.app/"
+      },
+      {
+        name: "PREMIER LEAGUE TV",
+        logo: "https://ntvb.tmsimg.com/assets/p3605402_b_h8_ar.jpg?w=1280&h=720",
+        url: "https://serene-begonia-843810.netlify.app/"
+      },
+      {
+        name: "REAL MADRID TV",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS95_GnP3XFTnrRGkU_XHi_UcoEwc92sLJmcg&s",
+        url: "https://jolly-treacle-7b99e0.netlify.app/"
+      },
+      {
+        name: "LALIGA TV",
+        logo: "https://pbs.twimg.com/profile_images/1747989339764572160/7nxm03-2_200x200.jpg",
+        url: "https://laliga-tv.vercel.app/"
+      },
+      {
+        name: "ZIGGO SPORTS 1",
+        logo: "https://www.planetzone.nl/wp-content/uploads/ziggosport.png",
+        url: "https://beamish-meringue-ce6ba2.netlify.app/"
+      },
+      {
+        name: "ZIGGO SPORTS 2",
+        logo: "https://www.planetzone.nl/wp-content/uploads/ziggosport.png",
+        url: "https://poetic-nasturtium-c034b2.netlify.app/"
+      },
+      {
+        name: "Sky Sports Cricket",
+        logo: "https://media.info/l/f/1/1134.1507600280.png",
+        url: "https://profound-horse-9b6397.netlify.app/"
+      },
+      {
+        name: "Sky Sports Football",
+        logo: "https://i.pinimg.com/736x/c2/e5/e8/c2e5e8e6927f9518040072db395b907c.jpg",
+        url: "https://profound-horse-9b6397.netlify.app/"
+      },
+      {
+        name: "Sky Sports Main Event",
+        logo: "https://i.pinimg.com/736x/c2/e5/e8/c2e5e8e6927f9518040072db395b907c.jpg",
+        url: "https://sky-sports-main-eveent.vercel.app/"
+      },
+      {
+        name: "Sky Sports Premier League",
+        logo: "https://archive.org/download/SkySportsPremierLeague_201708/sky%20sports%20premier%20league.png",
+        url: "https://superlative-horse-d6a6c5.netlify.app/"
+      },
+      {
+        name: "TSN 1",
+        logo: "data:image/png;base64,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",
+        url: "https://fluffy-cucurucho-df41e4.netlify.app/"
+      },
+      {
+        name: "TSN 2",
+        logo: "https://play-lh.googleusercontent.com/Wfh4tn-kWAGTUIMxVgyZ1g2BEHrdDtjyXwUdqJLwX6w640Lc3DJoLoZqoCSEbYWpTw",
+        url: "https://calm-croissant-12afd7.netlify.app/"
+      },
+      {
+        name: "TSN 3",
+        logo: "https://play-lh.googleusercontent.com/Wfh4tn-kWAGTUIMxVgyZ1g2BEHrdDtjyXwUdqJLwX6w640Lc3DJoLoZqoCSEbYWpTw",
+        url: "https://lustrous-liger-25782c.netlify.app/"
+      },
+      {
+        name: "TSN 4",
+        logo: "https://play-lh.googleusercontent.com/Wfh4tn-kWAGTUIMxVgyZ1g2BEHrdDtjyXwUdqJLwX6w640Lc3DJoLoZqoCSEbYWpTw",
+        url: "https://superlative-alfajores-6896d4.netlify.app/"
+      },
+      {
+        name: "TSN 5",
+        logo: "https://play-lh.googleusercontent.com/Wfh4tn-kWAGTUIMxVgyZ1g2BEHrdDtjyXwUdqJLwX6w640Lc3DJoLoZqoCSEbYWpTw",
+        url: "https://imaginative-donut-233620.netlify.app/"
+      },
+      {
+        name: "TNT SPORTS 1",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI2NSvkyk8Fx2UMBXFdEXS36TNepD6Uy8pMQveJnYRbDnXedcg2tttKHz3&s=10",
+        url: "https://guileless-trifle-c45bd0.netlify.app/"
+      },
+      {
+        name: "TNT SPORTS 2",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI2NSvkyk8Fx2UMBXFdEXS36TNepD6Uy8pMQveJnYRbDnXedcg2tttKHz3&s=10",
+        url: "https://bright-gelato-1c2e32.netlify.app/"
+      },
+      {
+        name: "TNT SPORTS 3",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI2NSvkyk8Fx2UMBXFdEXS36TNepD6Uy8pMQveJnYRbDnXedcg2tttKHz3&s=10",
+        url: "https://rad-elf-37d1bb.netlify.app/"
+      },
+      {
+        name: "TNT SPORTS 4",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI2NSvkyk8Fx2UMBXFdEXS36TNepD6Uy8pMQveJnYRbDnXedcg2tttKHz3&s=10",
+        url: "https://incredible-meerkat-231a3b.netlify.app/"
+      },
+      {
+        name: "SSC 1",
+        logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png",
+        url: "https://gleaming-meringue-fba932.netlify.app/"
+      },
+      {
+        name: "SSC 2",
+        logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png",
+        url: "https://nimble-belekoy-a83e0c.netlify.app/"
+      },
+      {
+        name: "SSC 3",
+        logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png",
+        url: "https://shimmering-choux-f6c58c.netlify.app/"
+      },
+      {
+        name: "SSC 4",
+        logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png",
+        url: "https://courageous-longma-8f0f4c.netlify.app/"
+      },
+      {
+        name: "SSC 5",
+        logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png",
+        url: "https://mellifluous-donut-5c4b44.netlify.app/"
+      },
+      {
+        name: "SSC EXTRA 1",
+        logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png",
+        url: "https://ornate-tiramisu-95d7cc.netlify.app/"
+      },
+      {
+        name: "SSC EXTRA 2",
+        logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png",
+        url: "https://delightful-youtiao-330cfd.netlify.app/"
+      },
+      {
+        name: "SSC EXTRA 3",
+        logo: "https://images.seeklogo.com/logo-png/49/1/ssc-tv-logo-png_seeklogo-498010.png",
+        url: "https://sparkly-scone-29fbd8.netlify.app/"
+      },
+      {
+        name: "ESPN 1",
+        logo: "https://static.vecteezy.com/system/resources/previews/027/127/453/non_2x/espn-logo-espn-icon-transparent-free-png.png",
+        url: "https://magical-unicorn-4663ed.netlify.app/"
+      },
+      {
+        name: "ESPN 2",
+        logo: "https://static.vecteezy.com/system/resources/previews/027/127/453/non_2x/espn-logo-espn-icon-transparent-free-png.png",
+        url: "https://capable-medovik-fc01f3.netlify.app/"
+      },
+      {
+        name: "ESPN 3",
+        logo: "https://static.vecteezy.com/system/resources/previews/027/127/453/non_2x/espn-logo-espn-icon-transparent-free-png.png",
+        url: "https://sweet-cocada-744c56.netlify.app/"
+      },
+      {
+        name: "Astro Sports Plus",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Astro_Sports_Plus_%282024%29.png/960px-Astro_Sports_Plus_%282024%29.png",
+        url: "https://astro-sports-plus.vercel.app/"
+      },
+      {
+        name: "Astro Sports UHD",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/b/bf/Astro_Sports_UHD_1_%282024%29.png",
+        url: "https://astro-uhd.vercel.app/"
+      },
+      {
+        name: "SONY TEN 1 HD",
+        logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Ten_HD.png",
+        url: "https://sonyten1.vercel.app"
+      },
+      {
+        name: "SONY TEN 2 HD",
+        logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Ten2_HD.png",
+        url: "https://sonyten2-drab.vercel.app/"
+      },
+      {
+        name: "SONY TEN 3 HD",
+        logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Ten3_HD.png",
+        url: "https://sonysportsten3.vercel.app/"
+      },
+      {
+        name: "SONY TEN 5 HD",
+        logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Six_HD.png",
+        url: "https://sonyten5.vercel.app/"
+      },
+      {
+        name: "BEIN SPORTS 1",
+        logo: "https://i.ibb.co/hgVx5GL/Bein-1.png",
+        url: "https://id-beinsports1.vercel.app/"
+      },
+      {
+        name: "BEIN EXTRA ES",
+        logo: "https://www.freelivesports.tv/wp-content/uploads/2025/01/bein-extra-spain-212.png",
+        url: "https://elegant-froyo-b3bf63.netlify.app/"
+      },
+      {
+        name: "Star Sports 1 Tamil",
+        logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Star_Sports_1_Tamil.png",
+        url: "https://effervescent-mochi-361c1f.netlify.app/"
+      },
+      {
+        name: "Star Sports 1 Tamil HD",
+        logo: "https://jiotv.catchup.cdn.jio.com/dare_images/images/Star_Sports_1_Tamil_HD.png",
+        url: "https://elegant-froyo-b3bf63.netlify.app/"
+      },
+      {
+        name: "Star Sports 2 Tamil HD",
+        logo: "https://jiotv.catchup.cdn.jio.com/dare_images/images/Star_Sports_2_Tamil_HD.png",
+        url: "https://courageous-capybara-035b6e.netlify.app/"
+      },
+      {
+        name: "Star Sports 1",
+        logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Star_Sports_1.png",
+        url: "https://harmonious-cupcake-58efb2.netlify.app/"
+      },
+      {
+        name: "Star Sports 1 HD",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Star_Sports_1_HD.png/2560px-Star_Sports_1_HD.png",
+        url: "https://amazing-meringue-46f410.netlify.app/"
+      },
+      {
+        name: "Star Sports 2",
+        logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Star_Sports_2.png",
+        url: "https://stupendous-smakager-3f0e78.netlify.app/"
+      },
+      {
+        name: "Star Sports 2 HD",
+        logo: "https://jiotvimages.cdn.jio.com/dare_images/images/Star_Sports_2.png",
+        url: "https://magical-kangaroo-4fade2.netlify.app/"
+      },
+      {
+        name: "Star Sports 3",
+        logo: "https://img.media.jio.com/tvpimages/78/2/302117_1753186010525_l_medium.jpg",
+        url: "https://fascinating-bonbon-affcf0.netlify.app/"
+      },
+      {
+        name: "Star Sports 1 Hindi HD",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Star_Sports_1_HD.png/2560px-Star_Sports_1_HD.png",
+        url: "https://splendorous-cendol-2469b3.netlify.app/"
+      }
+    ];
+
+    // App State
+    let currentTheme = localStorage.getItem('theme') || 'dark';
+    let searchTerm = '';
+
+    // Verification functions
     function checkVerification() {
       const verifiedUntil = localStorage.getItem('verified_until');
-      const now = new Date();
-      
-      if (verifiedUntil && parseInt(verifiedUntil) > now.getTime()) {
-        // Verified - hide verification popup
-        document.getElementById('verifyPopup').style.display = 'none';
-        document.getElementById('blurOverlay').style.display = 'none';
-      } else {
-        // Not verified - show verification popup
-        document.getElementById('verifyPopup').style.display = 'flex';
-        document.getElementById('blurOverlay').style.display = 'block';
-      }
+      const now = Date.now();
+      return verifiedUntil && parseInt(verifiedUntil) > now;
     }
 
-    // Verify system
-    document.getElementById('verifyBtn').addEventListener('click', function() {
-      // Set verification for 24 hours
-      const expire = Date.now() + (24 * 60 * 60 * 1000);
-      localStorage.setItem('verified_until', expire);
-      
-      // Redirect to verification link
-      window.location.href = 'https://vplink.in/H0lJs';
-    });
-
-    // REAL VISITOR COUNTER using CountAPI
-    function updateVisitorCounter() {
-      const visitorId = 'visitor_' + Math.random().toString(36).substr(2, 9);
-      const storageKey = 'matcheslinks_visitor_id';
-      
-      // Check if we already counted this visitor
-      if (!localStorage.getItem(storageKey)) {
-        // This is a new visitor
-        localStorage.setItem(storageKey, visitorId);
-        
-        // Hit the counter API to increment
-        fetch('https://api.countapi.xyz/hit/matcheslinks/visits')
-          .then(response => response.json())
-          .then(data => {
-            document.getElementById('visitorCounter').innerHTML = `
-              <i class="fas fa-users"></i>
-              <span>${data.value} visitors today</span>
-            `;
-          })
-          .catch(error => {
-            console.error('Visitor counter error:', error);
-            document.getElementById('visitorCounter').innerHTML = `
-              <i class="fas fa-users"></i>
-              <span>Many visitors online</span>
-            `;
-          });
-      } else {
-        // Existing visitor - just get the current count
-        fetch('https://api.countapi.xyz/get/matcheslinks/visits')
-          .then(response => response.json())
-          .then(data => {
-            document.getElementById('visitorCounter').innerHTML = `
-              <i class="fas fa-users"></i>
-              <span>${data.value} visitors today</span>
-            `;
-          })
-          .catch(error => {
-            console.error('Visitor counter error:', error);
-            document.getElementById('visitorCounter').innerHTML = `
-              <i class="fas fa-users"></i>
-              <span>Many visitors online</span>
-            `;
-          });
-      }
-      
-      // Update counter every 2 minutes
-      setTimeout(updateVisitorCounter, 120000);
-    }
-
-    // Modal functions
-    function openModal(eventName, eventUrl) {
-      const verifiedUntil = localStorage.getItem('verified_until');
-      const now = new Date();
-      
-      if (!verifiedUntil || parseInt(verifiedUntil) <= now.getTime()) {
-        document.getElementById('verifyPopup').style.display = 'flex';
-        document.getElementById('blurOverlay').style.display = 'block';
-        return;
-      }
-      
-      document.getElementById('modalEventTitle').textContent = eventName;
-      document.getElementById('eventFrame').src = eventUrl;
-      document.getElementById('eventModal').classList.add('active');
+    function showVerificationModal() {
+      document.getElementById('verifyModal').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
 
-    function closeModal() {
-      document.getElementById('eventModal').classList.remove('active');
-      document.getElementById('eventFrame').src = '';
+    function hideVerificationModal() {
+      document.getElementById('verifyModal').classList.remove('active');
       document.body.style.overflow = 'auto';
     }
 
-    function renderChannels() {
-      const internationalContainer = document.getElementById('internationalChannels');
-      const sportsContainer = document.getElementById('sportsChannels');
-      const eventsContainer = document.getElementById('eventsChannels');
+    function handleVerification() {
+      // Set verification for 24 hours
+      const expire = Date.now() + (24 * 60 * 60 * 1000);
+      localStorage.setItem('verified_until', expire.toString());
       
-      // Clear existing content
-      internationalContainer.innerHTML = '';
-      sportsContainer.innerHTML = '';
-      eventsContainer.innerHTML = '';
+      // Close modal first
+      hideVerificationModal();
       
-      // Render regular channels
-      channels.forEach((ch, index) => {
-        const card = document.createElement('div');
-        card.className = 'channel-card';
-        card.style.animationDelay = `${index * 0.05}s`;
-        card.innerHTML = `
-          <div class="channel-logo-container">
-            <img src="${ch.logo}" alt="${ch.name} logo" class="channel-logo" />
-          </div>
-          <div class="channel-name">${ch.name}</div>
-          <button class="play-btn" onclick="handlePlayButton('${ch.url}')">
-            <i class="fas fa-play"></i> Play
-          </button>
-        `;
-        
-        if (ch.category === 'international') {
-          internationalContainer.appendChild(card);
-        } else if (ch.category === 'sports') {
-          sportsContainer.appendChild(card);
-        }
-      });
-      
-      // Render events with LIVE badge
-      events.forEach((event, index) => {
-        const card = document.createElement('div');
-        card.className = 'channel-card';
-        card.style.animationDelay = `${index * 0.05}s`;
-        card.innerHTML = `
-          <div class="channel-logo-container">
-            <img src="${event.logo}" alt="${event.name} logo" class="channel-logo" />
-            ${event.live ? '<div class="live-badge"><i class="fas fa-broadcast-tower"></i> LIVE</div>' : ''}
-          </div>
-          <div class="channel-name">${event.name}</div>
-          <button class="play-btn" onclick="openModal('${event.name}', '${event.url}')">
-            <i class="fas fa-play"></i> Watch Live
-          </button>
-        `;
-        eventsContainer.appendChild(card);
-      });
+      // Then redirect to verification link
+      window.location.href = 'https://vplink.in/H0lJs';
     }
 
-    function handlePlayButton(url) {
-      const verifiedUntil = localStorage.getItem('verified_until');
-      const now = new Date();
-      
-      if (!verifiedUntil || parseInt(verifiedUntil) <= now.getTime()) {
-        document.getElementById('verifyPopup').style.display = 'flex';
-        document.getElementById('blurOverlay').style.display = 'block';
+    // Channel functions
+    function handleChannelPlay(url, isLiveEvent = false, name = '') {
+      if (!checkVerification()) {
+        showVerificationModal();
+        return;
+      }
+
+      if (isLiveEvent) {
+        openVideoModal(name, url);
       } else {
         window.open(url, '_blank');
       }
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
-      renderChannels();
-      updateVisitorCounter();
-      checkVerification();
-      
-      // Close modal when clicking outside
-      document.getElementById('eventModal').addEventListener('click', function(e) {
-        if (e.target === this) {
-          closeModal();
+    function openVideoModal(title, url) {
+      document.getElementById('videoTitle').textContent = title;
+      document.getElementById('videoFrame').src = url;
+      document.getElementById('videoModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeVideoModal() {
+      document.getElementById('videoModal').classList.remove('active');
+      document.getElementById('videoFrame').src = '';
+      document.body.style.overflow = 'auto';
+    }
+
+    // Render functions
+    function createChannelCard(channel, isLiveEvent = false) {
+      return `
+        <div class="channel-card" data-name="${channel.name.toLowerCase()}">
+          <div class="channel-logo-container">
+            <img src="${channel.logo}" alt="${channel.name}" class="channel-logo" />
+            ${isLiveEvent && channel.live ? '<div class="live-badge"><i class="fas fa-circle"></i> LIVE</div>' : ''}
+          </div>
+          <div class="channel-name">${channel.name}</div>
+          <button class="play-button" onclick="handleChannelPlay('${channel.url}', ${isLiveEvent}, '${channel.name}')">
+            <i class="fas fa-play"></i>
+            ${isLiveEvent ? 'Watch Live' : 'Play'}
+          </button>
+        </div>
+      `;
+    }
+
+    function renderChannels() {
+      // Render live events
+      const liveEventsGrid = document.getElementById('liveEventsGrid');
+      liveEventsGrid.innerHTML = liveEvents.map(event => createChannelCard(event, true)).join('');
+
+      // Render international channels
+      const internationalGrid = document.getElementById('internationalGrid');
+      internationalGrid.innerHTML = internationalChannels.map(channel => createChannelCard(channel)).join('');
+
+      // Render sports channels
+      const sportsGrid = document.getElementById('sportsGrid');
+      sportsGrid.innerHTML = sportsChannels.map(channel => createChannelCard(channel)).join('');
+    }
+
+    function filterChannels() {
+      const cards = document.querySelectorAll('.channel-card');
+      cards.forEach(card => {
+        const name = card.getAttribute('data-name');
+        if (name.includes(searchTerm.toLowerCase())) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
         }
       });
-      
-      // Initialize particles.js
-      particlesJS("particles-js", {
-        particles: {
-          number: { value: 80 },
-          color: { value: "#6366f1" },
-          shape: { type: "circle" },
-          opacity: { value: 0.5 },
-          size: { value: 3 },
-          line_linked: {
-            enable: true,
-            distance: 150,
-            color: "#6366f1",
-            opacity: 0.2,
-            width: 1
-          },
-          move: { 
-            enable: true,
-            speed: 2,
-            direction: "none",
-            random: true,
-            straight: false,
-            out_mode: "out",
-            bounce: false
-          }
-        },
-        interactivity: {
-          detect_on: "canvas",
-          events: {
-            onhover: { enable: true, mode: "grab" },
-            onclick: { enable: true, mode: "push" }
-          },
-          modes: {
-            grab: { distance: 140, line_linked: { opacity: 0.8 } },
-            push: { particles_nb: 4 }
-          }
-        },
-        retina_detect: true
-      });
-      
-      // Search functionality
-      const searchInput = document.getElementById('searchInput');
-      searchInput.addEventListener('input', function(e) {
-        const searchTerm = e.target.value.toLowerCase();
-        document.querySelectorAll('.channel-card').forEach(card => {
-          const channelName = card.querySelector('.channel-name').textContent.toLowerCase();
-          if (channelName.includes(searchTerm)) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-      
-      // Better touch handling
-      document.querySelectorAll('.channel-card, .play-btn').forEach(element => {
-        element.addEventListener('touchstart', function() {
-          this.classList.add('touch-active');
-        }, { passive: true });
-        
-        element.addEventListener('touchend', function() {
-          this.classList.remove('touch-active');
-        }, { passive: true });
-      });
-    });
+    }
 
-    function toggleMode() {
-      document.body.classList.toggle('light-mode');
-      const modeIcon = document.querySelector('.toggle-mode i');
-      if (document.body.classList.contains('light-mode')) {
-        modeIcon.classList.remove('fa-moon');
-        modeIcon.classList.add('fa-sun');
-        localStorage.setItem('theme', 'light');
+    // Theme functions
+    function toggleTheme() {
+      currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.body.classList.toggle('light', currentTheme === 'light');
+      
+      const themeIcon = document.querySelector('#themeToggle i');
+      themeIcon.className = currentTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+      
+      localStorage.setItem('theme', currentTheme);
+    }
+
+    // Visitor counter
+    function updateVisitorCounter() {
+      const storageKey = 'matcheslinks_visitor_id';
+      const visitorId = localStorage.getItem(storageKey);
+      
+      if (!visitorId) {
+        localStorage.setItem(storageKey, `visitor_${Math.random().toString(36).substr(2, 9)}`);
+        
+        fetch('https://api.countapi.xyz/hit/matcheslinks/visits')
+          .then(response => response.json())
+          .then(data => {
+            document.getElementById('visitorCount').textContent = `${data.value.toLocaleString()} visitors today`;
+          })
+          .catch(() => {
+            document.getElementById('visitorCount').textContent = 'Many visitors online';
+          });
       } else {
-        modeIcon.classList.remove('fa-sun');
-        modeIcon.classList.add('fa-moon');
-        localStorage.setItem('theme', 'dark');
+        fetch('https://api.countapi.xyz/get/matcheslinks/visits')
+          .then(response => response.json())
+          .then(data => {
+            document.getElementById('visitorCount').textContent = `${data.value.toLocaleString()} visitors today`;
+          })
+          .catch(() => {
+            document.getElementById('visitorCount').textContent = 'Many visitors online';
+          });
       }
     }
 
-    // Check for saved theme preference
-    if (localStorage.getItem('theme') === 'light') {
-      document.body.classList.add('light-mode');
-      document.querySelector('.toggle-mode i').classList.remove('fa-moon');
-      document.querySelector('.toggle-mode i').classList.add('fa-sun');
-    }
+    // Event listeners
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize theme
+      if (currentTheme === 'light') {
+        document.body.classList.add('light');
+        document.querySelector('#themeToggle i').className = 'fas fa-sun';
+      }
+
+      // Render channels
+      renderChannels();
+
+      // Update visitor counter
+      updateVisitorCounter();
+
+      // Check verification on load
+      if (!checkVerification()) {
+        showVerificationModal();
+      }
+
+      // Search functionality
+      document.getElementById('searchInput').addEventListener('input', function(e) {
+        searchTerm = e.target.value;
+        filterChannels();
+      });
+
+      // Theme toggle
+      document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
+      // Close modals when clicking overlay
+      document.getElementById('videoModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+          closeVideoModal();
+        }
+      });
+
+      document.getElementById('verifyModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+          hideVerificationModal();
+        }
+      });
+
+      // Security measures
+      document.addEventListener('contextmenu', e => e.preventDefault());
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'F12' || 
+            (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+            (e.ctrlKey && e.shiftKey && e.key === 'J') ||
+            (e.ctrlKey && e.key === 'U')) {
+          e.preventDefault();
+        }
+      });
+
+      // Update visitor counter every 2 minutes
+      setInterval(updateVisitorCounter, 120000);
+    });
   </script>
 </body>
 </html>
