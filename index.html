@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -847,11 +848,19 @@
     // Channel Data
     const liveEvents = [
       {
-        name: "No Live Event",
-        logo: "https://academy.codinex.co.ug/wp-content/uploads/2023/03/no-event.jpg",
-        url: "#",
-        live: true
-      }
+        name: "Telugu Titans Vs Tamil Thalaivas (PC USER)",
+        logo: "https://img.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/4553/1756456624553-i",
+        url: "https://live12p.hotstar.com/hls/live/2027118/incagbsgallow-pkl-2025/hin/1540049984/15mindvrm01a8be36c6d8354477b6035db3580c077c29august2025/master_ap_1080_6.m3u8",
+        live: true,
+        openInNewTab: true
+      },
+      {
+        name: "Telugu Titans Vs Tamil Thalaivas",
+        logo: "https://img.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/4553/1756456624553-i",
+        url: "https://star-sports-2.vercel.app/",
+        live: true,
+        openInNewTab: false
+      },
     ];
 
     const internationalChannels = [
@@ -1169,15 +1178,20 @@
     }
 
     // Channel functions
-    function handleChannelPlay(url, isLiveEvent = false, name = '') {
+    function handleChannelPlay(url, isLiveEvent = false, name = '', openInNewTab = false) {
       if (!checkVerification()) {
         showVerificationModal();
         return;
       }
 
-      if (isLiveEvent) {
+      if (isLiveEvent && openInNewTab) {
+        // Open live events that should open in new tab
+        window.open(url, '_blank');
+      } else if (isLiveEvent) {
+        // Open regular live events in modal
         openVideoModal(name, url);
       } else {
+        // Open regular channels in new tab
         window.open(url, '_blank');
       }
     }
@@ -1204,7 +1218,7 @@
             ${isLiveEvent && channel.live ? '<div class="live-badge"><i class="fas fa-circle"></i> LIVE</div>' : ''}
           </div>
           <div class="channel-name">${channel.name}</div>
-          <button class="play-button" onclick="handleChannelPlay('${channel.url}', ${isLiveEvent}, '${channel.name}')">
+          <button class="play-button" onclick="handleChannelPlay('${channel.url}', ${isLiveEvent}, '${channel.name}', ${channel.openInNewTab || false})">
             <i class="fas fa-play"></i>
             ${isLiveEvent ? 'Watch Live' : 'Play'}
           </button>
