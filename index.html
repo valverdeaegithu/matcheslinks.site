@@ -157,6 +157,7 @@
       justify-content: space-between;
       align-items: center;
       gap: 1rem;
+      position: relative;
     }
     
     .logo {
@@ -203,7 +204,7 @@
     .search-input {
       background: hsl(var(--input));
       border: 1px solid hsl(var(--border));
-      borderRadius: 2rem;
+      border-radius: 2rem;
       padding: 0.75rem 1rem 0.75rem 3rem;
       color: hsl(var(--foreground));
       width: 240px;
@@ -241,6 +242,43 @@
     .theme-toggle:hover {
       background: hsl(var(--accent));
       transform: rotate(30deg);
+    }
+    
+    /* Verification Countdown */
+    .verification-countdown {
+      position: absolute;
+      top: -10px;
+      right: 0;
+      background: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 70% 45%));
+      color: white;
+      padding: 0.35rem 0.75rem;
+      border-radius: 1rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+      animation: pulse 2s infinite;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    
+    .verification-countdown.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .verification-countdown.warning {
+      background: linear-gradient(135deg, hsl(38 92% 50%), hsl(48 96% 53%));
+      color: black;
+    }
+    
+    .verification-countdown.danger {
+      background: linear-gradient(135deg, hsl(0 84% 60%), hsl(0 72% 51%));
+      animation: pulse 1s infinite;
     }
     
     /* Main Layout */
@@ -303,7 +341,7 @@
       width: 40px;
       height: 40px;
       border-radius: 0.75rem;
-      background: linear-gradient(135deg, hsl(224 71% 64%), hsl(262 71% 64%));
+      background: linear-gradient(135极, hsl(224 71% 64%), hsl(262 71% 64%));
       display: flex;
       align-items: center;
       justify-content: center;
@@ -489,14 +527,29 @@
       font-size: 0.875rem;
     }
     
-    /* Visitor Counter */
-    .visitor-counter {
+    /* Live Counter Styles */
+    .live-counter-container {
       position: fixed;
       bottom: 1.5rem;
       right: 1.5rem;
       z-index: 40;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       padding: 0.75rem 1rem;
       border-radius: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    
+    .light .live-counter-container {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .live-counter {
       display: flex;
       align-items: center;
       gap: 0.5rem;
@@ -504,8 +557,21 @@
       font-weight: 500;
     }
     
-    .visitor-icon {
-      color: hsl(var(--primary));
+    .live-count {
+      background-color: transparent;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      font-weight: bold;
+      color: inherit;
+      animation: pulse 2s infinite;
+      display: inline-flex;
+      align-items: center;
+      pointer-events: none;
+    }
+    
+    .last-updated {
+      font-size: 0.7rem;
+      opacity: 0.7;
     }
     
     /* Modals */
@@ -663,7 +729,7 @@
     /* Telegram Popup */
     .telegram-popup {
       position: fixed;
-      bottom: 1.5rem;
+      bottom: 5rem;
       left: 1.5rem;
       z-index: 40;
       padding: 0.75rem 1rem;
@@ -719,7 +785,19 @@
       }
       
       .telegram-popup {
-        bottom: 5rem;
+        bottom: 6rem;
+      }
+      
+      .verification-countdown {
+        position: relative;
+        top: 0;
+        margin-top: 0.5rem;
+        justify-content: center;
+      }
+      
+      .live-counter-container {
+        bottom: 5.5rem;
+        right: 1rem;
       }
     }
     
@@ -734,6 +812,16 @@
       
       .container {
         padding: 1rem;
+      }
+      
+      .live-counter-container {
+        bottom: 5rem;
+        padding: 0.5rem 0.75rem;
+      }
+      
+      .telegram-popup {
+        bottom: 8rem;
+        left: 1rem;
       }
     }
     
@@ -760,6 +848,10 @@
         <button class="theme-toggle" id="themeToggle" title="Toggle theme">
           <i class="fas fa-moon"></i>
         </button>
+      </div>
+      <div id="verificationCountdown" class="verification-countdown">
+        <i class="fas fa-shield-alt"></i>
+        <span id="countdownText">Verification: 24h 00m</span>
       </div>
     </div>
   </header>
@@ -830,10 +922,17 @@
     <p class="footer-text">© 2025 @Matcheslinks. All rights reserved.</p>
   </footer>
 
-  <!-- Visitor Counter -->
-  <div class="visitor-counter">
-    <i class="fas fa-users visitor-icon"></i>
-    <span id="visitorCount">Loading...</span>
+  <!-- Live Counter -->
+  <div class="live-counter-container">
+    <div class="live-counter">
+      <span class="live-count">
+        <!-- BEGIN: Powered by Supercounters.com -->
+        <script type="text/javascript" src="//widget.supercounters.com/ssl/online_t.js"></script>
+        <script type="text/javascript">sc_online_t(1707487,"☜ online","FF0000");</script>
+        <!-- END: Powered by Supercounters.com -->
+      </span>
+    </div>
+    <div class="last-updated">Updated: <span id="lastUpdated">Loading...</span></div>
   </div>
 
   <!-- Telegram Popup -->
@@ -1189,10 +1288,25 @@
       }
     ];
 
-
     // App State
     let currentTheme = localStorage.getItem('theme') || 'dark';
     let searchTerm = '';
+    let countdownInterval = null;
+    let countdownDelayTimer = null;
+
+    // Update timestamp function
+    function updateTimestamp() {
+      try {
+        // Update the timestamp
+        document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString('en-US', { 
+          timeZone: 'Asia/Kolkata', 
+          hour12: true 
+        });
+      } catch (error) {
+        console.error('Error updating timestamp:', error.message);
+        document.getElementById('lastUpdated').textContent = 'Err';
+      }
+    }
 
     // Verification functions
     function checkVerification() {
@@ -1207,7 +1321,7 @@
       document.getElementById('mainContent').classList.add('blur-background');
       document.querySelector('header').classList.add('blur-background');
       document.querySelector('footer').classList.add('blur-background');
-      document.querySelector('.visitor-counter').classList.add('blur-background');
+      document.querySelector('.live-counter-container').classList.add('blur-background');
       document.getElementById('telegramPopup').classList.add('blur-background');
     }
 
@@ -1217,20 +1331,111 @@
       document.getElementById('mainContent').classList.remove('blur-background');
       document.querySelector('header').classList.remove('blur-background');
       document.querySelector('footer').classList.remove('blur-background');
-      document.querySelector('.visitor-counter').classList.remove('blur-background');
+      document.querySelector('.live-counter-container').classList.remove('blur-background');
       document.getElementById('telegramPopup').classList.remove('blur-background');
     }
 
     function handleVerification() {
-      // Set verification for 24 hours
-      const expire = Date.now() + (24 * 60 * 60 * 1000);
-      localStorage.setItem('verified_until', expire.toString());
+      // Disable the button to prevent multiple clicks
+      const verifyButton = document.querySelector('.verify-button');
+      verifyButton.disabled = true;
+      verifyButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
       
-      // Close modal first
-      hideVerificationModal();
+      // Set verification for 24 hours (with 9-second delay)
+      setTimeout(() => {
+        const expire = Date.now() + (24 * 60 * 60 * 1000);
+        localStorage.setItem('verified_until', expire.toString());
+        
+        // Hide the countdown initially
+        const countdownElement = document.getElementById('verificationCountdown');
+        countdownElement.classList.remove('visible');
+        
+        // Set a delay before showing the countdown (30-90 minutes)
+        const delayMinutes = 30 + Math.floor(Math.random() * 60); // Random delay between 30-90 minutes
+        const delayMs = delayMinutes * 60 * 1000;
+        
+        // Clear any existing delay timer
+        if (countdownDelayTimer) {
+          clearTimeout(countdownDelayTimer);
+        }
+        
+        // Set new delay timer
+        countdownDelayTimer = setTimeout(() => {
+          // Update countdown display
+          updateVerificationCountdown();
+          
+          // Show the countdown with animation
+          countdownElement.classList.add('visible');
+        }, delayMs);
+        
+        // Close modal with 3-4 second delay for fade out
+        setTimeout(() => {
+          hideVerificationModal();
+          
+          // Then redirect to verification link
+          window.location.href = 'https://vplink.in/H0lJs';
+        }, 3500); // 3.5 second delay for modal fade out
+      }, 9000); // 9-second delay for verification process
+    }
+
+    // Countdown functions
+    function updateVerificationCountdown() {
+      const verifiedUntil = localStorage.getItem('verified_until');
+      const countdownElement = document.getElementById('verificationCountdown');
+      const countdownText = document.getElementById('countdownText');
       
-      // Then redirect to verification link
-      window.location.href = 'https://vplink.in/H0lJs';
+      if (!verifiedUntil) {
+        countdownElement.classList.remove('visible');
+        if (countdownInterval) {
+          clearInterval(countdownInterval);
+          countdownInterval = null;
+        }
+        return;
+      }
+      
+      const now = Date.now();
+      const timeLeft = parseInt(verifiedUntil) - now;
+      
+      if (timeLeft <= 0) {
+        countdownElement.classList.remove('visible');
+        localStorage.removeItem('verified_until');
+        if (countdownInterval) {
+          clearInterval(countdownInterval);
+          countdownInterval = null;
+        }
+        return;
+      }
+      
+      // Calculate time components
+      const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      
+      // Update text
+      countdownText.textContent = `Verification: ${hours}h ${minutes}m`;
+      
+      // Update styling based on time left
+      if (hours < 1) {
+        countdownElement.classList.add('danger');
+        countdownElement.classList.remove('warning');
+      } else if (hours < 6) {
+        countdownElement.classList.add('warning');
+        countdownElement.classList.remove('danger');
+      } else {
+        countdownElement.classList.remove('warning', 'danger');
+      }
+    }
+
+    function startCountdownTimer() {
+      // Clear any existing interval
+      if (countdownInterval) {
+        clearInterval(countdownInterval);
+      }
+      
+      // Update immediately
+      updateVerificationCountdown();
+      
+      // Set up interval to update every minute
+      countdownInterval = setInterval(updateVerificationCountdown, 60000);
     }
 
     // Channel functions
@@ -1261,7 +1466,7 @@
 
     function closeVideoModal() {
       document.getElementById('videoModal').classList.remove('active');
-      document.getElementById('videoFrame').src = '';
+      document.getElementById('video极rame').src = '';
       document.body.style.overflow = 'auto';
     }
 
@@ -1347,34 +1552,6 @@
       localStorage.setItem('theme', currentTheme);
     }
 
-    // Visitor counter
-    function updateVisitorCounter() {
-      const storageKey = 'matcheslinks_visitor_id';
-      const visitorId = localStorage.getItem(storageKey);
-      
-      if (!visitorId) {
-        localStorage.setItem(storageKey, `visitor_${Math.random().toString(36).substr(2, 9)}`);
-        
-        fetch('https://api.countapi.xyz/hit/matcheslinks/visits')
-          .then(response => response.json())
-          .then(data => {
-            document.getElementById('visitorCount').textContent = `${data.value.toLocaleString()} visitors today`;
-          })
-          .catch(() => {
-            document.getElementById('visitorCount').textContent = 'Many visitors online';
-          });
-      } else {
-        fetch('https://api.countapi.xyz/get/matcheslinks/visits')
-          .then(response => response.json())
-          .then(data => {
-            document.getElementById('visitorCount').textContent = `${data.value.toLocaleString()} visitors today`;
-          })
-          .catch(() => {
-            document.getElementById('visitorCount').textContent = 'Many visitors online';
-          });
-      }
-    }
-
     // Event listeners
     document.addEventListener('DOMContentLoaded', function() {
       // Initialize theme
@@ -1386,8 +1563,13 @@
       // Render channels
       renderChannels();
 
-      // Update visitor counter
-      updateVisitorCounter();
+      // Update timestamp on load
+      updateTimestamp();
+      // Auto-update timestamp every 2 minutes
+      setInterval(updateTimestamp, 120000);
+
+      // Start countdown timer
+      startCountdownTimer();
 
       // Check verification on load
       if (!checkVerification()) {
@@ -1426,9 +1608,6 @@
           e.preventDefault();
         }
       });
-
-      // Update visitor counter every 2 minutes
-      setInterval(updateVisitorCounter, 120000);
     });
   </script>
 </body>
