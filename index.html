@@ -1319,13 +1319,9 @@
     const startTime = performance.now();
     let searchTimeout;
 
-    // Channel Data
-    // Channel Data
+    // FIXED Channel Data - Added missing closing bracket and removed extra bracket
     const liveEvents = [
-
-
-      // Upcoming events with IST timestamps
-     {
+      {
         name: "No Live Event",
         logo: "https://academy.codinex.co.ug/wp-content/uploads/2023/03/no-event.jpg",
         url: "#",
@@ -1333,6 +1329,7 @@
         openInNewTab: false,
         upcoming: false,
       }
+    ]; // FIXED: Added missing closing bracket
 
     const internationalChannels = [
       {
@@ -1358,7 +1355,11 @@
     ];
 
     const sportsChannels = [
-
+      {
+        name: "Fox Cricket 501 HD",
+        logo: "https://image.pngaaa.com/428/3764428-middle.png",
+        url: "https://tranquil-bavarois-6aa407.netlify.app/"
+      },
       {
         name: "Astro Cricket",
         logo: "https://divign0fdw3sv.cloudfront.net/Images/ChannelLogo/contenthub/197_144.png",
@@ -1614,7 +1615,7 @@
         logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Star_Sports_1_HD.png/2560px-Star_Sports_1_HD.png",
         url: "https://splendorous-cendol-2469b3.netlify.app/"
       }
-    ];
+    ]; // FIXED: Removed extra closing bracket
 
     // App State
     let currentTheme = localStorage.getItem('theme') || 'dark';
