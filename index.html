@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1894,31 +1895,72 @@
       }
     }
 
-    // Render functions with staggered animations
-    function createChannelCard(channel, isLiveEvent = false, index = 0) {
-      const isUpcoming = channel.upcoming;
-      
-      return `
-        <div class="channel-card" data-name="${channel.name.toLowerCase()}" style="animation-delay: ${index * 0.1}s">
-          <div class="channel-logo-container">
-            <img src="${channel.logo}" alt="${channel.name}" class="channel-logo" loading="lazy" />
-            ${isLiveEvent && channel.live ? '<div class="live-badge"><i class="fas fa-circle"></i> LIVE</div>' : ''}
-            ${isUpcoming ? '<div class="upcoming-badge"><i class="fas fa-clock"></i> UPCOMING</div>' : ''}
-          </div>
-          <div class="channel-name">${channel.name}</div>
-          ${isUpcoming ? 
-            `<button class="upcoming-button">
-              <i class="fas fa-clock"></i>
-              ${formatStartTime(channel.startTime)}
-            </button>` : 
-            `<button class="play-button" onclick="handleChannelPlay('${channel.url}', ${isLiveEvent}, '${channel.name}', ${channel.openInNewTab || false})">
-              <i class="fas fa-play"></i>
-              ${isLiveEvent ? 'Watch Live' : 'Play'}
-            </button>`
-          }
-        </div>
-      `;
-    }
+function openInMiniPlayer(url, name) {
+  const modal = document.getElementById("videoModal");
+  const iframe = document.getElementById("videoFrame");
+  const title = document.getElementById("videoTitle");
+
+  // Set video info
+  iframe.src = url;
+  title.textContent = name;
+
+  // Show modal
+  modal.classList.add("active");
+
+  // Prevent background scroll
+  document.body.style.overflow = "hidden";
+}
+
+// Close modal when clicking the "X" button
+function closeVideoModal() {
+  const modal = document.getElementById("videoModal");
+  const iframe = document.getElementById("videoFrame");
+
+  // Hide modal
+  modal.classList.remove("active");
+
+  // Stop video playback
+  iframe.src = "";
+
+  // Allow background scroll again
+  document.body.style.overflow = "auto";
+}
+
+
+// Render functions with staggered animations
+function createChannelCard(channel, isLiveEvent = false, index = 0) {
+  const isUpcoming = channel.upcoming;
+
+  return `
+    <div class="channel-card" data-name="${channel.name.toLowerCase()}" style="animation-delay: ${index * 0.1}s">
+      <div class="channel-logo-container">
+        <img src="${channel.logo}" alt="${channel.name}" class="channel-logo" loading="lazy" />
+        ${isLiveEvent && channel.live ? '<div class="live-badge"><i class="fas fa-circle"></i> LIVE</div>' : ''}
+        ${isUpcoming ? '<div class="upcoming-badge"><i class="fas fa-clock"></i> UPCOMING</div>' : ''}
+      </div>
+      <div class="channel-name">${channel.name}</div>
+      ${isUpcoming ? 
+        `<button class="upcoming-button">
+          <i class="fas fa-clock"></i>
+          ${formatStartTime(channel.startTime)}
+        </button>` : 
+        `<button class="play-button" onclick="handleChannelPlay('${channel.url}', '${channel.name}', ${channel.openInNewTab || false})">
+          <i class="fas fa-play"></i>
+          ${isLiveEvent ? 'Watch Live' : 'Play'}
+        </button>`
+      }
+    </div>
+  `;
+}
+
+// New helper: handle how channels open
+function handleChannelPlay(url, name, openInNewTab) {
+  if (openInNewTab) {
+    window.open(url, "_blank");
+  } else {
+    openInMiniPlayer(url, name); // 👈 your mini player function
+  }
+}
 
     function renderChannels() {
       const liveEventsGrid = document.getElementById('liveEventsGrid');
