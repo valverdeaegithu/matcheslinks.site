@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1212,6 +1213,24 @@
     ::-webkit-scrollbar-thumb:hover {
       background: hsl(var(--primary));
     }
+  
+    /* Countdown badge */
+    .countdown-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-dark)));
+      color: white;
+      padding: 0.3rem 0.6rem;
+      border-radius: 1.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      box-shadow: 0 4px 12px hsla(var(--primary), 0.4);
+    }
+
   </style>
 </head>
 <body>
@@ -2053,6 +2072,52 @@ function handleChannelPlay(url, name, openInNewTab) {
       const loadTime = performance.now() - startTime;
       console.log(`Page loaded in ${loadTime.toFixed(2)}ms`);
     });
+  
+    // === Scheduled Unlock for All Live Events ===
+    const eventStartTime = new Date("2025-09-05T23:45:00+05:30").getTime();
+
+    // Mark all liveEvents as upcoming initially
+    liveEvents.forEach(ev => ev.upcoming = true);
+
+    function updateEventCountdown() {
+      const now = new Date().getTime();
+      const distance = eventStartTime - now;
+
+      liveEvents.forEach(ev => {
+        const card = [...document.querySelectorAll(".channel-card")]
+          .find(c => c.querySelector(".channel-name")?.innerText.includes(ev.name));
+
+        if (!card) return;
+
+        let badge = card.querySelector(".countdown-badge");
+        if (!badge) {
+          badge = document.createElement("div");
+          badge.className = "countdown-badge";
+          card.appendChild(badge);
+        }
+
+        if (distance <= 0) {
+          badge.textContent = "LIVE NOW";
+          badge.classList.remove("countdown-badge");
+          badge.classList.add("live-badge");
+          ev.upcoming = false;
+        } else {
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          badge.textContent = `Unlocks in ${hours}h ${minutes}m ${seconds}s`;
+        }
+      });
+
+      if (distance <= 0) {
+        renderChannels("liveEventsGrid", liveEvents);
+        clearInterval(eventCountdownInterval);
+      }
+    }
+
+    const eventCountdownInterval = setInterval(updateEventCountdown, 1000);
+    updateEventCountdown();
+
   </script>
 </body>
 </html>
