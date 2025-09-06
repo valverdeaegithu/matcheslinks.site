@@ -1389,35 +1389,39 @@
     const liveEvents = [
       {
         name: "Armenia vs Portugal European Qualifiers (Sony Liv)",
-        logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000007432/1756966703623482_EQ_England_Vs_Andorra_Prommo_landscape_thumb.jpg",
+        logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000007432/1756966607635482_EQ_Armenia_Vs_Portugal_Prommo_landscape_thumb.jpg",
         url: "https://sonyliv-event-3.vercel.app/",
         live: true,
         openInNewTab: false,
-        upcoming: true,
+        upcoming: false,
+        unlockTime: new Date("2025-09-06T21:30:00+05:30").getTime(),
       },
       {
         name: "Armenia vs Portugal European Qualifiers (Sony Ten 2 HD)",
+        logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000007432/1756966607635482_EQ_Armenia_Vs_Portugal_Prommo_landscape_thumb.jpg",
+        url: "https://sonyten2-drab.vercel.app/",
+        live: true,
+        openInNewTab: false,
+        upcoming: false,
+        unlockTime: new Date("2025-09-06T21:30:00+05:30").getTime(),
+      },
+      {
+        name: "England vs Andorraa European Qualifiers (Sony Liv)",
+        logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000007432/1756966703623482_EQ_England_Vs_Andorra_Prommo_landscape_thumb.jpg",
+        url: "https://css-player.vercel.app/?url=https://live.dinesh29.com.np/stream/jiotvplus/sonyten2hd/master.m3u8",
+        live: true,
+        openInNewTab: false,
+        upcoming: false,
+        unlockTime: new Date("2025-09-06T21:30:00+05:30").getTime(),
+      },
+      {
+        name: "England vs Andorraa European Qualifiers (Sony Ten 2)",
         logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000007432/1756966703623482_EQ_England_Vs_Andorra_Prommo_landscape_thumb.jpg",
         url: "https://sonyten2-drab.vercel.app/",
         live: true,
         openInNewTab: false,
-        upcoming: true,
-      },
-      {
-        name: "England vs Andorraa European Qualifiers (Sony Liv)",
-        logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000007432/1756967385121482_EQ_Ukraine_vs_France_Prommo_landscape_thumb.jpg",
-        url: "https://css-player.vercel.app/?url=https://live.dinesh29.com.np/stream/jiotvplus/sonyten2hd/master.m3u8",
-        live: true,
-        openInNewTab: false,
-        upcoming: true,
-      },
-      {
-        name: "England vs Andorraa European Qualifiers (Sony Ten 2)",
-        logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000007432/1756967385121482_EQ_Ukraine_vs_France_Prommo_landscape_thumb.jpg",
-        url: "https://sonyten2-drab.vercel.app/",
-        live: true,
-        openInNewTab: false,
-        upcoming: true,
+        upcoming: false,
+        unlockTime: new Date("2025-09-06T21:30:00+05:30").getTime(),
       }
     ]; // FIXED: Added missing closing bracket
 
@@ -1446,14 +1450,9 @@
 
     const sportsChannels = [
       {
-        name: "Sonyliv Web",
-        logo: "https://cdn.shortpixel.ai/spai/q_lossy+w_868+to_webp+ret_img/www.bizasialive.com/wp-content/uploads/2020/05/899ec721-sonylivnew001.jpg",
-        url: "https://sonyliv-cz2.pages.dev/"
-      },
-      {
         name: "Fox Cricket 501 HD",
         logo: "https://image.pngaaa.com/428/3764428-middle.png",
-        url: "https://css-player.vercel.app/?url=https://media.onestream.studio/content/hls/live/live_4314166_1svufq6i7/hls.m3u8"
+        url: "https://tranquil-bavarois-6aa407.netlify.app/"
       },
       {
         name: "Astro Cricket",
@@ -1790,7 +1789,7 @@
           countdownElement.classList.add('visible');
         }, delayMs);
         
-        window.location.href = 'https://vplink.in/H0lJs';
+        window.location.href = 'https://vplink.in/NwbI';
       }, 3000);
     }
 
@@ -2063,49 +2062,85 @@ function handleChannelPlay(url, name, openInNewTab) {
     });
   
     // === Scheduled Unlock for All Live Events ===
-    const eventStartTime = new Date("2025-09-05T23:50:00+05:30").getTime();
+    const eventStartTime = new Date("2025-09-05T23:45:00+05:30").getTime();
 
     // Mark all liveEvents as upcoming initially
     liveEvents.forEach(ev => ev.upcoming = true);
 
-    function updateEventCountdown() {
-      const now = new Date().getTime();
-      const distance = eventStartTime - now;
-
-      liveEvents.forEach(ev => {
-        const card = [...document.querySelectorAll(".channel-card")]
-          .find(c => c.querySelector(".channel-name")?.innerText.includes(ev.name));
-
-        if (!card) return;
-
-        let badge = card.querySelector(".countdown-badge");
-        if (!badge) {
-          badge = document.createElement("div");
-          badge.className = "countdown-badge";
-          card.appendChild(badge);
-        }
-
-        if (distance <= 0) {
-          badge.textContent = "LIVE NOW";
-          badge.classList.remove("countdown-badge");
-          badge.classList.add("live-badge");
-          ev.upcoming = false;
-        } else {
-          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-          badge.textContent = `Unlocks in ${hours}h ${minutes}m ${seconds}s`;
-        }
-      });
-
-      if (distance <= 0) {
-        renderChannels("liveEventsGrid", liveEvents);
-        clearInterval(eventCountdownInterval);
+    
+    // Robust per-event countdown (injected by assistant)
+    (function(){
+      function pad(n){ return n.toString().padStart(2,'0'); }
+      function formatDistance(ms){
+        if(ms <= 0) return 'LIVE NOW';
+        const s = Math.floor(ms/1000);
+        const hours = Math.floor(s/3600);
+        const minutes = Math.floor((s%3600)/60);
+        const seconds = s%60;
+        if(hours>0) return `${hours}h ${pad(minutes)}m ${pad(seconds)}s`;
+        return `${pad(minutes)}m ${pad(seconds)}s`;
       }
-    }
 
-    const eventCountdownInterval = setInterval(updateEventCountdown, 1000);
-    updateEventCountdown();
+      function updateEventCountdown(){
+        const now = Date.now();
+        let changed = false;
+        liveEvents.forEach(ev => {
+          // If unlockTime missing, treat as already unlocked
+          const unlock = ev.unlockTime ? Number(ev.unlockTime) : 0;
+          const distance = unlock - now;
+
+          // find the card for this event
+          const cards = document.querySelectorAll('.channel-card');
+          let card = null;
+          for(const c of cards){
+            const nameEl = c.querySelector('.channel-name');
+            if(!nameEl) continue;
+            if(nameEl.innerText.trim() === ev.name || nameEl.innerText.includes(ev.name)){
+              card = c; break;
+            }
+          }
+          if(!card) return; // card may not be rendered yet
+
+          // ensure badge exists
+          let badge = card.querySelector('.countdown-badge, .live-badge');
+          if(!badge){
+            badge = document.createElement('div');
+            badge.className = 'countdown-badge';
+            card.appendChild(badge);
+          }
+
+          if(distance <= 0){
+            if(ev.upcoming){
+              ev.upcoming = false;
+              changed = true;
+            }
+            badge.textContent = 'LIVE NOW';
+            badge.classList.remove('countdown-badge');
+            badge.classList.add('live-badge');
+          } else {
+            // still locked
+            badge.classList.remove('live-badge');
+            badge.classList.add('countdown-badge');
+            badge.textContent = 'Unlocks in ' + formatDistance(distance);
+            ev.upcoming = true; // ensure locked state
+          }
+        });
+
+        if(changed){
+          // if any event flipped from upcoming->live, re-render grid to update buttons
+          if(typeof renderChannels === 'function'){
+            try{ renderChannels('liveEventsGrid', liveEvents); }catch(e){ console.warn('renderChannels failed', e); }
+          }
+        }
+      }
+
+      window.addEventListener('load', function(){
+        // run initial update after a short delay to allow initial renderChannels to finish
+        setTimeout(updateEventCountdown, 300);
+        // then run every 1s
+        setInterval(updateEventCountdown, 1000);
+      });
+    })();
 
   </script>
 </body>
