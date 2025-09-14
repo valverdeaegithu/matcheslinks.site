@@ -1,19 +1,15 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>MatchesLinks - Premium Sports Channels</title>
-  <meta name="description" content="Access premium sports channels and live events worldwide" />
+  <title>MatchesLinks – Premium Sports Channels</title>
+  <meta name="description" content="Watch live sports channels in a big-screen player with fast, clean UI and crisp playback." />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      /* Enhanced Color System */
+      /* Enhanced Color System - HSL Values */
       --primary: 264, 83%, 75%;
       --primary-dark: 264, 83%, 65%;
       --primary-light: 264, 83%, 85%;
@@ -22,545 +18,435 @@
       --success: 142, 76%, 36%;
       --danger: 0, 84%, 60%;
       --warning: 38, 92%, 50%;
-      
+
       /* Background System */
       --background: 225, 25%, 8%;
       --background-secondary: 225, 25%, 12%;
       --surface: 225, 25%, 15%;
       --surface-hover: 225, 25%, 20%;
-      
+
       /* Text Colors */
       --foreground: 210, 20%, 98%;
       --foreground-secondary: 217, 11%, 85%;
       --foreground-muted: 217, 11%, 65%;
-      
+
       /* Glass Effects */
       --glass-bg: rgba(255, 255, 255, 0.05);
       --glass-border: rgba(255, 255, 255, 0.1);
       --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-      
+
       /* Gradients */
       --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(282, 83%, 65%));
+      --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(222, 47%, 20%));
       --gradient-surface: linear-gradient(135deg, hsl(var(--surface)), hsl(225, 25%, 18%));
-      --gradient-hero: linear-gradient(135deg, hsla(var(--primary), 0.1), hsla(282, 83%, 65%, 0.1));
-      
-      /* Shadows */
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
-      --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.3);
-      --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.4);
-      --shadow-glow: 0 0 40px hsla(var(--primary), 0.3);
-      
-      /* Animation */
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+
+      /* Animations */
+      --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       --transition-fast: all 0.2s ease-out;
-      --bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+      /* Shadows */
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.15);
+      --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.2);
+      --shadow-xl: 0 25px 50px rgba(0, 0, 0, 0.25);
     }
-    
-    .light {
-      --background: 0, 0%, 100%;
-      --background-secondary: 0, 0%, 98%;
-      --surface: 0, 0%, 95%;
-      --surface-hover: 0, 0%, 90%;
-      --foreground: 225, 25%, 8%;
-      --foreground-secondary: 225, 25%, 20%;
-      --foreground-muted: 225, 25%, 45%;
-      --glass-bg: rgba(255, 255, 255, 0.8);
-      --glass-border: rgba(0, 0, 0, 0.1);
-      --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* Reset & Base */
+
+    /* Reset and base styles */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
     }
-    
+
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: hsl(var(--background));
       color: hsl(var(--foreground));
-      min-height: 100vh;
       overflow-x: hidden;
-      transition: var(--transition);
-      touch-action: manipulation;
       line-height: 1.6;
-      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      scroll-behavior: smooth;
     }
-    
-    /* Animated Background */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        radial-gradient(circle at 20% 50%, hsla(var(--primary), 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, hsla(282, 83%, 65%, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 80%, hsla(var(--accent), 0.05) 0%, transparent 50%);
-      z-index: -1;
-      animation: backgroundShift 20s ease-in-out infinite;
-    }
-    
-    @keyframes backgroundShift {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.8; }
-    }
-    
-    /* Utility Classes */
-    .blur-background {
-      filter: blur(10px);
-      pointer-events: none;
-      user-select: none;
-    }
-    
+
+    /* Glass morphism effect classes */
     .glass {
       background: var(--glass-bg);
       backdrop-filter: blur(20px);
       border: 1px solid var(--glass-border);
       box-shadow: var(--glass-shadow);
     }
-    
+
     .glass-heavy {
-      background: rgba(15, 23, 42, 0.4);
-      backdrop-filter: blur(30px);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(40px);
       border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      box-shadow: 
+        0 16px 50px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
-    
-    .light .glass-heavy {
-      background: rgba(255, 255, 255, 0.6);
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* Header */
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(20px);
-      background: hsla(var(--background), 0.9);
-      border-bottom: 1px solid var(--glass-border);
-      padding: 1rem 0;
-      box-shadow: var(--shadow-sm);
-    }
-    
-    .header-content {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1.5rem;
-      padding: 0 1.5rem;
-      position: relative;
-    }
-    
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      text-decoration: none;
-      color: hsl(var(--foreground));
-      transition: var(--transition);
-    }
-    
-    .logo:hover {
-      transform: translateY(-1px);
-    }
-    
-    .logo-icon {
-      width: 42px;
-      height: 42px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 0.75rem;
-      background: var(--gradient-primary);
-      color: white;
-      font-size: 1.3rem;
-      box-shadow: var(--shadow-glow);
-      transition: var(--transition);
-    }
-    
-    .logo:hover .logo-icon {
-      transform: rotate(5deg) scale(1.05);
-      box-shadow: 0 0 60px hsla(var(--primary), 0.5);
-    }
-    
-    .logo-text {
-      font-size: 1.5rem;
-      font-weight: 800;
-      background: var(--gradient-primary);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: -0.5px;
-    }
-    
-    .controls {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-    }
-    
-    .search-container {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-    
-    .search-input {
-      background: hsl(var(--surface));
-      border: 1px solid var(--glass-border);
-      border-radius: 2rem;
-      padding: 0.75rem 1rem 0.75rem 3rem;
-      color: hsl(var(--foreground));
-      width: 220px;
-      transition: var(--transition);
-      font-size: 0.875rem;
-      outline: none;
-      backdrop-filter: blur(10px);
-    }
-    
-    .search-input:focus {
-      border-color: hsl(var(--primary));
-      box-shadow: 0 0 0 3px hsla(var(--primary), 0.2);
-      background: hsl(var(--surface-hover));
-    }
-    
-    .search-icon {
-      position: absolute;
-      left: 1rem;
-      color: hsl(var(--foreground-muted));
-      font-size: 0.875rem;
-      transition: var(--transition);
-    }
-    
-    .search-input:focus + .search-icon {
-      color: hsl(var(--primary));
-    }
-    
-    .theme-toggle {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      border: 1px solid var(--glass-border);
-      background: hsl(var(--surface));
-      color: hsl(var(--foreground));
-      cursor: pointer;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      backdrop-filter: blur(10px);
-    }
-    
-    .theme-toggle:hover {
-      background: hsl(var(--surface-hover));
-      transform: rotate(180deg) scale(1.1);
-      box-shadow: var(--shadow-glow);
-    }
-    
-    /* Verification Countdown */
-    .verification-countdown {
-      position: absolute;
-      top: -10px;
-      right: 0;
-      background: linear-gradient(135deg, hsl(var(--success)), hsl(142, 70%, 45%));
-      color: white;
-      padding: 0.4rem 0.8rem;
-      border-radius: 1.5rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      box-shadow: var(--shadow-md);
-      z-index: 10;
-      animation: pulse 2s infinite;
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: var(--transition);
-    }
-    
-    .verification-countdown.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    .verification-countdown.warning {
-      background: linear-gradient(135deg, hsl(var(--warning)), hsl(48, 96%, 53%));
-      color: black;
-    }
-    
-    .verification-countdown.danger {
-      background: linear-gradient(135deg, hsl(var(--danger)), hsl(0, 72%, 51%));
-      animation: pulse 1s infinite;
-    }
-    
-    /* Main Container */
+
+    /* Container and layout */
     .container {
       max-width: 1400px;
       margin: 0 auto;
       padding: 2rem 1.5rem;
     }
-    
-    /* Hero Section */
-    .hero {
-      text-align: center;
-      margin-bottom: 4rem;
-      padding: 3rem 1.5rem;
-      border-radius: 1.5rem;
-      position: relative;
-      overflow: hidden;
+
+    /* Verification Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
     }
-    
-    .hero::before {
+
+    .verify-modal {
+      max-width: 500px;
+      width: 90%;
+      margin: 1.5rem;
+      padding: 3rem;
+      border-radius: 2rem;
+      text-align: center;
+      animation: modalSlideIn 0.3s ease-out;
+    }
+
+    @keyframes modalSlideIn {
+      from { opacity: 0; transform: translateY(30px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .verify-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: hsl(var(--foreground));
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      text-shadow: 0 0 20px hsla(var(--primary), 0.3);
+    }
+
+    .verify-title i {
+      color: hsl(var(--primary));
+      animation: pulse 2s infinite;
+    }
+
+    .verify-description {
+      font-size: 1rem;
+      color: hsl(var(--foreground-muted));
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .tutorial-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: hsl(var(--primary));
+      text-decoration: none;
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+      transition: var(--transition-fast);
+    }
+
+    .tutorial-link:hover {
+      color: hsl(var(--primary-light));
+      transform: translateY(-1px);
+    }
+
+    .verify-button {
+      background: var(--gradient-primary);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 2rem;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 
+        var(--shadow-md),
+        0 0 30px hsla(var(--primary), 0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .verify-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 
+        var(--shadow-lg),
+        0 0 40px hsla(var(--primary), 0.6);
+    }
+
+    .verify-button:active {
+      transform: translateY(-1px);
+    }
+
+    /* Main Screen */
+    .main-screen-container {
+      margin-bottom: 3rem;
+    }
+
+    .main-screen {
+      width: 100%;
+      height: 70vh;
+      min-height: 500px;
+      border-radius: 2rem;
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--shadow-xl);
+      background: var(--gradient-surface);
+      border: 1px solid var(--glass-border);
+    }
+
+    .screen-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      gap: 1rem;
+      color: hsl(var(--foreground-muted));
+      background: var(--gradient-surface);
+      position: relative;
+    }
+
+    .screen-placeholder::before {
       content: '';
       position: absolute;
-      inset: 0;
-      background: var(--gradient-hero);
-      border-radius: 1.5rem;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, hsla(var(--primary), 0.1), transparent 70%);
+      pointer-events: none;
+    }
+
+    .screen-placeholder i {
+      font-size: 4rem;
+      color: hsl(var(--primary));
+      margin-bottom: 1rem;
+      animation: pulse 2s infinite;
+    }
+
+    .screen-placeholder h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: hsl(var(--foreground));
+      text-shadow: 0 0 20px hsla(var(--primary), 0.3);
+    }
+
+    .screen-placeholder p {
+      font-size: 1.1rem;
       opacity: 0.8;
     }
-    
-    .hero-content {
-      position: relative;
-      z-index: 2;
-    }
-    
-    .hero h1 {
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 900;
-      margin-bottom: 1.5rem;
-      line-height: 1.1;
-      background: linear-gradient(135deg, hsl(var(--foreground)), hsl(var(--primary)));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: -1px;
-    }
-    
-    .hero p {
-      font-size: 1.1rem;
-      color: hsl(var(--foreground-secondary));
-      max-width: 48rem;
-      margin: 0 auto 2rem;
-      line-height: 1.6;
-      font-weight: 400;
-    }
-    
-    .hero-badges {
-      display: flex;
-      justify-content: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-    
-    .hero-badge {
-      padding: 0.6rem 1.2rem;
-      border-radius: 2rem;
-      background: var(--glass-bg);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--glass-border);
-      color: hsl(var(--foreground-secondary));
-      font-size: 0.85rem;
-      font-weight: 500;
-      transition: var(--transition);
-    }
-    
-    .hero-badge:hover {
-      transform: translateY(-2px);
-      background: hsl(var(--surface-hover));
-      color: hsl(var(--primary));
-    }
-    
-    /* Category Sections */
+
+    /* Category sections */
     .category-section {
       margin-bottom: 4rem;
     }
-    
+
     .category-header {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 1rem;
       margin-bottom: 2rem;
     }
-    
+
     .category-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 0.75rem;
+      width: 60px;
+      height: 60px;
+      border-radius: 1.5rem;
       background: var(--gradient-primary);
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 1.5rem;
       color: white;
-      font-size: 1.2rem;
-      box-shadow: var(--shadow-glow);
+      box-shadow: 
+        var(--shadow-md),
+        0 0 25px hsla(var(--primary), 0.4);
+      animation: pulse 3s infinite;
     }
-    
+
     .category-title {
-      font-size: 1.75rem;
+      font-size: 2rem;
       font-weight: 800;
       color: hsl(var(--foreground));
-      letter-spacing: -0.5px;
+      text-shadow: 0 0 20px hsla(var(--primary), 0.2);
     }
-    
-    /* Channel Grid - MADE SMALLER */
+
+    /* Channels grid */
     .channels-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       gap: 1.5rem;
     }
-    
+
+    /* Mobile responsive grid */
+    @media (max-width: 768px) {
+      .channels-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .channels-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 0.8rem;
+      }
+    }
+
+    /* Channel cards with enhanced hover effects */
     .channel-card {
-      padding: 1.5rem;
-      border-radius: 1.25rem;
-      border: 1px solid var(--glass-border);
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      text-align: center;
+      background: var(--gradient-surface);
+      border-radius: 1.5rem;
+      padding: 1rem;
+      cursor: pointer;
       transition: var(--transition);
+      border: 1px solid var(--glass-border);
       position: relative;
       overflow: hidden;
-      box-shadow: var(--shadow-md);
-      height: 260px; /* REDUCED FROM 320px */
+      height: 120px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      box-shadow: var(--shadow-sm);
     }
-    
-    .channel-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-lg);
-      border-color: hsl(var(--primary));
-      background: hsl(var(--surface-hover));
+
+    /* Live event cards - bigger for better title visibility */
+    .channel-card.has-live-badge {
+      height: 140px;
+      padding: 1.2rem;
     }
-    
+
+    /* Mobile adjustments for cards */
+    @media (max-width: 768px) {
+      .channel-card {
+        padding: 0.8rem;
+        height: 110px;
+      }
+      
+      .channel-card.has-live-badge {
+        height: 130px;
+        padding: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .channel-card {
+        padding: 0.7rem;
+        height: 100px;
+      }
+      
+      .channel-card.has-live-badge {
+        height: 120px;
+        padding: 0.9rem;
+      }
+    }
+
     .channel-card::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      height: 2px;
+      height: 3px;
       background: var(--gradient-primary);
       transform: scaleX(0);
       transition: var(--transition);
+      transform-origin: left;
     }
-    
+
+    .channel-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      background: var(--gradient-glass);
+      border-color: hsla(var(--primary), 0.3);
+      box-shadow: 
+        var(--shadow-lg),
+        0 0 30px hsla(var(--primary), 0.3);
+    }
+
     .channel-card:hover::before {
       transform: scaleX(1);
+      box-shadow: 0 0 10px hsla(var(--primary), 0.5);
     }
-    
+
+    /* Channel logo container with relative positioning */
     .channel-logo-container {
-      height: 80px; /* REDUCED FROM 100px */
+      height: 50px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
+      position: relative;
     }
-    
+
     .channel-logo {
-      max-height: 80px; /* REDUCED FROM 100px */
-      max-width: 150px; /* REDUCED FROM 180px */
+      max-height: 50px;
+      max-width: 100%;
+      width: auto;
       object-fit: contain;
       border-radius: 0.5rem;
       transition: var(--transition);
       filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
     }
-    
+
     .channel-card:hover .channel-logo {
-      transform: scale(1.05);
-      filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.3));
+      transform: scale(1.04);
+      filter: 
+        drop-shadow(0 8px 20px rgba(0, 0, 0, 0.3))
+        drop-shadow(0 0 15px hsla(var(--primary), 0.3));
     }
-    
+
     .channel-name {
-      font-size: 1rem;
+      font-size: 0.9rem;
       font-weight: 600;
-      margin-bottom: 1rem;
       color: hsl(var(--foreground));
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
-      height: 48px;
+      height: 40px;
+      line-height: 1.3;
+    }
+
+    /* Better title space for live events */
+    .channel-card.has-live-badge .channel-name {
+      height: 50px;
+      -webkit-line-clamp: 3;
+      font-size: 0.95rem;
       line-height: 1.4;
     }
-    
-    .play-button {
-      width: 100%;
-      padding: 0.75rem 1.25rem;
-      border-radius: 0.75rem;
-      border: none;
-      background: var(--gradient-primary);
-      color: white;
-      font-size: 0.875rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      box-shadow: var(--shadow-sm);
-      position: relative;
-      overflow: hidden;
+
+    /* Mobile responsive text */
+    @media (max-width: 480px) {
+      .channel-name {
+        font-size: 0.8rem;
+        height: 35px;
+      }
+      
+      .channel-card.has-live-badge .channel-name {
+        font-size: 0.85rem;
+        height: 42px;
+      }
     }
-    
-    .play-button:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-glow);
-    }
-    
-    .play-button::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transform: translateX(-100%);
-      transition: transform 0.6s;
-    }
-    
-    .play-button:hover::before {
-      transform: translateX(100%);
-    }
-    
-    .upcoming-button {
-      width: 100%;
-      padding: 0.75rem 1.25rem;
-      border-radius: 0.75rem;
-      border: none;
-      background: linear-gradient(135deg, hsl(var(--surface)), hsl(225, 25%, 20%));
-      color: hsl(var(--foreground-muted));
-      font-size: 0.875rem;
-      font-weight: 600;
-      cursor: not-allowed;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      opacity: 0.8;
-      box-shadow: var(--shadow-sm);
-    }
-    
-    .light .upcoming-button {
-      background: linear-gradient(135deg, hsl(var(--surface)), hsl(0, 0%, 85%));
-    }
-    
-    /* Badges */
+
+    /* Live badge positioned over the logo */
     .live-badge {
       position: absolute;
-      top: 1rem;
-      right: 1rem;
+      top: -8px;
+      right: -8px;
       background: linear-gradient(135deg, hsl(var(--danger)), hsl(0, 72%, 51%));
       color: white;
       padding: 0.3rem 0.6rem;
@@ -571,13 +457,17 @@
       align-items: center;
       gap: 0.3rem;
       animation: pulse 2s infinite;
-      box-shadow: 0 4px 12px hsla(var(--danger), 0.4);
+      box-shadow: 
+        0 4px 12px hsla(var(--danger), 0.4),
+        0 0 20px hsla(var(--danger), 0.3);
+      z-index: 10;
     }
-    
+
+    /* Upcoming badge positioned over the logo */
     .upcoming-badge {
       position: absolute;
-      top: 1rem;
-      right: 1rem;
+      top: -8px;
+      right: -8px;
       background: linear-gradient(135deg, hsl(var(--warning)), hsl(48, 96%, 53%));
       color: black;
       padding: 0.3rem 0.6rem;
@@ -587,59 +477,56 @@
       display: flex;
       align-items: center;
       gap: 0.3rem;
-      box-shadow: 0 4px 12px hsla(var(--warning), 0.4);
+      animation: pulse 2s infinite;
+      box-shadow: 
+        0 4px 12px hsla(var(--warning), 0.4),
+        0 0 20px hsla(var(--warning), 0.3);
+      z-index: 10;
     }
-    
+
+    /* Time tooltip for upcoming events */
+    .time-tooltip {
+      position: fixed;
+      background: rgba(0, 0, 0, 0.9);
+      color: white;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+      z-index: 1000;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .time-tooltip.visible {
+      opacity: 1;
+    }
+
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.8; transform: scale(0.98); }
     }
-    
-    /* Footer */
+
+    /* Footer with glow */
     .footer {
       border-top: 1px solid var(--glass-border);
       padding: 3rem 1.5rem;
       text-align: center;
       background: var(--glass-bg);
       backdrop-filter: blur(20px);
+      margin-top: 4rem;
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2);
     }
-    
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    
-    .social-link {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      border: 1px solid var(--glass-border);
-      background: hsl(var(--surface));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: hsl(var(--foreground-muted));
-      text-decoration: none;
-      transition: var(--transition);
-      font-size: 1.1rem;
-      backdrop-filter: blur(10px);
-    }
-    
-    .social-link:hover {
-      background: hsl(var(--primary));
-      color: white;
-      transform: translateY(-3px) scale(1.1);
-      box-shadow: var(--shadow-glow);
-    }
-    
+
     .footer-text {
       color: hsl(var(--foreground-muted));
       font-size: 0.875rem;
+      text-shadow: 0 0 10px hsla(var(--primary), 0.2);
     }
-    
-    /* Fixed Elements */
+
+    /* Fixed Elements with Enhanced Glow */
     .live-counter-container {
       position: fixed;
       bottom: 1.5rem;
@@ -652,9 +539,13 @@
       align-items: center;
       gap: 0.25rem;
       backdrop-filter: blur(20px);
-      box-shadow: var(--shadow-md);
+      box-shadow: 
+        var(--shadow-md),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
     }
-    
+
     .live-counter {
       display: flex;
       align-items: center;
@@ -663,7 +554,7 @@
       font-weight: 600;
       color: hsl(var(--foreground));
     }
-    
+
     .live-count {
       background: transparent;
       padding: 0.2rem 0.6rem;
@@ -673,661 +564,201 @@
       display: inline-flex;
       align-items: center;
     }
-    
+
     .last-updated {
       font-size: 0.65rem;
       opacity: 0.7;
       color: hsl(var(--foreground-muted));
     }
-    
-    /* IMPROVED TELEGRAM POPUP - SMALLER & LESS INTRUSIVE */
-    .telegram-popup {
+
+    /* Verification Countdown */
+    .verification-countdown {
       position: fixed;
-      bottom: 1.5rem;
-      left: 1.5rem;
-      z-index: 40;
-      padding: 0.75rem 1rem;
-      border-radius: 2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: linear-gradient(135deg, hsl(var(--success)), hsl(142, 70%, 45%));
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 1.5rem;
       font-size: 0.8rem;
       font-weight: 600;
-      background: linear-gradient(135deg, hsl(200, 85%, 45%), hsl(220, 80%, 50%));
-      color: white;
-      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
       box-shadow: var(--shadow-md);
-      transition: var(--transition);
-      opacity: 0.9;
-    }
-    
-    .telegram-popup:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
-      opacity: 1;
-    }
-    
-    .telegram-popup i {
-      font-size: 0.9rem;
-    }
-    
-    /* Modals */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      background: rgba(0, 0, 0, 0.9);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      z-index: 50;
+      animation: pulse 2s infinite;
       opacity: 0;
-      visibility: hidden;
+      transform: translateY(-10px);
       transition: var(--transition);
-      backdrop-filter: blur(10px);
     }
-    
-    .modal-overlay.active {
+    .verification-countdown.visible {
       opacity: 1;
-      visibility: visible;
+      transform: translateY(0);
     }
-    
-    .modal-content {
-      width: 90%;
-      max-width: 64rem;
-      border-radius: 1.25rem;
-      overflow: hidden;
-      transform: scale(0.9);
-      transition: var(--transition);
-      box-shadow: var(--shadow-lg);
+    .verification-countdown.warning {
+      background: linear-gradient(135deg, hsl(var(--warning)), hsl(48, 96%, 53%));
+      color: black;
     }
-    
-    .modal-overlay.active .modal-content {
-      transform: scale(1);
+    .verification-countdown.danger {
+      background: linear-gradient(135deg, hsl(var(--danger)), hsl(0, 72%, 51%));
+      animation: pulse 1s infinite;
     }
-    
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem;
-      border-bottom: 1px solid var(--glass-border);
-      backdrop-filter: blur(20px);
-    }
-    
-    .modal-title {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: hsl(var(--foreground));
-    }
-    
-    .modal-title-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 0.5rem;
-      background: var(--gradient-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1rem;
-    }
-    
-    .close-button {
-      width: 36px;
-      height: 36px;
-      border: none;
-      background: hsl(var(--surface));
-      border-radius: 0.5rem;
-      color: hsl(var(--foreground-muted));
-      cursor: pointer;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-    }
-    
-    .close-button:hover {
-      background: hsla(var(--danger), 0.1);
-      color: hsl(var(--danger));
-      transform: scale(1.1);
-    }
-    
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      background: black;
-    }
-    
-    .video-iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-/* Video Modal */
-#videoModal {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.85);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
 
-#videoModal.active {
-  display: flex;
-}
-
-#videoModal .video-content {
-  position: relative;
-  width: 90%;
-  max-width: 900px;
-  background: #000;
-  padding: 1rem;
-  border-radius: 12px;
-}
-
-#videoModal iframe {
-  width: 100%;
-  height: 500px;
-  border: none;
-  border-radius: 8px;
-}
-
-#videoModal .close-button {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 28px;
-  cursor: pointer;
-  color: #fff;
-  z-index: 10000;
-}
-
-/* Optional: responsive height for mobile */
-@media (max-width: 600px) {
-  #videoModal iframe {
-    height: 300px;
-  }
-}    
-  
-  
-    /* Verification Modal */
-    .verify-modal {
-      width: 90%;
-      max-width: 28rem;
-      padding: 2.5rem;
-      border-radius: 1.25rem;
-      text-align: center;
-      z-index: 110;
-      backdrop-filter: blur(30px);
-      box-shadow: var(--shadow-lg);
-    }
-    
-    .verify-title {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: hsl(var(--primary));
-      margin-bottom: 1.25rem;
-    }
-    
-    .verify-description {
-      color: hsl(var(--foreground-secondary));
-      margin-bottom: 1.25rem;
-      line-height: 1.6;
-      font-size: 0.95rem;
-    }
-    
-    .tutorial-link {
-      display: block;
-      margin-bottom: 1.5rem;
-      color: hsl(var(--primary));
-      text-decoration: none;
-      font-weight: 600;
-      transition: var(--transition);
-      padding: 0.5rem;
-      border-radius: 0.5rem;
-      font-size: 0.9rem;
-    }
-    
-    .tutorial-link:hover {
-      background: hsla(var(--primary), 0.1);
-      transform: translateY(-1px);
-    }
-    
-    .verify-button {
-      width: 100%;
-      padding: 1rem;
-      border-radius: 0.75rem;
-      border: none;
-      background: var(--gradient-primary);
-      color: white;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: var(--transition);
-      box-shadow: var(--shadow-glow);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .verify-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px hsla(var(--primary), 0.5);
-    }
-    
-    .verify-button::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transform: translateX(-100%);
-      transition: transform 0.6s;
-    }
-    
-    .verify-button:hover::before {
-      transform: translateX(100%);
-    }
-    
-    /* ENHANCED RESPONSIVE DESIGN */
-    @media (max-width: 1200px) {
-      .channels-grid {
-        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-        gap: 1.25rem;
-      }
-    }
-    
+    /* Responsive Design */
     @media (max-width: 1024px) {
+      .main-screen {
+        height: 60vh;
+        min-height: 400px;
+      }
+
       .channels-grid {
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
         gap: 1rem;
-      }
-      
-      .channel-card {
-        height: 240px;
-        padding: 1.25rem;
-      }
-      
-      .channel-logo-container {
-        height: 70px;
-      }
-      
-      .channel-logo {
-        max-height: 70px;
-        max-width: 130px;
       }
     }
-    
+
     @media (max-width: 768px) {
-      .header-content {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 0 1rem;
-      }
-      
-      .controls {
-        width: 100%;
-        justify-content: space-between;
-      }
-      
-      .search-input {
-        width: 180px;
-        padding: 0.6rem 0.8rem 0.6rem 2.5rem;
-      }
-      
-      .logo-text {
-        font-size: 1.3rem;
-      }
-      
-      .logo-icon {
-        width: 36px;
-        height: 36px;
-        font-size: 1.1rem;
-      }
-      
-      .theme-toggle {
-        width: 36px;
-        height: 36px;
-      }
-      
       .container {
         padding: 1.5rem 1rem;
       }
-      
-      .hero {
-        margin-bottom: 3rem;
-        padding: 2.5rem 1rem;
+
+      .main-screen {
+        height: 50vh;
+        min-height: 350px;
       }
-      
-      .hero h1 {
-        font-size: 2rem;
+
+      .channels-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
       }
-      
-      .hero p {
-        font-size: 1rem;
-      }
-      
-      .category-section {
-        margin-bottom: 3rem;
-      }
-      
+
       .category-title {
         font-size: 1.5rem;
       }
-      
-      .category-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 1.1rem;
-      }
-      
-      .channels-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 1rem;
-      }
-      
-      .channel-card {
-        height: 220px;
-        padding: 1rem;
-      }
-      
-      .channel-logo-container {
-        height: 60px;
-        margin-bottom: 0.75rem;
-      }
-      
-      .channel-logo {
-        max-height: 60px;
-        max-width: 120px;
-      }
-      
-      .channel-name {
-        font-size: 0.9rem;
-        margin-bottom: 0.75rem;
-        height: 40px;
-      }
-      
-      .play-button, .upcoming-button {
-        padding: 0.6rem 1rem;
-        font-size: 0.8rem;
-      }
-      
-      .verification-countdown {
-        position: relative;
-        top: 0;
-        margin-top: 0.75rem;
-        align-self: center;
-      }
-      
+
       .live-counter-container {
-        bottom: 6rem;
+        bottom: 1rem;
         right: 1rem;
-        padding: 0.6rem 0.8rem;
       }
-      
-      .telegram-popup {
-        bottom: 6rem;
-        left: 1rem;
-        padding: 0.6rem 0.8rem;
-        font-size: 0.75rem;
-      }
-      
-      .footer {
-        padding: 2.5rem 1rem;
-      }
-      
-      .social-link {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
+
+      .verification-countdown {
+        top: 1rem;
+        right: 1rem;
       }
     }
-    
-    @media (max-width: 640px) {
-      .channels-grid {
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-        gap: 0.75rem;
-      }
-      
-      .channel-card {
-        height: 200px;
-        padding: 0.75rem;
-      }
-      
-      .channel-logo-container {
-        height: 50px;
-        margin-bottom: 0.5rem;
-      }
-      
-      .channel-logo {
-        max-height: 50px;
-        max-width: 100px;
-      }
-      
-      .channel-name {
-        font-size: 0.85rem;
-        height: 36px;
-        margin-bottom: 0.5rem;
-      }
-      
-      .play-button, .upcoming-button {
-        padding: 0.5rem 0.75rem;
-        font-size: 0.75rem;
-      }
-      
-      .live-counter-container {
-        bottom: 5rem;
-        right: 0.75rem;
-        padding: 0.5rem 0.7rem;
-      }
-      
-      .telegram-popup {
-        bottom: 5rem;
-        left: 0.75rem;
-        padding: 0.5rem 0.7rem;
-        font-size: 0.7rem;
-      }
-      
-      .verify-modal {
-        padding: 2rem;
-        margin: 1rem;
-      }
-      
-      .modal-content {
-        width: 95%;
-        margin: 0.5rem;
-      }
-      
-      .hero {
-        padding: 2rem 0.75rem;
-      }
-      
+
+    @media (max-width: 480px) {
       .container {
         padding: 1rem 0.75rem;
       }
-    }
-    
-    @media (max-width: 480px) {
+
+      .main-screen {
+        height: 40vh;
+        min-height: 300px;
+      }
+
       .channels-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 0.5rem;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 0.75rem;
       }
-      
+
       .channel-card {
-        height: 180px;
-        padding: 0.6rem;
+        height: 100px;
+        padding: 0.5rem;
       }
-      
+
       .channel-logo-container {
-        height: 45px;
+        height: 40px;
       }
-      
+
       .channel-logo {
-        max-height: 45px;
-        max-width: 90px;
+        max-height: 40px;
       }
-      
+
       .channel-name {
         font-size: 0.8rem;
-        height: 32px;
+        height: 30px;
       }
-      
-      .live-counter-container, .telegram-popup {
-        bottom: 4.5rem;
-        padding: 0.4rem 0.6rem;
-        font-size: 0.65rem;
-      }
-    }
-    
-    .hidden {
-      display: none;
-    }
-    
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    
-    ::-webkit-scrollbar-track {
-      background: hsl(var(--background));
-    }
-    
-    ::-webkit-scrollbar-thumb {
-      background: hsl(var(--surface-hover));
-      border-radius: 3px;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-      background: hsl(var(--primary));
-    }
-  
-    /* Countdown badge */
-    .countdown-badge {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-dark)));
-      color: white;
-      padding: 0.3rem 0.6rem;
-      border-radius: 1.5rem;
-      font-size: 0.75rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-      box-shadow: 0 4px 12px hsla(var(--primary), 0.4);
-    }
 
+      .category-title {
+        font-size: 1.25rem;
+      }
+
+      .verify-modal {
+        margin: 1rem;
+        padding: 2rem;
+      }
+
+      .verify-title {
+        font-size: 1.5rem;
+      }
+
+      .verify-button {
+        padding: 0.875rem 1.5rem;
+        font-size: 1rem;
+      }
+
+      .verification-countdown {
+        top: 0.75rem;
+        right: 0.75rem;
+        font-size: 0.65rem;
+        padding: 0.35rem 0.7rem;
+      }
+
+      /* Adjust badge position for small mobile */
+      .live-badge, .upcoming-badge {
+        top: -5px;
+        right: -5px;
+        padding: 0.2rem 0.4rem;
+        font-size: 0.55rem;
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="header">
-    <div class="header-content">
-      <a href="#" class="logo">
-        <div class="logo-icon">
-          <i class="fas fa-satellite-dish"></i>
+  <div id="verificationCountdown" class="verification-countdown">
+    <i class="fas fa-shield-alt"></i>
+    <span id="countdownText">Verification: 24h 00m</span>
+  </div>
+
+  <div class="container">
+    <!-- Main Video Screen -->
+    <div class="main-screen-container">
+      <div class="main-screen" id="mainScreen">
+        <div class="screen-placeholder">
+          <i class="fas fa-play-circle"></i>
+          <h3>Select a Channel</h3>
+          <p>Choose any channel below to start watching</p>
         </div>
-        <div class="logo-text">MatchesLinks</div>
-      </a>
-      <div class="controls">
-        <div class="search-container">
-          <input type="text" placeholder="Search channels..." class="search-input" id="searchInput">
-          <i class="fas fa-search search-icon"></i>
-        </div>
-        <button class="theme-toggle" id="themeToggle" title="Toggle theme">
-          <i class="fas fa-moon"></i>
-        </button>
-      </div>
-      <div id="verificationCountdown" class="verification-countdown">
-        <i class="fas fa-shield-alt"></i>
-        <span id="countdownText">Verification: 24h 00m</span>
       </div>
     </div>
-  </header>
-
-  <!-- Main Content -->
-  <main class="container" id="mainContent">
-    <!-- Hero Section -->
-    <section class="hero glass-heavy">
-      <div class="hero-content">
-        <h1>Premium Sports Channels Collection</h1>
-        <p>Access the best live sports events and channels from around the world in one place. Watch your favorite teams compete in ultra high-definition quality.</p>
-        <div class="hero-badges">
-          <span class="hero-badge">🔥 HD Quality</span>
-          <span class="hero-badge">⚡ Live Events</span>
-          <span class="hero-badge">🌍 Global Coverage</span>
-          <span class="hero-badge">📱 Multi-Device</span>
-        </div>
-      </div>
-    </section>
 
     <!-- Live Events -->
-    <section class="category-section">
+    <div class="category-section">
       <div class="category-header">
         <div class="category-icon">
-          <i class="fas fa-bolt"></i>
+          <i class="fas fa-broadcast-tower"></i>
         </div>
         <h2 class="category-title">Live Events</h2>
       </div>
-      <div class="channels-grid" id="liveEventsGrid"></div>
-    </section>
-
-    <!-- International Channels -->
-    <section class="category-section">
-      <div class="category-header">
-        <div class="category-icon">
-          <i class="fas fa-globe-americas"></i>
-        </div>
-        <h2 class="category-title">International Channels</h2>
+      <div class="channels-grid" id="liveEventsGrid">
+        <!-- Live events will be dynamically added here -->
       </div>
-      <div class="channels-grid" id="internationalGrid"></div>
-    </section>
-
-    <!-- Sports Channels -->
-    <section class="category-section">
-      <div class="category-header">
-        <div class="category-icon">
-          <i class="fas fa-trophy"></i>
-        </div>
-        <h2 class="category-title">Sports Channels</h2>
-      </div>
-      <div class="channels-grid" id="sportsGrid"></div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="social-links">
-      <a href="https://t.me/+e3-eAje291cxNGNl" class="social-link" target="_blank" title="Telegram">
-        <i class="fab fa-telegram"></i>
-      </a>
-      <a href="#" class="social-link" title="Twitter">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="#" class="social-link" title="Instagram">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="#" class="social-link" title="Email">
-        <i class="fas fa-envelope"></i>
-      </a>
     </div>
-    <p class="footer-text">© 2025 @Matcheslinks. All rights reserved. | Premium Sports Streaming Platform</p>
-  </footer>
+
+    <!-- Cricket Channels -->
+    <div class="category-section">
+      <div class="category-header">
+        <div class="category-icon">
+          <i class="fas fa-baseball-ball"></i>
+        </div>
+        <h2 class="category-title">Cricket Channels</h2>
+      </div>
+      <div class="channels-grid" id="cricketGrid">
+        <!-- Cricket channels will be dynamically added here -->
+      </div>
+    </div>
+  </div>
 
   <!-- Live Counter -->
   <div class="live-counter-container glass">
@@ -1340,137 +771,99 @@
     <div class="last-updated">Updated: <span id="lastUpdated">Loading...</span></div>
   </div>
 
-  <!-- Telegram Popup -->
-  <a href="https://t.me/+e3-eAje291cxNGNl" class="telegram-popup" target="_blank" id="telegramPopup">
-    <i class="fab fa-telegram"></i>
-    Join Community
-  </a>
+  <footer class="footer">
+    <p class="footer-text">© 2024 MatchesLinks • Premium Sports Streaming</p>
+  </footer>
 
-<!-- Video Modal -->
-<div id="videoModal" class="modal">
-  <div class="modal-content video-content">
-    <span class="close-button" onclick="closeVideoModal()">&times;</span>
-    <h2 id="videoTitle"></h2>
-    <iframe 
-      id="videoFrame" 
-      src="" 
-      frameborder="0" 
-      allow="autoplay; encrypted-media; fullscreen" 
-      sandbox="allow-same-origin allow-scripts" 
-      allowfullscreen>
-    </iframe>
-  </div>
-</div>
-
+  <!-- Time Tooltip -->
+  <div id="timeTooltip" class="time-tooltip"></div>
 
   <script>
-    // Performance monitoring
-    const startTime = performance.now();
-    let searchTimeout;
-
-    // FIXED Channel Data - Added missing closing bracket and removed extra bracket
+    // Channel data
     const liveEvents = [
     {
-     name: "Bangladesh vs Sri Lanka (Fancode-Sliv)",
+     name: "India Vs Pakistan (Fancode-Sliv)",
+     logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008085/1757689937137437_ACC25_BAN_vs_SL_promo_ton_landscape_thumb_re1_12sep.jpg",
+     url: "https://fancode-sliv.vercel.app/",
+     live: false,
+     openInNewTab: false,
+     upcoming: true,
+     unlockTime: new Date("2025-09-14T19:00:00+05:30").getTime(), // 14 Sept 7:00 PM IST
+    },
+    {
+     name: "India Vs Pakistan (Fancode-Sliv)",
      logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008085/1757689937137437_ACC25_BAN_vs_SL_promo_ton_landscape_thumb_re1_12sep.jpg",
      url: "https://fancode-sliv.vercel.app/",
      live: true,
      openInNewTab: false,
      upcoming: false,
-     unlockTime: new Date("2025-09-13T19:00:00+05:30").getTime(), // 13 Sept 7:00 PM IST
+     unlockTime: new Date("2025-09-1T19:00:00+05:30").getTime(), // 1 Sept 7:00 PM IST
     },
     {
-     name: "Up Yodhhas Vs Jaipur Pink Panthers (Hindi)",
-     logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSji5M6cHjPmxJIgKy_qHtpOZfDMsfAfUDBRw&s",
-     url: "https://tataplays.site/player.html?id=301982",
-     live: true,
-     openInNewTab: false,
-     upcoming: false,
-     unlockTime: new Date("2025-09-13T19:00:00+05:30").getTime(), // 13 Sept 7:00 PM IST
-    },
-    {
-     name: "Up Yodhhas Vs Jaipur Pink Panthers (English)",
-     logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSji5M6cHjPmxJIgKy_qHtpOZfDMsfAfUDBRw&s",
-     url: "https://tataplays.site/player.html?id=301983",
-     live: true,
-     openInNewTab: false,
-     upcoming: false,
-     unlockTime: new Date("2025-09-13T19:00:00+05:30").getTime(), // 13 Sept 7:00 PM IST
-    },
-    {
-     name: "Up Yodhhas Vs Jaipur Pink Panthers (Telgu)",
-     logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSji5M6cHjPmxJIgKy_qHtpOZfDMsfAfUDBRw&s",
-     url: "https://tataplays.site/player.html?id=302123",
-     live: true,
-     openInNewTab: false,
-     upcoming: false,
-     unlockTime: new Date("2025-09-13T19:00:00+05:30").getTime(), // 13 Sept 7:00 PM IST
-    },
-    {
-     name: "Up Yodhhas Vs Jaipur Pink Panthers (Tamil)",
-     logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSji5M6cHjPmxJIgKy_qHtpOZfDMsfAfUDBRw&s",
-     url: "https://tataplays.site/player.html?id=302122",
-     live: true,
-     openInNewTab: false,
-     upcoming: false,
-     unlockTime: new Date("2025-09-13T19:00:00+05:30").getTime(), // 13 Sept 7:00 PM IST
-    },
-    {
-     name: "Bangladesh vs Sri Lanka (Tnt Sports 4)",
+     name: "India Vs Pakistan (Tnt Sports 4)",
      logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008085/1757689937137437_ACC25_BAN_vs_SL_promo_ton_landscape_thumb_re1_12sep.jpg",
      url: "https://mpd-player-ivory.vercel.app/?id=TNT_4_GB",
      live: true,
      openInNewTab: false,
      upcoming: false,
-     unlockTime: new Date("2025-09-13T19:00:00+05:30").getTime(), // 13 Sept 7:00 PM IST
+     unlockTime: new Date("2025-09-14T19:00:00+05:30").getTime(), // 14 Sept 7:00 PM IST
     },
     {
-     name: "Bangladesh vs Sri Lanka (Fox Cricket)",
+     name: "India Vs Pakistan (Fox Cricket)",
      logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008085/1757689937137437_ACC25_BAN_vs_SL_promo_ton_landscape_thumb_re1_12sep.jpg",
      url: "https://fox-sports-501-hd.vercel.app/",
      live: true,
      openInNewTab: false,
      upcoming: false,
-     unlockTime: new Date("2025-09-13T19:00:00+05:30").getTime(), // 13 Sept 7:00 PM IST
+     unlockTime: new Date("2025-09-14T19:00:00+05:30").getTime(), // 14 Sept 7:00 PM IST
     },
     {
-     name: "Bangladesh vs Sri Lanka (Sony Ten 1 HD)",
+     name: "India Vs Pakistan (Sony Ten 1 HD)",
      logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008085/1757689937137437_ACC25_BAN_vs_SL_promo_ton_landscape_thumb_re1_12sep.jpg",
      url: "https://sonyten1.vercel.app/",
      live: true,
      openInNewTab: false,
      upcoming: false,
-     unlockTime: new Date("2025-09-13T19:00:00+05:30").getTime(), // 13 Sept 7:00 PM IST
+     unlockTime: new Date("2025-09-14T19:00:00+05:30").getTime(), // 14 Sept 7:00 PM IST
     },
     {
-     name: "Bangladesh vs Sri Lanka (Astro Cricket)",
+     name: "India Vs Pakistan (Astro Cricket)",
      logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008085/1757689937137437_ACC25_BAN_vs_SL_promo_ton_landscape_thumb_re1_12sep.jpg",
      url: "https://astro-cricket-ercs.vercel.app",
      live: true,
      openInNewTab: false,
      upcoming: false,
-     unlockTime: new Date("2025-09-13T19:00:00+05:30").getTime(), // 13 Sept 7:00 PM IST
+     unlockTime: new Date("2025-09-14T19:00:00+05:30").getTime(), // 14 Sept 7:00 PM IST
     },
     {
-     name: "Bangladesh vs Sri Lanka (Willow)",
+     name: "India Vs Pakistan (Willow)",
      logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008085/1757689937137437_ACC25_BAN_vs_SL_promo_ton_landscape_thumb_re1_12sep.jpg",
      url: "https://matcheslinks.vercel.app/?id=Willow",
      live: true,
      openInNewTab: false,
      upcoming: false,
-     unlockTime: new Date("2025-09-13T19:00:00+05:30").getTime(), // 13 Sept 7:00 PM IST
+     unlockTime: new Date("2025-09-14T19:00:00+05:30").getTime(), // 14 Sept 7:00 PM IST
     },
     {
-     name: "Bangladesh vs Sri Lanka (Sony Ten 5 HD)",
+     name: "India Vs Pakistan (Sony Ten 5 HD)",
      logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008085/1757689937137437_ACC25_BAN_vs_SL_promo_ton_landscape_thumb_re1_12sep.jpg",
      url: "https://sonyten5.vercel.app/",
      live: true,
      openInNewTab: false,
      upcoming: false,
-     unlockTime: new Date("2025-09-13T19:00:00+05:30").getTime(), // 13 Sept 7:00 PM IST
+     unlockTime: new Date("2025-09-14T19:00:00+05:30").getTime(), // 14 Sept 7:00 PM IST
     },
     {
-     name: "West Ham vs Tottenham Hotspur",
+     name: "India-W Vs Austrailia-W (Sony Ten 5 HD)",
+     logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008085/1757689937137437_ACC25_BAN_vs_SL_promo_ton_landscape_thumb_re1_12sep.jpg",
+     url: "https://sonyten5.vercel.app/",
+     live: true,
+     openInNewTab: false,
+     upcoming: false,
+     unlockTime: new Date("2025-09-14T19:00:00+05:30").getTime(), // 14 Sept 7:00 PM IST
+    },
+    {
+     name: "Burnley Vs Liverpool (Star Sports Select 1 HD)",
      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBCryVMmn2uZqt83q5NtqgLLlEvKHjo_YsXA&s",
      url: "https://embedsports.top/embed/intel/west-ham-united-tottenham/1",
      live: true,
@@ -1479,7 +872,7 @@
      unlockTime: new Date("2025-09-13T21:45:00+05:30").getTime(), // 13 Sept 9:45 PM IST
     },
     {
-     name: "Juventus Vs Inter Milan (Tnt Sports 1)",
+     name: "Man City Vs Man United (Star Sports Select 1 HD)",
      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKsMUNPcHVgv9SILUC0zZ5qfsmKo0lJWpZjw&s",
      url: "https://mpd-player-ivory.vercel.app/?id=TNT_1_GB",
      live: true,
@@ -1487,37 +880,9 @@
      upcoming: false,
      unlockTime: new Date("2025-09-13T21:15:00+05:30").getTime(), // 13 Sept 9:15 PM IST
     }
-    ]; // FIXED: Added missing closing bracket
-
-    const internationalChannels = [
-      {
-        name: "USA East",
-        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3U6vFqKlugKE9SLtLwnOf7sGhBI_UMhEKfwOsbNm93m9ffwngqZQ7Bh5q&s=10",
-        url: "https://mpd-player-ivory.vercel.app/?id=usaeast"
-      },
-      {
-        name: "USA West",
-        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3U6vFqKlugKE9SLtLwnOf7sGhBI_UMhEKfwOsbNm93m9ffwngqZQ7Bh5q&s=10",
-        url: "https://mpd-player-ivory.vercel.app/?id=usawest"
-      },
-      {
-        name: "NBC",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/3/3f/NBC_logo.svg",
-        url: "https://flourishing-pudding-37c887.netlify.app/"
-      },
-      {
-        name: "Universo East",
-        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBG2mqncvr4lOSb1xsyP1T-URBBvO5-4YKFQ&s",
-        url: "https://kaleidoscopic-narwhal-9aa0ff.netlify.app/"
-      },
-      {
-        name: "TELEMUNDO",
-        logo: "https://i0.wp.com/thehill.com/wp-content/uploads/sites/2/2017/05/telemundologo.png?w=2000&ssl=1",
-        url: "https://fantastic-chimera-85d2ed.netlify.app/"
-      }
     ];
 
-    const sportsChannels = [
+    const cricketChannels = [
       {
         name: "Fancode Sliv",
         logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK8r3K_kq9JVR3dPkEfCKs6MZ-LkgMxO71tQ&s",
@@ -1605,7 +970,7 @@
       },
       {
         name: "TSN 1",
-        logo: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAn1BMVEX////tHSTsAABDQ0T+8vPsABH72dn95OXtFh7sAAzwRUr83d72nqDsAAX4urvtGSA7OzzuLTP19fX81dZiYmPtEBn3qqwzMzX6zM30h4ryaW3/+Pj0g4ZbW1vuLDLvOj+JiYnybXH3o6X1l5n5xMXxXGBVVVbxYmbwUlb96erf39/zeHv4tbfuJCzwSk73r7DX19csLC2Wlpb1kJPq6upyGUrmAAAFEElEQVR4nO3ae1viOBQH4DZQaIEaEYNcFAbQUQaVmXW//2dbeqE9aZP2BMfd2ef5vX/aNsnJya1FzwMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA/9Cy62bp/jznxmG3Uu4Nkf/JraFFSW9R4CASwyK02fTwMm5/JF5lneI3VnS6ON4cSZg3339d5+4eshgfhVNb77N6X4XvQm3yBlw9CxGpUMrWR6Jt9kBrRVJFYjErQ7y97uSu8xBnQXt1ZXHRIA1xHfKfORH9rKq1UNyKwqwr31kVKXEopsHNQz1EYQxRRmcB/XO8SxIfMxuaN+Apiego+P0SjdJHJhH3/nUZ4vcyxNuGEMPV9GxHQ5Tj0xMvjikcZgHyB4sMsgY/c3PuKxIia6BKVawN3l6bC/J0/yUp7DkE6Ee7tOY+N4XJI/eNczGq1C7jcu56fX22u/RsSsxcp65U+7TmedB+b1lNmRM6Fy0DVbx69giHbgtp+JIUsnXJezBPK+5WO774oTKJxuVGK0xNvYYIFyK2EgaPSWMD0xWrLIUfLXdF2rCQPmmzaaCqMkQ53o4SW3OEVw0mvbqkjKXpglU+3obNd822L9rACHotIZKBKrNjhW+Zh3+OHV2K6NrB2zTSjcH7oyPUTgTpdCgxNo3/Q4T3yhohI0R2hMMJUT3tJ5Z9Hu2hXlupiQOJMJpULt7cdurLzSUR7oOoJPq166cNNAhZ3p7KNMwELdUSIB2lUtW64eddEeKvv7I/bdQFEd6TfZluSoU+83Av5ekIbWi7H28tAdJzazioXv1RjNLO3be8rfr5jBfhPiTtz3cy3dFhtz9PpgmpVPq2QbogGYmnlYs/OrUA53oozAg/SD8WL4Kag8MpLz/OeE90gu0sAfZoN6jKdwRTgJWu5kW4jGkKTbPwkgi1tkvTwEjQA3L+vlUGeNcyRNkRjmgKF8aGPDq8VsTH9BE6/M5prek3jGTDHJzXztOsCJf0i0Rtvc5NK0fIBtlE7pHFSwa2WUjXxeBDD7B9iHIjnNIUPlma4u1H7/YDtHbmz0bBgUSoDpZC+7QblDY/TBk0LHecCJdjOgu1g2FVVzsYlHo+LWJYq9G4PCfsuxRnDnIjnJJr2YugM/o5LV+L6dJkT6GyLXHt24RDhGv7yZeLFpFN5K6Wwp7lOZpCbZfizUEaYe07TYn2f7i+KEB6HMgn8tzWdkr7AEBT2HqSoTaLxDNdB6UWx4rW8vkUZhO5Sw9JsS2FWjeQXcopQF+ltIVe+4Lz2JbC/W7Ugo61vIgdZ3nWU1juUj871/U5yDv3p5TQ1izt/ZOGXnS0aPuZgB53siKWPmd5Hpm74e/bwkP+NrFdDxwstJFIv5saU9hVLh/L8nlPv8rV3xfOJb/Rkdy4S32GdjqunuwTO4cvuqd8pUW4pzB8/6oA9Rccww3LlUsKw+y7/JSm0NZ2/aBx2RLHsGg42aecvgLLfOOjw09cWaqm3SBXXxWg/oJT/ZHXq3R0G6Wy9fDISaEXcrrh01pTeGR//ZdKbPLT54B+vDhaqj5+/qDB0KdfkH3T6XjMe2M6bUHR4fyrinZIGtvqpiUL0xL3WyzIVic+DDe80o9lVkGwPlyVQ3xAS7WnkPySPzbMj9/D/B8MxL43ZOg6lprQ/j/jywIEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgH/fP7kJcRBg5SufAAAAAElFTkSuQmCC",
+        logo: "data:image/png;base64,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",
         url: "https://fluffy-cucurucho-df41e4.netlify.app/"
       },
       {
@@ -1793,439 +1158,252 @@
         logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Star_Sports_1_HD.png/2560px-Star_Sports_1_HD.png",
         url: "https://splendorous-cendol-2469b3.netlify.app/"
       }
-    ]; // FIXED: Removed extra closing bracket
+    ];
 
-    // App State
-    let currentTheme = localStorage.getItem('theme') || 'dark';
-    let searchTerm = '';
-    let countdownInterval = null;
-    let countdownDelayTimer = null;
+    let countdownInterval;
+    let eventCheckInterval;
 
-    // Enhanced debounced search
-    function debounceSearch(func, delay) {
-      return function(args) {
-        clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(() => func.apply(this, args), delay);
-      };
-    }
-
-    // Update timestamp function
-    function updateTimestamp() {
-      try {
-        document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString('en-US', { 
-          timeZone: 'Asia/Kolkata', 
-          hour12: true 
-        });
-      } catch (error) {
-        console.error('Error updating timestamp:', error.message);
-        document.getElementById('lastUpdated').textContent = 'Error';
-      }
-    }
-
-    // Verification functions
+    // Check if user is verified
     function checkVerification() {
       const verifiedUntil = localStorage.getItem('verified_until');
-      const now = Date.now();
-      return verifiedUntil && parseInt(verifiedUntil) > now;
+      return verifiedUntil && parseInt(verifiedUntil) > Date.now();
     }
 
-    function showVerificationModal() {
-      document.getElementById('verifyModal').classList.add('active');
-      document.body.style.overflow = 'hidden';
-      document.getElementById('mainContent').classList.add('blur-background');
-      document.querySelector('header').classList.add('blur-background');
-      document.querySelector('footer').classList.add('blur-background');
-      document.querySelector('.live-counter-container')?.classList.add('blur-background');
-      document.getElementById('telegramPopup').classList.add('blur-background');
-    }
-
-    function hideVerificationModal() {
-      document.getElementById('verifyModal').classList.remove('active');
-      document.body.style.overflow = 'auto';
-      document.getElementById('mainContent').classList.remove('blur-background');
-      document.querySelector('header').classList.remove('blur-background');
-      document.querySelector('footer').classList.remove('blur-background');
-      document.querySelector('.live-counter-container')?.classList.remove('blur-background');
-      document.getElementById('telegramPopup').classList.remove('blur-background');
-    }
-
-    function handleVerification() {
-      const verifyButton = document.querySelector('.verify-button');
-      verifyButton.disabled = true;
-      verifyButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-      
-      setTimeout(() => {
-        const expire = Date.now() + (24 * 60 * 60 * 1000);
-        localStorage.setItem('verified_until', expire.toString());
-        
-        const countdownElement = document.getElementById('verificationCountdown');
-        countdownElement.classList.remove('visible');
-        
-        const delayMinutes = 30 + Math.floor(Math.random() * 60);
-        const delayMs = delayMinutes * 60 * 1000;
-        
-        if (countdownDelayTimer) {
-          clearTimeout(countdownDelayTimer);
-        }
-        
-        countdownDelayTimer = setTimeout(() => {
-          updateVerificationCountdown();
-          countdownElement.classList.add('visible');
-        }, delayMs);
-        
-        window.location.href = 'https://gplinks.co/l3PAG9xO';
-      }, 3000);
-    }
-
-    // Countdown functions
+    // Update verification countdown with 2 second delay for disappearing
     function updateVerificationCountdown() {
       const verifiedUntil = localStorage.getItem('verified_until');
-      const countdownElement = document.getElementById('verificationCountdown');
+      const countdownEl = document.getElementById('verificationCountdown');
       const countdownText = document.getElementById('countdownText');
       
       if (!verifiedUntil) {
-        countdownElement.classList.remove('visible');
-        if (countdownInterval) {
-          clearInterval(countdownInterval);
-          countdownInterval = null;
-        }
+        countdownEl.classList.remove('visible');
+        clearInterval(countdownInterval);
         return;
       }
       
       const now = Date.now();
-      const timeLeft = parseInt(verifiedUntil) - now;
+      const diff = parseInt(verifiedUntil) - now;
       
-      if (timeLeft <= 0) {
-        countdownElement.classList.remove('visible');
+      if (diff <= 0) {
         localStorage.removeItem('verified_until');
-        if (countdownInterval) {
+        // Add 2 second delay before disappearing
+        setTimeout(() => {
+          countdownEl.classList.remove('visible');
           clearInterval(countdownInterval);
-          countdownInterval = null;
-        }
+          document.getElementById('verifyModal').style.display = 'flex';
+        }, 2000);
         return;
       }
       
-      const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const hours = Math.floor(diff / (1000*60*60));
+      const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
       
-      countdownText.textContent = `Verification: ${hours}h ${minutes}m`;
+      countdownText.textContent = `Verification: ${hours}h ${minutes.toString().padStart(2, '0')}m`;
       
-      if (hours < 1) {
-        countdownElement.classList.add('danger');
-        countdownElement.classList.remove('warning');
-      } else if (hours < 6) {
-        countdownElement.classList.add('warning');
-        countdownElement.classList.remove('danger');
-      } else {
-        countdownElement.classList.remove('warning', 'danger');
+      // Change color based on remaining time
+      countdownEl.className = 'verification-countdown visible';
+      if (diff < 60*60*1000) { // Less than 1 hour
+        countdownEl.classList.add('danger');
+      } else if (diff < 2*60*60*1000) { // Less than 2 hours
+        countdownEl.classList.add('warning');
+      }
+      
+      countdownEl.classList.add('visible');
+    }
+
+    // Check for events that need to go live
+    function checkEventTimes() {
+      const now = Date.now();
+      let hasChanges = false;
+
+      liveEvents.forEach(event => {
+        if (event.upcoming && now >= event.unlockTime) {
+          event.upcoming = false;
+          event.live = true;
+          hasChanges = true;
+        }
+      });
+
+      if (hasChanges) {
+        renderChannels();
       }
     }
 
-    function startCountdownTimer() {
-      if (countdownInterval) {
-        clearInterval(countdownInterval);
-      }
+    // Handle verification with 3-second redirect delay
+    function handleVerification() {
+      const verifyButton = document.querySelector('.verify-button');
+      const originalText = verifyButton.textContent;
       
-      updateVerificationCountdown();
-      countdownInterval = setInterval(updateVerificationCountdown, 60000);
+      // Show "Redirecting..." message
+      verifyButton.textContent = 'Redirecting...';
+      verifyButton.disabled = true;
+      
+      // Open verification link
+      window.open('https://vplink.in/verificationkar', '_blank', 'width=800,height=600');
+      
+      // Wait 3 seconds before setting verification and hiding modal
+      setTimeout(() => {
+        // Set verification expiry to 24 hours from now
+        const expiryTime = Date.now() + (24 * 60 * 60 * 1000);
+        localStorage.setItem('verified_until', expiryTime.toString());
+        
+        // Hide modal and start countdown
+        document.getElementById('verifyModal').style.display = 'none';
+        updateVerificationCountdown();
+        countdownInterval = setInterval(updateVerificationCountdown, 60000);
+        
+        // Reset button
+        verifyButton.textContent = originalText;
+        verifyButton.disabled = false;
+      }, 3000);
     }
 
-    // Channel functions
-    function handleChannelPlay(url, isLiveEvent = false, name = '', openInNewTab = false) {
+    // Show time tooltip for upcoming events
+    function showTimeTooltip(event, unlockTime) {
+      const tooltip = document.getElementById('timeTooltip');
+      const date = new Date(unlockTime);
+      const options = { 
+        weekday: 'short',
+        month: 'short', 
+        day: 'numeric',
+        hour: '2-digit', 
+        minute: '2-digit',
+        timeZoneName: 'short'
+      };
+      const timeString = date.toLocaleString('en-US', options);
+      
+      tooltip.textContent = `Goes live: ${timeString}`;
+      tooltip.style.left = event.pageX + 10 + 'px';
+      tooltip.style.top = event.pageY - 40 + 'px';
+      tooltip.classList.add('visible');
+    }
+
+    // Hide time tooltip
+    function hideTimeTooltip() {
+      const tooltip = document.getElementById('timeTooltip');
+      tooltip.classList.remove('visible');
+    }
+
+    // Play channel
+    function playChannel(url) {
       if (!checkVerification()) {
-        showVerificationModal();
+        document.getElementById('verifyModal').style.display = 'flex';
         return;
       }
-
-      if (isLiveEvent && openInNewTab) {
-        window.open(url, '_blank');
-      } else if (isLiveEvent) {
-        openVideoModal(name, url);
-      } else {
-        window.open(url, '_blank');
-      }
-    }
-
-    function openVideoModal(title, url) {
-      document.getElementById('videoTitle').textContent = title;
-      document.getElementById('videoFrame').src = url;
-      document.getElementById('videoModal').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeVideoModal() {
-      document.getElementById('videoModal').classList.remove('active');
-      document.getElementById('videoFrame').src = '';
-      document.body.style.overflow = 'auto';
-    }
-
-    // Helper function to format start time in IST
-    function formatStartTime(timestamp) {
-      if (!timestamp) return "Soon";
       
-      try {
-        const date = new Date(timestamp);
-        const options = { 
-          month: 'short', 
-          day: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-          timeZone: 'Asia/Kolkata'
-        };
-        return date.toLocaleDateString('en-IN', options) + ' IST';
-      } catch (e) {
-        return "Soon";
-      }
+      // Scroll to top smoothly
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
+      const mainScreen = document.getElementById('mainScreen');
+      mainScreen.innerHTML = `
+        <iframe 
+          src="${url}" 
+          allow="autoplay; encrypted-media; fullscreen; picture-in-picture; clipboard-write"
+          allowfullscreen
+          style="width: 100%; height: 100%; border: none; border-radius: 1.5rem;">
+        </iframe>
+      `;
     }
 
-function openInMiniPlayer(url, name) {
-  const modal = document.getElementById("videoModal");
-  const iframe = document.getElementById("videoFrame");
-  const title = document.getElementById("videoTitle");
-
-  // Set video info
-  iframe.src = url;
-  title.textContent = name;
-
-  // Show modal
-  modal.classList.add("active");
-
-  // Prevent background scroll
-  document.body.style.overflow = "hidden";
-}
-
-// Close modal when clicking the "X" button
-function closeVideoModal() {
-  const modal = document.getElementById("videoModal");
-  const iframe = document.getElementById("videoFrame");
-
-  // Hide modal
-  modal.classList.remove("active");
-
-  // Stop video playback
-  iframe.src = "";
-
-  // Allow background scroll again
-  document.body.style.overflow = "auto";
-}
-
-
-// Render functions with staggered animations
-function createChannelCard(channel, isLiveEvent = false, index = 0) {
-  const isUpcoming = channel.upcoming;
-
-  return `
-    <div class="channel-card" data-name="${channel.name.toLowerCase()}" style="animation-delay: ${index * 0.1}s">
-      <div class="channel-logo-container">
-        <img src="${channel.logo}" alt="${channel.name}" class="channel-logo" loading="lazy" />
-        ${isLiveEvent && channel.live ? '<div class="live-badge"><i class="fas fa-circle"></i> LIVE</div>' : ''}
-        ${isUpcoming ? '<div class="upcoming-badge"><i class="fas fa-clock"></i> UPCOMING</div>' : ''}
-      </div>
-      <div class="channel-name">${channel.name}</div>
-      ${isUpcoming ? 
-        `<button class="upcoming-button">
-          <i class="fas fa-clock"></i>
-          ${formatStartTime(channel.startTime)}
-        </button>` : 
-        `<button class="play-button" onclick="handleChannelPlay('${channel.url}', '${channel.name}', ${channel.openInNewTab || false})">
-          <i class="fas fa-play"></i>
-          ${isLiveEvent ? 'Watch Live' : 'Play'}
-        </button>`
-      }
-    </div>
-  `;
-}
-
-// New helper: handle how channels open
-function handleChannelPlay(url, name, openInNewTab) {
-  if (openInNewTab) {
-    window.open(url, "_blank");
-  } else {
-    openInMiniPlayer(url, name); // 👈 your mini player function
-  }
-}
-
+    // Render channels
     function renderChannels() {
-      const liveEventsGrid = document.getElementById('liveEventsGrid');
-      liveEventsGrid.innerHTML = liveEvents.map((event, index) => createChannelCard(event, true, index)).join('');
-
-      const internationalGrid = document.getElementById('internationalGrid');
-      internationalGrid.innerHTML = internationalChannels.map((channel, index) => createChannelCard(channel, false, index)).join('');
-
-      const sportsGrid = document.getElementById('sportsGrid');
-      sportsGrid.innerHTML = sportsChannels.map((channel, index) => createChannelCard(channel, false, index)).join('');
+      renderChannelCategory(liveEvents, 'liveEventsGrid');
+      renderChannelCategory(cricketChannels, 'cricketGrid');
     }
 
-    const debouncedFilter = debounceSearch(() => {
-      const cards = document.querySelectorAll('.channel-card');
-      cards.forEach(card => {
-        const name = card.getAttribute('data-name');
-        const shouldShow = name.includes(searchTerm.toLowerCase());
-        card.style.display = shouldShow ? 'block' : 'none';
-        card.style.opacity = shouldShow ? '1' : '0';
+    function renderChannelCategory(channels, gridId) {
+      const channelsGrid = document.getElementById(gridId);
+      channelsGrid.innerHTML = '';
+      
+      channels.forEach(channel => {
+        const channelCard = document.createElement('div');
+        channelCard.className = channel.live ? 'channel-card has-live-badge' : 'channel-card';
+        
+        // Handle clicks differently for upcoming vs live events
+        if (channel.upcoming) {
+          channelCard.onclick = (e) => {
+            e.preventDefault();
+            showTimeTooltip(e, channel.unlockTime);
+            setTimeout(hideTimeTooltip, 3000); // Hide after 3 seconds
+          };
+        } else {
+          channelCard.onclick = () => playChannel(channel.url);
+        }
+        
+        let badgeHtml = '';
+        if (channel.live) {
+          badgeHtml = `
+            <div class="live-badge">
+              <i class="fas fa-circle"></i>
+              LIVE
+            </div>
+          `;
+        } else if (channel.upcoming) {
+          badgeHtml = `
+            <div class="upcoming-badge">
+              <i class="fas fa-clock"></i>
+              UPCOMING
+            </div>
+          `;
+        }
+        
+        channelCard.innerHTML = `
+          <div class="channel-logo-container">
+            <img src="${channel.logo}" alt="${channel.name}" class="channel-logo" onerror="this.src='https://via.placeholder.com/100x50/2a2a40/ffffff?text=Channel'">
+            ${badgeHtml}
+          </div>
+          <div class="channel-name">${channel.name}</div>
+        `;
+        
+        channelsGrid.appendChild(channelCard);
       });
-    }, 300);
-
-    function filterChannels() {
-      debouncedFilter();
     }
 
-    // Theme functions
-    function toggleTheme() {
-      currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      document.body.classList.toggle('light', currentTheme === 'light');
-      
-      const themeIcon = document.querySelector('#themeToggle i');
-      themeIcon.className = currentTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
-      
-      localStorage.setItem('theme', currentTheme);
+    // Update last updated time
+    function updateLastUpdated() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString('en-US', { 
+        hour12: false, 
+        hour: '2-digit', 
+        minute: '2-digit' 
+      });
+      document.getElementById('lastUpdated').textContent = timeString;
     }
 
-    // Event listeners
+    // Initialize
     document.addEventListener('DOMContentLoaded', function() {
-      // Initialize theme
-      if (currentTheme === 'light') {
-        document.body.classList.add('light');
-        document.querySelector('#themeToggle i').className = 'fas fa-sun';
-      }
-
-      // Render channels
       renderChannels();
-
-      // Update timestamp
-      updateTimestamp();
-      setInterval(updateTimestamp, 120000);
-
-      // Start countdown timer
-      startCountdownTimer();
-
-      // Check verification
-      if (!localStorage.getItem('firstVisitShown')) {
-        showVerificationModal();
-        localStorage.setItem('firstVisitShown', 'true');
-      } else if (!checkVerification()) {
-        showVerificationModal();
+      
+      // Show verification modal if not completed
+      if (!checkVerification()) {
+        document.getElementById('verifyModal').style.display = 'flex';
+      } else {
+        document.getElementById('verifyModal').style.display = 'none';
       }
-
-      // Enhanced search with debouncing
-      document.getElementById('searchInput').addEventListener('input', function(e) {
-        searchTerm = e.target.value;
-        filterChannels();
-      });
-
-      // Theme toggle
-      document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-
-      // Modal close handlers
-      document.getElementById('videoModal').addEventListener('click', function(e) {
-        if (e.target === this) {
-          closeVideoModal();
-        }
-      });
-
-      document.getElementById('verifyModal').addEventListener('click', function(e) {
-        if (e.target === this) {
-          hideVerificationModal();
-        }
-      });
-
-      // Security measures
-      document.addEventListener('contextmenu', e => e.preventDefault());
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'F12' || 
-            (e.ctrlKey && e.shiftKey && e.key === 'I') ||
-            (e.ctrlKey && e.shiftKey && e.key === 'J') ||
-            (e.ctrlKey && e.key === 'U')) {
-          e.preventDefault();
-        }
-      });
-
-      // Performance logging
-      const loadTime = performance.now() - startTime;
-      console.log(`Page loaded in ${loadTime.toFixed(2)}ms`);
+      
+      // Update time and countdown
+      updateLastUpdated();
+      updateVerificationCountdown();
+      
+      // Start intervals
+      setInterval(updateLastUpdated, 60000); // Update every minute
+      countdownInterval = setInterval(updateVerificationCountdown, 60000);
+      eventCheckInterval = setInterval(checkEventTimes, 30000); // Check events every 30 seconds
     });
-  
-    // === Scheduled Unlock for All Live Events ===
-    const eventStartTime = new Date("2025-09-05T23:45:00+05:30").getTime();
 
-    // Mark all liveEvents as upcoming initially
-    liveEvents.forEach(ev => ev.upcoming = true);
+    // Prevent right-click and developer tools
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
 
-    
-    // Robust per-event countdown (injected by assistant)
-    (function(){
-      function pad(n){ return n.toString().padStart(2,'0'); }
-      function formatDistance(ms){
-        if(ms <= 0) return 'LIVE NOW';
-        const s = Math.floor(ms/1000);
-        const hours = Math.floor(s/3600);
-        const minutes = Math.floor((s%3600)/60);
-        const seconds = s%60;
-        if(hours>0) return `${hours}h ${pad(minutes)}m ${pad(seconds)}s`;
-        return `${pad(minutes)}m ${pad(seconds)}s`;
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'F12' || 
+          (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+          (e.ctrlKey && e.shiftKey && e.key === 'C') ||
+          (e.ctrlKey && e.key === 'U')) {
+        e.preventDefault();
       }
-
-      function updateEventCountdown(){
-        const now = Date.now();
-        let changed = false;
-        liveEvents.forEach(ev => {
-          // If unlockTime missing, treat as already unlocked
-          const unlock = ev.unlockTime ? Number(ev.unlockTime) : 0;
-          const distance = unlock - now;
-
-          // find the card for this event
-          const cards = document.querySelectorAll('.channel-card');
-          let card = null;
-          for(const c of cards){
-            const nameEl = c.querySelector('.channel-name');
-            if(!nameEl) continue;
-            if(nameEl.innerText.trim() === ev.name || nameEl.innerText.includes(ev.name)){
-              card = c; break;
-            }
-          }
-          if(!card) return; // card may not be rendered yet
-
-          // ensure badge exists
-          let badge = card.querySelector('.countdown-badge, .live-badge');
-          if(!badge){
-            badge = document.createElement('div');
-            badge.className = 'countdown-badge';
-            card.appendChild(badge);
-          }
-
-          if(distance <= 0){
-            if(ev.upcoming){
-              ev.upcoming = false;
-              changed = true;
-            }
-            badge.textContent = 'LIVE NOW';
-            badge.classList.remove('countdown-badge');
-            badge.classList.add('live-badge');
-          } else {
-            // still locked
-            badge.classList.remove('live-badge');
-            badge.classList.add('countdown-badge');
-            badge.textContent = 'Unlocks in ' + formatDistance(distance);
-            ev.upcoming = true; // ensure locked state
-          }
-        });
-
-        if(changed){
-          // if any event flipped from upcoming->live, re-render grid to update buttons
-          if(typeof renderChannels === 'function'){
-            try{ renderChannels('liveEventsGrid', liveEvents); }catch(e){ console.warn('renderChannels failed', e); }
-          }
-        }
-      }
-
-      window.addEventListener('load', function(){
-        // run initial update after a short delay to allow initial renderChannels to finish
-        setTimeout(updateEventCountdown, 300);
-        // then run every 1s
-        setInterval(updateEventCountdown, 1000);
-      });
-    })();
-
+    });
   </script>
 </body>
 </html>
