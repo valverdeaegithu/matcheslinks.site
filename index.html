@@ -1,5 +1,9 @@
 
 
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -429,7 +433,7 @@
       position: relative;
       overflow: hidden;
       box-shadow: var(--shadow-md);
-      height: 260px; /* REDUCED FROM 320px */
+      height: 320px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -459,7 +463,7 @@
     }
     
     .channel-logo-container {
-      height: 80px; /* REDUCED FROM 100px */
+      height: 100px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -467,8 +471,8 @@
     }
     
     .channel-logo {
-      max-height: 80px; /* REDUCED FROM 100px */
-      max-width: 150px; /* REDUCED FROM 180px */
+      max-height: 100px;
+      max-width: 170px;
       object-fit: contain;
       border-radius: 0.5rem;
       transition: var(--transition);
@@ -572,7 +576,21 @@
       box-shadow: 0 4px 12px hsla(var(--danger), 0.4);
     }
     
-    
+    .upcoming-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: linear-gradient(135deg, hsl(var(--warning)), hsl(48, 96%, 53%));
+      color: black;
+      padding: 0.3rem 0.6rem;
+      border-radius: 1.5rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      box-shadow: 0 4px 12px hsla(var(--warning), 0.4);
+    }
     
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
@@ -942,7 +960,7 @@
       }
       
       .channel-card {
-        height: 240px;
+        height: 280px;
         padding: 1.25rem;
       }
       
@@ -1025,7 +1043,7 @@
       }
       
       .channel-card {
-        height: 220px;
+        height: 260px;
         padding: 1rem;
       }
       
@@ -1088,7 +1106,7 @@
       }
       
       .channel-card {
-        height: 200px;
+        height: 240px;
         padding: 0.75rem;
       }
       
@@ -1152,7 +1170,7 @@
       }
       
       .channel-card {
-        height: 180px;
+        height: 220px;
         padding: 0.6rem;
       }
       
@@ -1200,65 +1218,9 @@
     }
   
     /* Countdown badge */
-    .countdown-badge {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-dark)));
-      color: white;
-      padding: 0.2rem 0.45rem;
-      border-radius: 1.5rem;
-      font-size: 0.6rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-      box-shadow: 0 4px 12px hsla(var(--primary), 0.4);
-    }
+    
 
-  
-@media (max-width: 640px) {
-  .countdown-badge {
-    font-size: 0.5rem;
-    padding: 0.15rem 0.35rem;
-  }
-}
-
-
-@media (max-width: 768px) {
-  .channels-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 0.5rem;
-  }
-
-  .channel-card {
-    height: 160px;
-    padding: 0.5rem;
-  }
-
-  .channel-logo-container {
-    height: 40px;
-    margin-bottom: 0.4rem;
-  }
-
-  .channel-logo {
-    max-height: 40px;
-    max-width: 80px;
-  }
-
-  .channel-name {
-    font-size: 0.75rem;
-    height: 28px;
-    margin-bottom: 0.4rem;
-  }
-
-  .play-button, .upcoming-button {
-    padding: 0.4rem 0.6rem;
-    font-size: 0.7rem;
-  }
-}
-
-</style>
+  </style>
 </head>
 <body>
   <!-- Header -->
@@ -1468,15 +1430,6 @@
         unlockTime: new Date("2025-09-16T22:30:00+05:30").getTime(), // 16 Sept 10:30 PM IST
       },
       {
-        name: "Athletic Club Vs Arsenal (TNT Sports 1)",
-        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx0-6bzzH9gOvLufg58K20GIe47pT9HNMufA&s",
-        url: "https://mpd-player-ivory.vercel.app/?id=TNT_1_GB",
-        live: true,
-        openInNewTab: false,
-        upcoming: true,
-        unlockTime: new Date("2025-09-16T22:30:00+05:30").getTime(), // 16 Sept 10:30 PM IST
-      },
-      {
         name: "Juventus Vs Dortmund (Sonyliv)",
         logo: "https://s.yimg.com/ny/api/res/1.2/ivWEA7yUv13PdZPq8TDNsg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNjtjZj13ZWJw/https://media.zenfs.com/en/playmakerstats_articles_264/ff7ec5c890b7c3112bfdbd2b312adde2",
         url: "https://star-sports-2-hd-telgu.vercel.app/",
@@ -1489,15 +1442,6 @@
         name: "Juventus Vs Dortmund (Sony Ten 5 HD)",
         logo: "https://s.yimg.com/ny/api/res/1.2/ivWEA7yUv13PdZPq8TDNsg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNjtjZj13ZWJw/https://media.zenfs.com/en/playmakerstats_articles_264/ff7ec5c890b7c3112bfdbd2b312adde2",
         url: "https://sonyten5.vercel.app/",
-        live: true,
-        openInNewTab: true,
-        upcoming: true,
-        unlockTime: new Date("2025-09-17T00:00:00+05:30").getTime(), // 17 Sept 12:00 AM IST
-      },
-      {
-        name: "Juventus Vs Dortmund (TNT Sports 2)",
-        logo: "https://s.yimg.com/ny/api/res/1.2/ivWEA7yUv13PdZPq8TDNsg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNjtjZj13ZWJw/https://media.zenfs.com/en/playmakerstats_articles_264/ff7ec5c890b7c3112bfdbd2b312adde2",
-        url: "https://mpd-player-ivory.vercel.app/?id=TNT_1_GB",
         live: true,
         openInNewTab: true,
         upcoming: true,
@@ -1543,15 +1487,6 @@
         name: "Real Madrid Vs Marseille (Sony Ten 3 HD)",
         logo: "https://s.yimg.com/ny/api/res/1.2/TcXo4jAtBkhz3uuuxQUfUw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNjtjZj13ZWJw/https://media.zenfs.com/en/playmakerstats_articles_264/aea4d33162f8f92b3d562f07b0c54e67",
         url: "https://sonysportsten3.vercel.app/",
-        live: true,
-        openInNewTab: true,
-        upcoming: true,
-        unlockTime: new Date("2025-09-17T00:00:00+05:30").getTime(), // 17 Sept 12:00 AM IST
-      },
-      {
-        name: "Real Madrid Vs Marseille (TNT Sports 1)",
-        logo: "https://s.yimg.com/ny/api/res/1.2/TcXo4jAtBkhz3uuuxQUfUw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNjtjZj13ZWJw/https://media.zenfs.com/en/playmakerstats_articles_264/aea4d33162f8f92b3d562f07b0c54e67",
-        url: "https://mpd-player-ivory.vercel.app/?id=TNT_1_GB",
         live: true,
         openInNewTab: true,
         upcoming: true,
@@ -2100,8 +2035,9 @@ function createChannelCard(channel, isLiveEvent = false, index = 0) {
   return `
     <div class="channel-card" data-name="${channel.name.toLowerCase()}" style="animation-delay: ${index * 0.1}s">
       <div class="channel-logo-container">
-        <img src="${channel.logo}" alt="${channel.name}" class="channel-logo" loading="lazy" loading="lazy" />
+        <img src="${channel.logo}" alt="${channel.name}" class="channel-logo" loading="lazy" />
         ${isLiveEvent && channel.live ? '<div class="live-badge"><i class="fas fa-circle"></i> LIVE</div>' : ''}
+        ${isUpcoming ? '<div class="upcoming-badge"><i class="fas fa-clock"></i> UPCOMING</div>' : ''}
       </div>
       <div class="channel-name">${channel.name}</div>
       ${isUpcoming ? 
@@ -2268,10 +2204,8 @@ function handleChannelPlay(url, name, openInNewTab) {
           if(!card) return; // card may not be rendered yet
 
           // ensure badge exists
-          let badge = card.querySelector('.countdown-badge, .live-badge');
           if(!badge){
             badge = document.createElement('div');
-            badge.className = 'countdown-badge';
             card.appendChild(badge);
           }
 
@@ -2281,12 +2215,10 @@ function handleChannelPlay(url, name, openInNewTab) {
               changed = true;
             }
             badge.textContent = 'LIVE NOW';
-            badge.classList.remove('countdown-badge');
             badge.classList.add('live-badge');
           } else {
             // still locked
             badge.classList.remove('live-badge');
-            badge.classList.add('countdown-badge');
             badge.textContent = 'Unlocks in ' + formatDistance(distance);
             ev.upcoming = true; // ensure locked state
           }
@@ -2309,5 +2241,35 @@ function handleChannelPlay(url, name, openInNewTab) {
     })();
 
   </script>
+
+<script>
+// Auto switch upcoming -> live
+function autoUnlockChannels() {
+  const now = new Date().getTime();
+  document.querySelectorAll("[data-unlock-time]").forEach(card => {
+    const unlockTime = parseInt(card.getAttribute("data-unlock-time"), 10);
+    if (now >= unlockTime) {
+      // Replace Soon button with Play button
+      const soonBtn = card.querySelector(".upcoming-button");
+      if (soonBtn) {
+        const playBtn = document.createElement("button");
+        playBtn.className = "play-button";
+        playBtn.innerHTML = '<i class="fas fa-play"></i> Watch Now';
+        playBtn.onclick = () => {
+          const url = card.getAttribute("data-url");
+          if (card.getAttribute("data-newtab") === "true") {
+            window.open(url, "_blank");
+          } else {
+            openVideoModal(url, card.querySelector(".channel-name").textContent);
+          }
+        };
+        soonBtn.replaceWith(playBtn);
+      }
+    }
+  });
+}
+setInterval(autoUnlockChannels, 30000); // check every 30s
+</script>
+
 </body>
 </html>
