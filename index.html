@@ -1396,186 +1396,49 @@
 
     // FIXED Channel Data - Added missing closing bracket and removed extra bracket
     const liveEvents = [
-      {
-        name: "Bangladesh vs Afghanistan (Fancode-Sliv)",
-        logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008338/1757869176985684_ACC25_BAN_vs_AFG_14sep_tonight_promo_landscape_thumb.jpg",
-        url: "https://sonyliv-event-1.vercel.app/",
-        live: true,
-        openInNewTab: false,
-        upcoming: true,
-        unlockTime: new Date("2025-09-16T19:00:00+05:30").getTime(), // 16 Sept 7:00 PM IST
-      },
-      {
-        name: "Bangladesh vs Afghanistan (Sonyliv-English)",
-        logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008338/1757869176985684_ACC25_BAN_vs_AFG_14sep_tonight_promo_landscape_thumb.jpg",
-        url: "https://sonyliv-event-1.vercel.app/",
-        live: true,
-        openInNewTab: false,
-        upcoming: true,
-        unlockTime: new Date("2025-09-16T19:00:00+05:30").getTime(), // 16 Sept 7:00 PM IST
-      },
-      {
-        name: "Bangladesh vs Afghanistan (Sonyliv-Hindi)",
-        logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008338/1757869176985684_ACC25_BAN_vs_AFG_14sep_tonight_promo_landscape_thumb.jpg",
-        url: "https://sonyliv-event-2.vercel.app/",
-        live: true,
-        openInNewTab: false,
-        upcoming: true,
-        unlockTime: new Date("2025-09-16T19:00:00+05:30").getTime(), // 16 Sept 7:00 PM IST
-      },
-      {
-        name: "Bangladesh vs Afghanistan (Fox Cricket)",
-        logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008338/1757869176985684_ACC25_BAN_vs_AFG_14sep_tonight_promo_landscape_thumb.jpg",
-        url: "https://fox-sports-501-hd.vercel.app/",
-        live: true,
-        openInNewTab: false,
-        upcoming: true,
-        unlockTime: new Date("2025-09-16T19:00:00+05:30").getTime(), // 16 Sept 7:00 PM IST
-      },
-      {
-        name: "Bangladesh vs Afghanistan (Sony Ten 1 HD)",
-        logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008338/1757869176985684_ACC25_BAN_vs_AFG_14sep_tonight_promo_landscape_thumb.jpg",
-        url: "https://sonyten1.vercel.app/",
-        live: true,
-        openInNewTab: false,
-        upcoming: true,
-        unlockTime: new Date("2025-09-16T19:00:00+05:30").getTime(), // 16 Sept 7:00 PM IST
-      },
-      {
-        name: "Bangladesh vs Afghanistan (Sony Ten 5 HD)",
-        logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008338/1757869176985684_ACC25_BAN_vs_AFG_14sep_tonight_promo_landscape_thumb.jpg",
-        url: "https://sonyten5.vercel.app/",
-        live: true,
-        openInNewTab: false,
-        upcoming: true,
-        unlockTime: new Date("2025-09-16T19:00:00+05:30").getTime(), // 16 Sept 7:00 PM IST
-      },
-      {
-        name: "Athletic Club Vs Arsenal (Sonyliv)",
-        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx0-6bzzH9gOvLufg58K20GIe47pT9HNMufA&s",
-        url: "https://m3u8-playerr.vercel.app/?url=https://allinonereborn.fun/events/player.html?url=https%3A%2F%2Fmini.allinonereborn.online%2Fevents%2Fstream_proxy.php%3Furl%3Dhttps%253A%252F%252Fsonymtmnew.akamaized.net%252Fv1%252Fmaster%252F0085f7057986fc2f8467089bb19b8b7e4f1bf8d7%252FmediaT21beprod-PlaybackConfig%252F2118980%252FUCL_Athl1609%252FENG%252Fstd_lrl-800300010.m3u8%253Fhdnea%253Dexp%253D1758082682~acl%253D%252F*~id%253D43517185561255577670507635966486~hmac%253D1dee85b0d2ec2518ac2157a7397c7044ebbb80b14c9218ede6dde41caa6a83e8",
-        live: true,
-        openInNewTab: false,
-        upcoming: true,
-        unlockTime: new Date("2025-09-16T22:30:00+05:30").getTime(), // 16 Sept 10:30 PM IST
-      },
-      {
-        name: "Athletic Club Vs Arsenal (Sony Ten 2 HD)",
-        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx0-6bzzH9gOvLufg58K20GIe47pT9HNMufA&s",
-        url: "https://sonyten2-drab.vercel.app/",
-        live: true,
-        openInNewTab: false,
-        upcoming: true,
-        unlockTime: new Date("2025-09-16T22:30:00+05:30").getTime(), // 16 Sept 10:30 PM IST
-      },
-      {
-        name: "Athletic Club Vs Arsenal (TNT Sports 1)",
-        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx0-6bzzH9gOvLufg58K20GIe47pT9HNMufA&s",
-        url: "https://mpd-player-ivory.vercel.app/?id=TNT_1_GB",
-        live: true,
-        openInNewTab: false,
-        upcoming: true,
-        unlockTime: new Date("2025-09-16T22:30:00+05:30").getTime(), // 16 Sept 10:30 PM IST
-      },
-      {
-        name: "PSV vs Union SG (Sonyliv)",
-        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx0-6bzzH9gOvLufg58K20GIe47pT9HNMufA&s",
-        url: "https://m3u8-playerr.vercel.app/?url=https://allinonereborn.fun/events/player.html?url=https%3A%2F%2Fmini.allinonereborn.online%2Fevents%2Fstream_proxy.php%3Furl%3Dhttps%253A%252F%252Fsonymtmnew.akamaized.net%252Fv1%252Fmaster%252F0085f7057986fc2f8467089bb19b8b7e4f1bf8d7%252FmediaT37d2prod-PlaybackConfig%252F2118977%252FUCL_PSV_1609%252FENG%252Fstd_lrl-800300010.m3u8%253Fhdnea%253Dexp%253D1758084509~acl%253D%252F*~id%253D11226427660245831814644305955191~hmac%253De94f388bd894ff9a531fdf1b318f177d6548c3f643f8f1a7eceb4463f77f5ff5",
-        live: true,
-        openInNewTab: false,
-        upcoming: true,
-        unlockTime: new Date("2025-09-16T22:30:00+05:30").getTime(), // 16 Sept 10:30 PM IST
-      },
+     
       {
         name: "Juventus Vs Dortmund (Sonyliv)",
         logo: "https://s.yimg.com/ny/api/res/1.2/ivWEA7yUv13PdZPq8TDNsg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNjtjZj13ZWJw/https://media.zenfs.com/en/playmakerstats_articles_264/ff7ec5c890b7c3112bfdbd2b312adde2",
-        url: "https://star-sports-2-hd-telgu.vercel.app/",
+        url: "https://m3u8-playerr.vercel.app/?url=https://allinonereborn.fun/sony/player.html?url=https%3A%2F%2Fallinonereborn.fun%2Fsonylive880%2Findex.php%3Fch%3DSONYSIXSD%26id%3D2020594&title=Sony%20Sports%20Ten%205",
         live: true,
         openInNewTab: true,
         upcoming: true,
         unlockTime: new Date("2025-09-17T00:00:00+05:30").getTime(), // 17 Sept 12:00 AM IST
       },
-      {
-        name: "Juventus Vs Dortmund (Sony Ten 5 HD)",
-        logo: "https://s.yimg.com/ny/api/res/1.2/ivWEA7yUv13PdZPq8TDNsg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNjtjZj13ZWJw/https://media.zenfs.com/en/playmakerstats_articles_264/ff7ec5c890b7c3112bfdbd2b312adde2",
-        url: "https://sonyten5.vercel.app/",
-        live: true,
-        openInNewTab: true,
-        upcoming: true,
-        unlockTime: new Date("2025-09-17T00:00:00+05:30").getTime(), // 17 Sept 12:00 AM IST
-      },
-      {
-        name: "Juventus Vs Dortmund (TNT Sports 2)",
-        logo: "https://s.yimg.com/ny/api/res/1.2/ivWEA7yUv13PdZPq8TDNsg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNjtjZj13ZWJw/https://media.zenfs.com/en/playmakerstats_articles_264/ff7ec5c890b7c3112bfdbd2b312adde2",
-        url: "https://mpd-player-ivory.vercel.app/?id=TNT_1_GB",
-        live: true,
-        openInNewTab: true,
-        upcoming: true,
-        unlockTime: new Date("2025-09-17T00:00:00+05:30").getTime(), // 17 Sept 12:00 AM IST
-      },
+    
+    
       {
         name: "Tottenham Vs Villareal (Sonyliv)",
         logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6rArqCtgMnQmD8BFV4qZdG3wo6DVzQm5rHw&s",
-        url: "https://sonyten5.vercel.app/",
+        url: "https://m3u8-playerr.vercel.app/?url=https://allinonereborn.fun/sony/player.html?url=https%3A%2F%2Fallinonereborn.fun%2Fsonylive880%2Findex.php%3Fch%3DTEN1SD%26id%3D2011739&title=Sony%20Sports%20Ten%201",
         live: true,
         openInNewTab: true,
         upcoming: true,
         unlockTime: new Date("2025-09-17T00:00:00+05:30").getTime(), // 17 Sept 12:00 AM IST
       },
-      {
-        name: "Tottenham Vs Villareal (Sony Ten 1 HD)",
-        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6rArqCtgMnQmD8BFV4qZdG3wo6DVzQm5rHw&s",
-        url: "https://sonyten1.vercel.app/",
-        live: true,
-        openInNewTab: true,
-        upcoming: true,
-        unlockTime: new Date("2025-09-17T00:00:00+05:30").getTime(), // 17 Sept 12:00 AM IST
-      },
+     
       {
         name: "Real Madrid Vs Marseille (Sonyliv)",
         logo: "https://s.yimg.com/ny/api/res/1.2/TcXo4jAtBkhz3uuuxQUfUw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNjtjZj13ZWJw/https://media.zenfs.com/en/playmakerstats_articles_264/aea4d33162f8f92b3d562f07b0c54e67",
-        url: "https://sonyten1.vercel.app/",
+        url: "https://m3u8-playerr.vercel.app/?url=https://allinonereborn.fun/sony/player.html?url=https%3A%2F%2Fallinonereborn.fun%2Fsonylive880%2Findex.php%3Fch%3DTEN2SD%26id%3D2020590&title=Sony%20Sports%20Ten%202
         live: true,
         openInNewTab: true,
         upcoming: true,
         unlockTime: new Date("2025-09-17T00:00:00+05:30").getTime(), // 17 Sept 12:00 AM IST
       },
       {
-        name: "Real Madrid Vs Marseille (Sony Ten 2 HD)",
+        name: "Real Madrid Vs Marseille (Sony Ten 3 hindi)",
         logo: "https://s.yimg.com/ny/api/res/1.2/TcXo4jAtBkhz3uuuxQUfUw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNjtjZj13ZWJw/https://media.zenfs.com/en/playmakerstats_articles_264/aea4d33162f8f92b3d562f07b0c54e67",
-        url: "https://sonyten2-drab.vercel.app/",
+        url: "https://m3u8-playerr.vercel.app/?url=https://allinonereborn.fun/sony/player.html?url=https%3A%2F%2Fallinonereborn.fun%2Fsonylive880%2Findex.php%3Fch%3DTEN3SD%26id%3D2020592&title=Sony%20Sports%20Ten%203",
         live: true,
         openInNewTab: true,
         upcoming: true,
         unlockTime: new Date("2025-09-17T00:00:00+05:30").getTime(), // 17 Sept 12:00 AM IST
       },
-      {
-        name: "Real Madrid Vs Marseille (Sony Ten 3 HD)",
-        logo: "https://s.yimg.com/ny/api/res/1.2/TcXo4jAtBkhz3uuuxQUfUw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNjtjZj13ZWJw/https://media.zenfs.com/en/playmakerstats_articles_264/aea4d33162f8f92b3d562f07b0c54e67",
-        url: "https://sonysportsten3.vercel.app/",
-        live: true,
-        openInNewTab: true,
-        upcoming: true,
-        unlockTime: new Date("2025-09-17T00:00:00+05:30").getTime(), // 17 Sept 12:00 AM IST
-      },
-      {
-        name: "Real Madrid Vs Marseille (TNT Sports 1)",
-        logo: "https://s.yimg.com/ny/api/res/1.2/TcXo4jAtBkhz3uuuxQUfUw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNjtjZj13ZWJw/https://media.zenfs.com/en/playmakerstats_articles_264/aea4d33162f8f92b3d562f07b0c54e67",
-        url: "https://mpd-player-ivory.vercel.app/?id=TNT_1_GB",
-        live: true,
-        openInNewTab: true,
-        upcoming: true,
-        unlockTime: new Date("2025-09-17T00:00:00+05:30").getTime(), // 17 Sept 12:00 AM IST
-      },
-      {
-        name: "Mohun Bagan vs Ahal",
-        logo: "https://www.fancode.com/skillup-uploads/cms-media/136115_5648_MBSG_AH_fc-Web.jpg",
-        url: "https://scoobyfancode.vercel.app/fancode.html?id=136115",
-        live: true,
-        openInNewTab: true,
-        upcoming: true,
-        unlockTime: new Date("2025-09-16T19:00:00+05:30").getTime(), // 16 Sept 7:00 AM IST
-      }
+    
+     
+     
     ]; // FIXED: Added missing closing bracket
     const internationalChannels = [
       {
