@@ -1,18 +1,18 @@
 
 
-
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>MatchesLinks - Premium Sports Channels</title>
-  <meta name="description" content="Access premium sports channels and live events worldwide" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>MatchesLinks – Premium Sports Channels</title>
+<meta content="Watch live sports channels in a big-screen player with fast, clean UI and crisp playback." name="description"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
     :root {
-      /* Enhanced Color System */
+      /* Enhanced Color System - HSL Values */
       --primary: 264, 83%, 75%;
       --primary-dark: 264, 83%, 65%;
       --primary-light: 264, 83%, 85%;
@@ -21,53 +21,42 @@
       --success: 142, 76%, 36%;
       --danger: 0, 84%, 60%;
       --warning: 38, 92%, 50%;
-      
+
       /* Background System */
       --background: 225, 25%, 8%;
       --background-secondary: 225, 25%, 12%;
       --surface: 225, 25%, 15%;
       --surface-hover: 225, 25%, 20%;
-      
+
       /* Text Colors */
       --foreground: 210, 20%, 98%;
       --foreground-secondary: 217, 11%, 85%;
       --foreground-muted: 217, 11%, 65%;
-      
+
       /* Glass Effects */
       --glass-bg: rgba(255, 255, 255, 0.05);
       --glass-border: rgba(255, 255, 255, 0.1);
       --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-      
+
       /* Gradients */
       --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(282, 83%, 65%));
       --gradient-surface: linear-gradient(135deg, hsl(var(--surface)), hsl(225, 25%, 18%));
       --gradient-hero: linear-gradient(135deg, hsla(var(--primary), 0.1), hsla(282, 83%, 65%, 0.1));
-      
+      --gradient-main-screen: linear-gradient(135deg, hsl(var(--background)), hsl(var(--background-secondary)));
+
       /* Shadows */
       --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
       --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.3);
       --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.4);
       --shadow-glow: 0 0 40px hsla(var(--primary), 0.3);
-      
+      --shadow-screen: 0 25px 60px rgba(0, 0, 0, 0.5);
+
       /* Animation */
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       --transition-fast: all 0.2s ease-out;
       --bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
-    
-    .light {
-      --background: 0, 0%, 100%;
-      --background-secondary: 0, 0%, 98%;
-      --surface: 0, 0%, 95%;
-      --surface-hover: 0, 0%, 90%;
-      --foreground: 225, 25%, 8%;
-      --foreground-secondary: 225, 25%, 20%;
-      --foreground-muted: 225, 25%, 45%;
-      --glass-bg: rgba(255, 255, 255, 0.8);
-      --glass-border: rgba(0, 0, 0, 0.1);
-      --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    }
-    
+
     /* Reset & Base */
     * {
       margin: 0;
@@ -75,7 +64,7 @@
       box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
     }
-    
+
     body {
       font-family: 'Inter', sans-serif;
       background: hsl(var(--background));
@@ -87,8 +76,8 @@
       line-height: 1.6;
       font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     }
-    
-    /* Animated Background */
+
+    /* Animated Background with Enhanced Glows */
     body::before {
       content: '';
       position: fixed;
@@ -96,302 +85,152 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: 
-        radial-gradient(circle at 20% 50%, hsla(var(--primary), 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, hsla(282, 83%, 65%, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 80%, hsla(var(--accent), 0.05) 0%, transparent 50%);
+      background:
+        radial-gradient(circle at 20% 50%, hsla(var(--primary), 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, hsla(282, 83%, 65%, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, hsla(var(--accent), 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 60% 30%, hsla(var(--primary), 0.1) 0%, transparent 40%);
       z-index: -1;
       animation: backgroundShift 20s ease-in-out infinite;
     }
-    
+
     @keyframes backgroundShift {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.8; }
     }
-    
-    /* Utility Classes */
-    .blur-background {
-      filter: blur(10px);
-      pointer-events: none;
-      user-select: none;
+
+    /* Enhanced Glow Effects */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background:
+        radial-gradient(circle at 25% 25%, hsla(var(--primary), 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, hsla(282, 83%, 65%, 0.05) 0%, transparent 50%);
+      z-index: -1;
+      animation: slowRotate 60s linear infinite;
     }
-    
+
+    @keyframes slowRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Utility Classes */
     .glass {
       background: var(--glass-bg);
       backdrop-filter: blur(20px);
       border: 1px solid var(--glass-border);
       box-shadow: var(--glass-shadow);
     }
-    
+
     .glass-heavy {
       background: rgba(15, 23, 42, 0.4);
       backdrop-filter: blur(30px);
       border: 1px solid rgba(255, 255, 255, 0.15);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
     }
-    
-    .light .glass-heavy {
-      background: rgba(255, 255, 255, 0.6);
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* Header */
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(20px);
-      background: hsla(var(--background), 0.9);
-      border-bottom: 1px solid var(--glass-border);
-      padding: 1rem 0;
-      box-shadow: var(--shadow-sm);
-    }
-    
-    .header-content {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1.5rem;
-      padding: 0 1.5rem;
-      position: relative;
-    }
-    
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      text-decoration: none;
-      color: hsl(var(--foreground));
-      transition: var(--transition);
-    }
-    
-    .logo:hover {
-      transform: translateY(-1px);
-    }
-    
-    .logo-icon {
-      width: 42px;
-      height: 42px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 0.75rem;
-      background: var(--gradient-primary);
-      color: white;
-      font-size: 1.3rem;
-      box-shadow: var(--shadow-glow);
-      transition: var(--transition);
-    }
-    
-    .logo:hover .logo-icon {
-      transform: rotate(5deg) scale(1.05);
-      box-shadow: 0 0 60px hsla(var(--primary), 0.5);
-    }
-    
-    .logo-text {
-      font-size: 1.5rem;
-      font-weight: 800;
-      background: var(--gradient-primary);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: -0.5px;
-    }
-    
-    .controls {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-    }
-    
-    .search-container {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-    
-    .search-input {
-      background: hsl(var(--surface));
-      border: 1px solid var(--glass-border);
-      border-radius: 2rem;
-      padding: 0.75rem 1rem 0.75rem 3rem;
-      color: hsl(var(--foreground));
-      width: 220px;
-      transition: var(--transition);
-      font-size: 0.875rem;
-      outline: none;
-      backdrop-filter: blur(10px);
-    }
-    
-    .search-input:focus {
-      border-color: hsl(var(--primary));
-      box-shadow: 0 0 0 3px hsla(var(--primary), 0.2);
-      background: hsl(var(--surface-hover));
-    }
-    
-    .search-icon {
-      position: absolute;
-      left: 1rem;
-      color: hsl(var(--foreground-muted));
-      font-size: 0.875rem;
-      transition: var(--transition);
-    }
-    
-    .search-input:focus + .search-icon {
-      color: hsl(var(--primary));
-    }
-    
-    .theme-toggle {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      border: 1px solid var(--glass-border);
-      background: hsl(var(--surface));
-      color: hsl(var(--foreground));
-      cursor: pointer;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      backdrop-filter: blur(10px);
-    }
-    
-    .theme-toggle:hover {
-      background: hsl(var(--surface-hover));
-      transform: rotate(180deg) scale(1.1);
-      box-shadow: var(--shadow-glow);
-    }
-    
-    /* Verification Countdown */
-    .verification-countdown {
-      position: absolute;
-      top: -10px;
-      right: 0;
-      background: linear-gradient(135deg, hsl(var(--success)), hsl(142, 70%, 45%));
-      color: white;
-      padding: 0.4rem 0.8rem;
-      border-radius: 1.5rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      box-shadow: var(--shadow-md);
-      z-index: 10;
-      animation: pulse 2s infinite;
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: var(--transition);
-    }
-    
-    .verification-countdown.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    .verification-countdown.warning {
-      background: linear-gradient(135deg, hsl(var(--warning)), hsl(48, 96%, 53%));
-      color: black;
-    }
-    
-    .verification-countdown.danger {
-      background: linear-gradient(135deg, hsl(var(--danger)), hsl(0, 72%, 51%));
-      animation: pulse 1s infinite;
-    }
-    
+
     /* Main Container */
     .container {
       max-width: 1400px;
       margin: 0 auto;
       padding: 2rem 1.5rem;
     }
-    
-    /* Hero Section */
-    .hero {
-      text-align: center;
-      margin-bottom: 4rem;
-      padding: 3rem 1.5rem;
-      border-radius: 1.5rem;
+
+    /* Main Video Screen - Enhanced with More Glow */
+    .main-screen-container {
       position: relative;
+      margin-bottom: 3rem;
+      border-radius: 1.5rem;
       overflow: hidden;
+      background: var(--gradient-main-screen);
+      border: 1px solid var(--glass-border);
+      box-shadow: 
+        var(--shadow-screen),
+        0 0 80px hsla(var(--primary), 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
-    
-    .hero::before {
+
+    .main-screen-container::before {
       content: '';
       position: absolute;
-      inset: 0;
-      background: var(--gradient-hero);
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: var(--gradient-primary);
       border-radius: 1.5rem;
+      z-index: -1;
+      opacity: 0.3;
+      filter: blur(10px);
+      animation: pulseGlow 4s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.02); }
+    }
+
+    .main-screen {
+      position: relative;
+      width: 100%;
+      height: 78vh;
+      min-height: 500px;
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 1.5rem;
+      overflow: hidden;
+    }
+
+    .main-screen iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 1.5rem;
+    }
+
+    .screen-placeholder {
+      text-align: center;
+      color: hsl(var(--foreground-muted));
+    }
+
+    .screen-placeholder i {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+      color: hsl(var(--primary));
+      filter: drop-shadow(0 0 20px hsla(var(--primary), 0.5));
+    }
+
+    .screen-placeholder h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .screen-placeholder p {
+      font-size: 1rem;
       opacity: 0.8;
     }
-    
-    .hero-content {
-      position: relative;
-      z-index: 2;
-    }
-    
-    .hero h1 {
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 900;
-      margin-bottom: 1.5rem;
-      line-height: 1.1;
-      background: linear-gradient(135deg, hsl(var(--foreground)), hsl(var(--primary)));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: -1px;
-    }
-    
-    .hero p {
-      font-size: 1.1rem;
-      color: hsl(var(--foreground-secondary));
-      max-width: 48rem;
-      margin: 0 auto 2rem;
-      line-height: 1.6;
-      font-weight: 400;
-    }
-    
-    .hero-badges {
-      display: flex;
-      justify-content: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-    
-    .hero-badge {
-      padding: 0.6rem 1.2rem;
-      border-radius: 2rem;
-      background: var(--glass-bg);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--glass-border);
-      color: hsl(var(--foreground-secondary));
-      font-size: 0.85rem;
-      font-weight: 500;
-      transition: var(--transition);
-    }
-    
-    .hero-badge:hover {
-      transform: translateY(-2px);
-      background: hsl(var(--surface-hover));
-      color: hsl(var(--primary));
-    }
-    
-    /* Category Sections */
+
+    /* Channel Categories with Enhanced Glow */
     .category-section {
-      margin-bottom: 4rem;
+      margin-bottom: 3rem;
     }
-    
+
     .category-header {
       display: flex;
       align-items: center;
       gap: 0.75rem;
       margin-bottom: 2rem;
     }
-    
+
     .category-icon {
       width: 46px;
       height: 46px;
@@ -402,26 +241,29 @@
       justify-content: center;
       color: white;
       font-size: 1.2rem;
-      box-shadow: var(--shadow-glow);
+      box-shadow: 
+        var(--shadow-glow),
+        0 0 30px hsla(var(--primary), 0.4);
     }
-    
+
     .category-title {
       font-size: 1.75rem;
       font-weight: 800;
       color: hsl(var(--foreground));
       letter-spacing: -0.5px;
+      text-shadow: 0 0 20px hsla(var(--primary), 0.3);
     }
-    
-    /* Channel Grid - MADE SMALLER */
+
+    /* Channel Grid */
     .channels-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
     }
-    
+
     .channel-card {
-      padding: 1.5rem;
-      border-radius: 1.25rem;
+      padding: 0.875rem;
+      border-radius: 1rem;
       border: 1px solid var(--glass-border);
       background: var(--glass-bg);
       backdrop-filter: blur(20px);
@@ -429,20 +271,23 @@
       transition: var(--transition);
       position: relative;
       overflow: hidden;
-      box-shadow: var(--shadow-md);
-      height: 260px; /* REDUCED FROM 320px */
+      box-shadow: var(--shadow-sm);
+      height: 180px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      cursor: pointer;
     }
-    
+
     .channel-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+      box-shadow: 
+        var(--shadow-md),
+        0 0 30px hsla(var(--primary), 0.2);
       border-color: hsl(var(--primary));
       background: hsl(var(--surface-hover));
     }
-    
+
     .channel-card::before {
       content: '';
       position: absolute;
@@ -454,108 +299,76 @@
       transform: scaleX(0);
       transition: var(--transition);
     }
-    
+
     .channel-card:hover::before {
       transform: scaleX(1);
+      box-shadow: 0 0 10px hsla(var(--primary), 0.5);
     }
-    
+
     .channel-logo-container {
-      height: 80px; /* REDUCED FROM 100px */
+      height: 60px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
     }
-    
+
     .channel-logo {
-      max-height: 80px; /* REDUCED FROM 100px */
-      max-width: 150px; /* REDUCED FROM 180px */
+      max-height: 60px;
+      max-width: 120px;
       object-fit: contain;
       border-radius: 0.5rem;
       transition: var(--transition);
       filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
     }
-    
+
     .channel-card:hover .channel-logo {
-      transform: scale(1.05);
-      filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.3));
+      transform: scale(1.04);
+      filter: 
+        drop-shadow(0 8px 20px rgba(0, 0, 0, 0.3))
+        drop-shadow(0 0 15px hsla(var(--primary), 0.3));
     }
-    
+
     .channel-name {
-      font-size: 1rem;
+      font-size: 0.9rem;
       font-weight: 600;
-      margin-bottom: 1rem;
       color: hsl(var(--foreground));
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
-      height: 48px;
-      line-height: 1.4;
+      height: 40px;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
     }
-    
+
     .play-button {
       width: 100%;
-      padding: 0.75rem 1.25rem;
-      border-radius: 0.75rem;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
       border: none;
       background: var(--gradient-primary);
       color: white;
-      font-size: 0.875rem;
+      font-size: 0.8rem;
       font-weight: 600;
       cursor: pointer;
       transition: var(--transition);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
-      box-shadow: var(--shadow-sm);
-      position: relative;
-      overflow: hidden;
+      gap: 0.3rem;
+      box-shadow: 0 2px 8px hsla(var(--primary), 0.3);
     }
-    
+
     .play-button:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-glow);
+      transform: translateY(-1px);
+      box-shadow: 
+        0 4px 15px hsla(var(--primary), 0.5),
+        0 0 20px hsla(var(--primary), 0.3);
     }
-    
-    .play-button::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transform: translateX(-100%);
-      transition: transform 0.6s;
-    }
-    
-    .play-button:hover::before {
-      transform: translateX(100%);
-    }
-    
-    .upcoming-button {
-      width: 100%;
-      padding: 0.75rem 1.25rem;
-      border-radius: 0.75rem;
-      border: none;
-      background: linear-gradient(135deg, hsl(var(--surface)), hsl(225, 25%, 20%));
-      color: hsl(var(--foreground-muted));
-      font-size: 0.875rem;
-      font-weight: 600;
-      cursor: not-allowed;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      opacity: 0.8;
-      box-shadow: var(--shadow-sm);
-    }
-    
-    .light .upcoming-button {
-      background: linear-gradient(135deg, hsl(var(--surface)), hsl(0, 0%, 85%));
-    }
-    
-    /* Badges */
+
+    /* Live badge with enhanced glow */
     .live-badge {
       position: absolute;
       top: 1rem;
@@ -570,61 +383,34 @@
       align-items: center;
       gap: 0.3rem;
       animation: pulse 2s infinite;
-      box-shadow: 0 4px 12px hsla(var(--danger), 0.4);
+      box-shadow: 
+        0 4px 12px hsla(var(--danger), 0.4),
+        0 0 20px hsla(var(--danger), 0.3);
     }
-    
-    
-    
+
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.8; transform: scale(0.98); }
     }
-    
-    /* Footer */
+
+    /* Footer with glow */
     .footer {
       border-top: 1px solid var(--glass-border);
       padding: 3rem 1.5rem;
       text-align: center;
       background: var(--glass-bg);
       backdrop-filter: blur(20px);
+      margin-top: 4rem;
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2);
     }
-    
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    
-    .social-link {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      border: 1px solid var(--glass-border);
-      background: hsl(var(--surface));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: hsl(var(--foreground-muted));
-      text-decoration: none;
-      transition: var(--transition);
-      font-size: 1.1rem;
-      backdrop-filter: blur(10px);
-    }
-    
-    .social-link:hover {
-      background: hsl(var(--primary));
-      color: white;
-      transform: translateY(-3px) scale(1.1);
-      box-shadow: var(--shadow-glow);
-    }
-    
+
     .footer-text {
       color: hsl(var(--foreground-muted));
       font-size: 0.875rem;
+      text-shadow: 0 0 10px hsla(var(--primary), 0.2);
     }
-    
-    /* Fixed Elements */
+
+    /* Fixed Elements with Enhanced Glow */
     .live-counter-container {
       position: fixed;
       bottom: 1.5rem;
@@ -637,9 +423,13 @@
       align-items: center;
       gap: 0.25rem;
       backdrop-filter: blur(20px);
-      box-shadow: var(--shadow-md);
+      box-shadow: 
+        var(--shadow-md),
+        0 0 30px hsla(var(--primary), 0.2);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
     }
-    
+
     .live-counter {
       display: flex;
       align-items: center;
@@ -648,7 +438,7 @@
       font-weight: 600;
       color: hsl(var(--foreground));
     }
-    
+
     .live-count {
       background: transparent;
       padding: 0.2rem 0.6rem;
@@ -658,14 +448,13 @@
       display: inline-flex;
       align-items: center;
     }
-    
+
     .last-updated {
       font-size: 0.65rem;
       opacity: 0.7;
       color: hsl(var(--foreground-muted));
     }
-    
-    /* IMPROVED TELEGRAM POPUP - SMALLER & LESS INTRUSIVE */
+
     .telegram-popup {
       position: fixed;
       bottom: 1.5rem;
@@ -681,848 +470,232 @@
       background: linear-gradient(135deg, hsl(200, 85%, 45%), hsl(220, 80%, 50%));
       color: white;
       text-decoration: none;
-      box-shadow: var(--shadow-md);
+      box-shadow: 
+        var(--shadow-md),
+        0 0 25px rgba(0, 123, 255, 0.3);
       transition: var(--transition);
       opacity: 0.9;
     }
-    
+
     .telegram-popup:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+      box-shadow: 
+        0 6px 20px rgba(0, 123, 255, 0.4),
+        0 0 35px rgba(0, 123, 255, 0.4);
       opacity: 1;
     }
-    
-    .telegram-popup i {
-      font-size: 0.9rem;
-    }
-    
-    /* Modals */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      background: rgba(0, 0, 0, 0.9);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: var(--transition);
-      backdrop-filter: blur(10px);
-    }
-    
-    .modal-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-    
-    .modal-content {
-      width: 90%;
-      max-width: 64rem;
-      border-radius: 1.25rem;
-      overflow: hidden;
-      transform: scale(0.9);
-      transition: var(--transition);
-      box-shadow: var(--shadow-lg);
-    }
-    
-    .modal-overlay.active .modal-content {
-      transform: scale(1);
-    }
-    
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem;
-      border-bottom: 1px solid var(--glass-border);
-      backdrop-filter: blur(20px);
-    }
-    
-    .modal-title {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: hsl(var(--foreground));
-    }
-    
-    .modal-title-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 0.5rem;
-      background: var(--gradient-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1rem;
-    }
-    
-    .close-button {
-      width: 36px;
-      height: 36px;
-      border: none;
-      background: hsl(var(--surface));
-      border-radius: 0.5rem;
-      color: hsl(var(--foreground-muted));
-      cursor: pointer;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-    }
-    
-    .close-button:hover {
-      background: hsla(var(--danger), 0.1);
-      color: hsl(var(--danger));
-      transform: scale(1.1);
-    }
-    
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      background: black;
-    }
-    
-    .video-iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-/* Video Modal */
-#videoModal {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.85);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
 
-#videoModal.active {
-  display: flex;
-}
-
-#videoModal .video-content {
-  position: relative;
-  width: 90%;
-  max-width: 900px;
-  background: #000;
-  padding: 1rem;
-  border-radius: 12px;
-}
-
-#videoModal iframe {
-  width: 100%;
-  height: 500px;
-  border: none;
-  border-radius: 8px;
-}
-
-#videoModal .close-button {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 28px;
-  cursor: pointer;
-  color: #fff;
-  z-index: 10000;
-}
-
-/* Optional: responsive height for mobile */
-@media (max-width: 600px) {
-  #videoModal iframe {
-    height: 300px;
-  }
-}    
-  
-  
-    /* Verification Modal */
-    .verify-modal {
-      width: 90%;
-      max-width: 28rem;
-      padding: 2.5rem;
-      border-radius: 1.25rem;
-      text-align: center;
-      z-index: 110;
-      backdrop-filter: blur(30px);
-      box-shadow: var(--shadow-lg);
-    }
-    
-    .verify-title {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: hsl(var(--primary));
-      margin-bottom: 1.25rem;
-    }
-    
-    .verify-description {
-      color: hsl(var(--foreground-secondary));
-      margin-bottom: 1.25rem;
-      line-height: 1.6;
-      font-size: 0.95rem;
-    }
-    
-    .tutorial-link {
-      display: block;
-      margin-bottom: 1.5rem;
-      color: hsl(var(--primary));
-      text-decoration: none;
-      font-weight: 600;
-      transition: var(--transition);
-      padding: 0.5rem;
-      border-radius: 0.5rem;
-      font-size: 0.9rem;
-    }
-    
-    .tutorial-link:hover {
-      background: hsla(var(--primary), 0.1);
-      transform: translateY(-1px);
-    }
-    
-    .verify-button {
-      width: 100%;
-      padding: 1rem;
-      border-radius: 0.75rem;
-      border: none;
-      background: var(--gradient-primary);
-      color: white;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: var(--transition);
-      box-shadow: var(--shadow-glow);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .verify-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px hsla(var(--primary), 0.5);
-    }
-    
-    .verify-button::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transform: translateX(-100%);
-      transition: transform 0.6s;
-    }
-    
-    .verify-button:hover::before {
-      transform: translateX(100%);
-    }
-    
-    /* ENHANCED RESPONSIVE DESIGN */
-    @media (max-width: 1200px) {
-      .channels-grid {
-        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-        gap: 1.25rem;
-      }
-    }
-    
+    /* Responsive Design */
     @media (max-width: 1024px) {
+      .main-screen {
+        height: 60vh;
+        min-height: 400px;
+      }
+
       .channels-grid {
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
         gap: 1rem;
       }
-      
-      .channel-card {
-        height: 240px;
-        padding: 1.25rem;
-      }
-      
-      .channel-logo-container {
-        height: 70px;
-      }
-      
-      .channel-logo {
-        max-height: 70px;
-        max-width: 130px;
-      }
     }
-    
+
     @media (max-width: 768px) {
-      .header-content {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 0 1rem;
-      }
-      
-      .controls {
-        width: 100%;
-        justify-content: space-between;
-      }
-      
-      .search-input {
-        width: 180px;
-        padding: 0.6rem 0.8rem 0.6rem 2.5rem;
-      }
-      
-      .logo-text {
-        font-size: 1.3rem;
-      }
-      
-      .logo-icon {
-        width: 36px;
-        height: 36px;
-        font-size: 1.1rem;
-      }
-      
-      .theme-toggle {
-        width: 36px;
-        height: 36px;
-      }
-      
       .container {
         padding: 1.5rem 1rem;
       }
-      
-      .hero {
-        margin-bottom: 3rem;
-        padding: 2.5rem 1rem;
+
+      .main-screen {
+        height: 50vh;
+        min-height: 350px;
       }
-      
-      .hero h1 {
-        font-size: 2rem;
-      }
-      
-      .hero p {
-        font-size: 1rem;
-      }
-      
-      .category-section {
-        margin-bottom: 3rem;
-      }
-      
-      .category-title {
-        font-size: 1.5rem;
-      }
-      
-      .category-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 1.1rem;
-      }
-      
+
       .channels-grid {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 1rem;
       }
-      
+    }
+
+    @media (max-width: 480px) {
+      .main-screen {
+        height: 45vh;
+        min-height: 300px;
+      }
+
+      .channels-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+      }
+
       .channel-card {
-        height: 220px;
+        height: 200px;
         padding: 1rem;
       }
-      
+
       .channel-logo-container {
         height: 60px;
-        margin-bottom: 0.75rem;
       }
-      
+
       .channel-logo {
         max-height: 60px;
         max-width: 120px;
       }
-      
-      .channel-name {
-        font-size: 0.9rem;
-        margin-bottom: 0.75rem;
-        height: 40px;
-      }
-      
-      .play-button, .upcoming-button {
-        padding: 0.6rem 1rem;
-        font-size: 0.8rem;
-      }
-      
-      .verification-countdown {
-        position: relative;
-        top: 0;
-        margin-top: 0.75rem;
-        align-self: center;
-      }
-      
-      .live-counter-container {
-        bottom: 6rem;
-        right: 1rem;
-        padding: 0.6rem 0.8rem;
-      }
-      
-      .telegram-popup {
-        bottom: 6rem;
-        left: 1rem;
-        padding: 0.6rem 0.8rem;
-        font-size: 0.75rem;
-      }
-      
-      .footer {
-        padding: 2.5rem 1rem;
-      }
-      
-      .social-link {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
-      }
     }
-    
-    @media (max-width: 640px) {
-      .channels-grid {
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-        gap: 0.75rem;
-      }
-      
-      .channel-card {
-        height: 200px;
-        padding: 0.75rem;
-      }
-      
-      .channel-logo-container {
-        height: 50px;
-        margin-bottom: 0.5rem;
-      }
-      
-      .channel-logo {
-        max-height: 50px;
-        max-width: 100px;
-      }
-      
-      .channel-name {
-        font-size: 0.85rem;
-        height: 36px;
-        margin-bottom: 0.5rem;
-      }
-      
-      .play-button, .upcoming-button {
-        padding: 0.5rem 0.75rem;
-        font-size: 0.75rem;
-      }
-      
-      .live-counter-container {
-        bottom: 5rem;
-        right: 0.75rem;
-        padding: 0.5rem 0.7rem;
-      }
-      
-      .telegram-popup {
-        bottom: 5rem;
-        left: 0.75rem;
-        padding: 0.5rem 0.7rem;
-        font-size: 0.7rem;
-      }
-      
-      .verify-modal {
-        padding: 2rem;
-        margin: 1rem;
-      }
-      
-      .modal-content {
-        width: 95%;
-        margin: 0.5rem;
-      }
-      
-      .hero {
-        padding: 2rem 0.75rem;
-      }
-      
-      .container {
-        padding: 1rem 0.75rem;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .channels-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 0.5rem;
-      }
-      
-      .channel-card {
-        height: 180px;
-        padding: 0.6rem;
-      }
-      
-      .channel-logo-container {
-        height: 45px;
-      }
-      
-      .channel-logo {
-        max-height: 45px;
-        max-width: 90px;
-      }
-      
-      .channel-name {
-        font-size: 0.8rem;
-        height: 32px;
-      }
-      
-      .live-counter-container, .telegram-popup {
-        bottom: 4.5rem;
-        padding: 0.4rem 0.6rem;
-        font-size: 0.65rem;
-      }
-    }
-    
-    .hidden {
-      display: none;
-    }
-    
+
     /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 6px;
     }
-    
+
     ::-webkit-scrollbar-track {
       background: hsl(var(--background));
     }
-    
+
     ::-webkit-scrollbar-thumb {
       background: hsl(var(--surface-hover));
       border-radius: 3px;
     }
-    
+
     ::-webkit-scrollbar-thumb:hover {
       background: hsl(var(--primary));
     }
-  
-    /* Countdown badge */
-    .countdown-badge {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-dark)));
-      color: white;
-      padding: 0.2rem 0.45rem;
-      border-radius: 1.5rem;
-      font-size: 0.6rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-      box-shadow: 0 4px 12px hsla(var(--primary), 0.4);
-    }
-
-  
-@media (max-width: 640px) {
-  .countdown-badge {
-    font-size: 0.5rem;
-    padding: 0.15rem 0.35rem;
-  }
-}
-
-
-@media (max-width: 768px) {
-  .channels-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 0.5rem;
-  }
-
-  .channel-card {
-    height: 160px;
-    padding: 0.5rem;
-  }
-
-  .channel-logo-container {
-    height: 40px;
-    margin-bottom: 0.4rem;
-  }
-
-  .channel-logo {
-    max-height: 40px;
-    max-width: 80px;
-  }
-
-  .channel-name {
-    font-size: 0.75rem;
-    height: 28px;
-    margin-bottom: 0.4rem;
-  }
-
-  .play-button, .upcoming-button {
-    padding: 0.4rem 0.6rem;
-    font-size: 0.7rem;
-  }
-}
-
+  </style>
+<style>
+	#lovable-badge {
+		position: fixed;
+		bottom: 10px;
+		right: 10px;
+		width: 141px;
+		padding: 5px 13px;	
+		background-color: #000;
+		color: #fff;
+		font-size: 12px;
+		border-radius: 5px;
+		font-family: sans-serif;
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		z-index: 1000000;
+		text-transform: none !important;
+		font-feature-settings: normal !important;
+		font-weight: 400 !important;
+	}
 </style>
-</head>
+<meta content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2b67f453-2ce3-4946-a742-1014db8326a2/id-preview-1c7b57c6--4e31b2cf-8b5c-4f8b-9a7f-fa0a650a1c75.lovable.app-1757743857515.png" name="twitter:image"/></head>
 <body>
-  <!-- Header -->
-  <header class="header">
-    <div class="header-content">
-      <a href="#" class="logo">
-        <div class="logo-icon">
-          <i class="fas fa-satellite-dish"></i>
-        </div>
-        <div class="logo-text">MatchesLinks</div>
-      </a>
-      <div class="controls">
-        <div class="search-container">
-          <input type="text" placeholder="Search channels..." class="search-input" id="searchInput">
-          <i class="fas fa-search search-icon"></i>
-        </div>
-        <button class="theme-toggle" id="themeToggle" title="Toggle theme">
-          <i class="fas fa-moon"></i>
-        </button>
-      </div>
-      <div id="verificationCountdown" class="verification-countdown">
-        <i class="fas fa-shield-alt"></i>
-        <span id="countdownText">Verification: 24h 00m</span>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Content -->
-  <main class="container" id="mainContent">
-    <!-- Hero Section -->
-    <section class="hero glass-heavy">
-      <div class="hero-content">
-        <h1>Premium Sports Channels Collection</h1>
-        <p>Access the best live sports events and channels from around the world in one place. Watch your favorite teams compete in ultra high-definition quality.</p>
-        <div class="hero-badges">
-          <span class="hero-badge">🔥 HD Quality</span>
-          <span class="hero-badge">⚡ Live Events</span>
-          <span class="hero-badge">🌍 Global Coverage</span>
-          <span class="hero-badge">📱 Multi-Device</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Live Events -->
-    <section class="category-section">
-      <div class="category-header">
-        <div class="category-icon">
-          <i class="fas fa-bolt"></i>
-        </div>
-        <h2 class="category-title">Live Events</h2>
-      </div>
-      <div class="channels-grid" id="liveEventsGrid"></div>
-    </section>
-
-    <!-- International Channels -->
-    <section class="category-section">
-      <div class="category-header">
-        <div class="category-icon">
-          <i class="fas fa-globe-americas"></i>
-        </div>
-        <h2 class="category-title">International Channels</h2>
-      </div>
-      <div class="channels-grid" id="internationalGrid"></div>
-    </section>
-
-    <!-- Sports Channels -->
-    <section class="category-section">
-      <div class="category-header">
-        <div class="category-icon">
-          <i class="fas fa-trophy"></i>
-        </div>
-        <h2 class="category-title">Sports Channels</h2>
-      </div>
-      <div class="channels-grid" id="sportsGrid"></div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="social-links">
-      <a href="https://t.me/+e3-eAje291cxNGNl" class="social-link" target="_blank" title="Telegram">
-        <i class="fab fa-telegram"></i>
-      </a>
-      <a href="#" class="social-link" title="Twitter">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="#" class="social-link" title="Instagram">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="#" class="social-link" title="Email">
-        <i class="fas fa-envelope"></i>
-      </a>
-    </div>
-    <p class="footer-text">© 2025 @Matcheslinks. All rights reserved. | Premium Sports Streaming Platform</p>
-  </footer>
-
-  <!-- Live Counter -->
-  <div class="live-counter-container glass">
-    <div class="live-counter">
-      <span class="live-count">
-        <script type="text/javascript" src="//widget.supercounters.com/ssl/online_t.js"></script>
-        <script type="text/javascript">sc_online_t(1707487,"🔴 online","FF0000");</script>
-      </span>
-    </div>
-    <div class="last-updated">Updated: <span id="lastUpdated">Loading...</span></div>
-  </div>
-
-  <!-- Telegram Popup -->
-  <a href="https://t.me/+e3-eAje291cxNGNl" class="telegram-popup" target="_blank" id="telegramPopup">
-    <i class="fab fa-telegram"></i>
-    Join Community
-  </a>
-
-<!-- Video Modal -->
-<div id="videoModal" class="modal">
-  <div class="modal-content video-content">
-    <span class="close-button" onclick="closeVideoModal()">&times;</span>
-    <h2 id="videoTitle"></h2>
-    <iframe 
-      id="videoFrame" 
-      src="" 
-      frameborder="0" 
-      allow="autoplay; encrypted-media; fullscreen" 
-      sandbox="allow-same-origin allow-scripts" 
-      allowfullscreen>
-    </iframe>
-  </div>
+<main>
+<div class="container">
+<!-- Main Video Screen -->
+<div class="main-screen-container">
+<div class="main-screen" id="mainScreen">
+<div class="screen-placeholder" id="screenPlaceholder">
+<i class="fas fa-tv"></i>
+<h3>Select a Channel</h3>
+<p>Choose from premium sports channels below</p>
 </div>
-
-  <script>
-    // Performance monitoring
+</div>
+</div>
+<!-- Live Events -->
+<section class="category-section">
+<div class="category-header">
+<div class="category-icon">
+<i class="fas fa-bolt"></i>
+</div>
+<h2 class="category-title">Live Events</h2>
+</div>
+<div class="channels-grid" id="liveEventsGrid"></div>
+</section>
+<!-- International Channels -->
+<section class="category-section">
+<div class="category-header">
+<div class="category-icon">
+<i class="fas fa-globe-americas"></i>
+</div>
+<h2 class="category-title">International Channels</h2>
+</div>
+<div class="channels-grid" id="internationalGrid"></div>
+</section>
+<!-- Sports Channels -->
+<section class="category-section">
+<div class="category-header">
+<div class="category-icon">
+<i class="fas fa-trophy"></i>
+</div>
+<h2 class="category-title">Sports Channels</h2>
+</div>
+<div class="channels-grid" id="sportsGrid"></div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="footer">
+<div class="footer-text">
+      © 2024 MatchesLinks - Premium Sports Streaming Platform
+    </div>
+</footer>
+<!-- Live Counter -->
+<div class="live-counter-container glass">
+<div class="live-counter">
+<span class="live-count">
+<script src="//widget.supercounters.com/ssl/online_t.js" type="text/javascript"></script>
+<script type="text/javascript">sc_online_t(1707487,"🔴 online","FF0000");</script>
+</span>
+</div>
+<div class="last-updated">Updated: <span id="lastUpdated">Loading...</span></div>
+</div>
+<!-- Telegram Popup -->
+<a class="telegram-popup" href="https://t.me/+e3-eAje291cxNGNl" id="telegramPopup">
+<i class="fab fa-telegram-plane"></i>
+    Join Channel
+  </a>
+<script>
     const startTime = performance.now();
-    let searchTimeout;
 
-    // FIXED Channel Data - Added missing closing bracket and removed extra bracket
+    // Channel Data
     const liveEvents = [
       {
-        name: "Pakistan Vs UAE (Fancode-Sliv)",
-        logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008338/1757869176985684_ACC25_BAN_vs_AFG_14sep_tonight_promo_landscape_thumb.jpg",
-        url: "https://sonyliv-event-1.vercel.app/",
+        name: "SL Vs AFG (Sonyliv-English)",
+        logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008506/1757979033009386_ACC25_SL_vs_AFG_tonight_16sep_promo_landscape_thumb.jpg",
+        url: "",
+        live: true,
+        openInNewTab: false,
+        upcoming: true,
+        unlockTime: new Date("2025-09-17T19:00:00+05:30").getTime(), // 18 Sept 7:00 PM IST
+      },
+      {
+        name: "SL Vs AFG (Sonyliv-Hindi)",
+        logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008506/1757979033009386_ACC25_SL_vs_AFG_tonight_16sep_promo_landscape_thumb.jpg",
+        url: "",
         live: true,
         openInNewTab: false,
         upcoming: true,
         unlockTime: new Date("2025-09-17T19:00:00+05:30").getTime(), // 17 Sept 7:00 PM IST
       },
       {
-        name: "Pakistan Vs UAE (Sonyliv-English)",
-        logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008338/1757869176985684_ACC25_BAN_vs_AFG_14sep_tonight_promo_landscape_thumb.jpg",
-        url: "https://sonyliv-event-1.vercel.app/",
+        name: "SL Vs AFG (Fox Cricket)",
+        logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008506/1757979033009386_ACC25_SL_vs_AFG_tonight_16sep_promo_landscape_thumb.jpg",
+        url: "",
         live: true,
         openInNewTab: false,
         upcoming: true,
         unlockTime: new Date("2025-09-17T19:00:00+05:30").getTime(), // 17 Sept 7:00 PM IST
       },
       {
-        name: "Pakistan Vs UAE (Sonyliv-Hindi)",
-        logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008338/1757869176985684_ACC25_BAN_vs_AFG_14sep_tonight_promo_landscape_thumb.jpg",
-        url: "https://sonyliv-event-2.vercel.app/",
+        name: "SL Vs AFG (Sony Ten 1 HD)",
+        logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008506/1757979033009386_ACC25_SL_vs_AFG_tonight_16sep_promo_landscape_thumb.jpg",
+        url: "",
         live: true,
         openInNewTab: false,
         upcoming: true,
         unlockTime: new Date("2025-09-17T19:00:00+05:30").getTime(), // 17 Sept 7:00 PM IST
       },
       {
-        name: "Pakistan Vs UAE (Fox Cricket)",
-        logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008338/1757869176985684_ACC25_BAN_vs_AFG_14sep_tonight_promo_landscape_thumb.jpg",
-        url: "https://fox-sports-501-hd.vercel.app/",
+        name: "SL Vs AFG (Sony Ten 5 HD)",
+        logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008506/1757979033009386_ACC25_SL_vs_AFG_tonight_16sep_promo_landscape_thumb.jpg",
+        url: "",
         live: true,
         openInNewTab: false,
         upcoming: true,
         unlockTime: new Date("2025-09-17T19:00:00+05:30").getTime(), // 17 Sept 7:00 PM IST
-      },
-      {
-        name: "Pakistan Vs UAE (Sony Ten 1 HD)",
-        logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008338/1757869176985684_ACC25_BAN_vs_AFG_14sep_tonight_promo_landscape_thumb.jpg",
-        url: "https://sonyten1.vercel.app/",
-        live: true,
-        openInNewTab: false,
-        upcoming: true,
-        unlockTime: new Date("2025-09-17T19:00:00+05:30").getTime(), // 17 Sept 7:00 PM IST
-      },
-      {
-        name: "Pakistan Vs UAE (Sony Ten 5 HD)",
-        logo: "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008338/1757869176985684_ACC25_BAN_vs_AFG_14sep_tonight_promo_landscape_thumb.jpg",
-        url: "https://sonyten5.vercel.app/",
-        live: true,
-        openInNewTab: false,
-        upcoming: true,
-        unlockTime: new Date("2025-09-17T19:00:00+05:30").getTime(), // 17 Sept 7:00 PM IST
-      },
-      {
-        name: "Bayern Munich Vs Chelsea (Sonyliv)",
-        logo: "https://tv.assets.pressassociation.io/10fceb53-8660-5250-bd65-716944aabb4a.jpg",
-        url: "https://m3u8-playerr.vercel.app/?url=",
-        live: true,
-        openInNewTab: false,
-        upcoming: true,
-        unlockTime: new Date("2025-09-18T00:00:00+05:30").getTime(), // 18 Sept 12:00 AM IST
-      },
-      {
-        name: "Bayern Munich Vs Chelsea (Sony Ten 1 HD)",
-        logo: "https://tv.assets.pressassociation.io/10fceb53-8660-5250-bd65-716944aabb4a.jpg",
-        url: "https://sonyten1.vercel.app/",
-        live: true,
-        openInNewTab: false,
-        upcoming: true,
-        unlockTime: new Date("2025-09-18T00:00:00+05:30").getTime(), // 18 Sept 12:00 AM IST
-      },
-      {
-        name: "Bayern Munich Vs Chelsea (Tnt Sports 2)",
-        logo: "https://tv.assets.pressassociation.io/10fceb53-8660-5250-bd65-716944aabb4a.jpg",
-        url: "https://mpd-player-ivory.vercel.app/?id=TNT_2_GB",
-        live: true,
-        openInNewTab: false,
-        upcoming: true,
-        unlockTime: new Date("2025-09-18T00:00:00+05:30").getTime(), // 18 Sept 12:00 AM IST
-      },
-      {
-        name: "Liverpool Vs Athletico Madrid (Sonyliv)",
-        logo: "https://tv.assets.pressassociation.io/061b2b2e-bd57-569e-b2e0-c29851b194e8.jpg",
-        url: "https://m3u8-playerr.vercel.app/?url=",
-        live: true,
-        openInNewTab: false,
-        upcoming: true,
-        unlockTime: new Date("2025-09-18T00:00:00+05:30").getTime(), // 18 Sept 12:00 AM IST
-      },
-      {
-        name: "Liverpool Vs Athletico Madrid (Tnt Sports 1)",
-        logo: "https://tv.assets.pressassociation.io/061b2b2e-bd57-569e-b2e0-c29851b194e8.jpg",
-        url: "https://mpd-player-ivory.vercel.app/?id=TNT_1_GB",
-        live: true,
-        openInNewTab: false,
-        upcoming: true,
-        unlockTime: new Date("2025-09-18T00:00:00+05:30").getTime(), // 18 Sept 12:00 AM IST
-      },
-      {
-        name: "Ajax Vs Inter Milan (Sony Ten 5 HD)",
-        logo: "https://tv.assets.pressassociation.io/9139659b-c4aa-5dd4-a7dc-89fb7918ad1a.jpg",
-        url: "https://sonyten5.vercel.app/",
-        live: true,
-        openInNewTab: false,
-        upcoming: true,
-        unlockTime: new Date("2025-09-18T00:00:00+05:30").getTime(), // 18 Sept 12:00 AM IST
-      },
-      {
-        name: "Ajax Vs Inter Milan (Tnt Sports 5)",
-        logo: "https://tv.assets.pressassociation.io/9139659b-c4aa-5dd4-a7dc-89fb7918ad1a.jpg",
-        url: "https://mpd-player-ivory.vercel.app/?id=TNT_1_GB",
-        live: true,
-        openInNewTab: false,
-        upcoming: true,
-        unlockTime: new Date("2025-09-18T00:00:00+05:30").getTime(), // 18 Sept 12:00 AM IST
-      },
-      {
-        name: "PSG Vs Atalanta (Tnt Sports 3)",
-        logo: "https://tv.assets.pressassociation.io/37835dc0-bd49-568b-912e-4e47fb573aae.jpg",
-        url: "https://mpd-player-ivory.vercel.app/?id=TNT_1_GB",
-        live: true,
-        openInNewTab: false,
-        upcoming: true,
-        unlockTime: new Date("2025-09-18T00:00:00+05:30").getTime(), // 18 Sept 12:00 AM IST
       }
-    ]; // FIXED: Added missing closing bracket
+    ]
 
     const internationalChannels = [
       {
@@ -1544,13 +717,9 @@
         name: "Universo East",
         logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBG2mqncvr4lOSb1xsyP1T-URBBvO5-4YKFQ&s",
         url: "https://kaleidoscopic-narwhal-9aa0ff.netlify.app/"
-      },
-      {
-        name: "TELEMUNDO",
-        logo: "https://i0.wp.com/thehill.com/wp-content/uploads/sites/2/2017/05/telemundologo.png?w=2000&ssl=1",
-        url: "https://fantastic-chimera-85d2ed.netlify.app/"
       }
     ];
+
 
     const sportsChannels = [
       {
@@ -1565,7 +734,7 @@
       },
       {
         name: "Fox Cricket 501 HD",
-        logo: "https://image.pngaaa.com/428/3764428-middle.png",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7kzpNQ3hvq3EILNDC4qvSezDzDN_UlXy-tA&s",
         url: "https://tranquil-bavarois-6aa407.netlify.app/"
       },
       {
@@ -1833,28 +1002,15 @@
         logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Star_Sports_1_HD.png/2560px-Star_Sports_1_HD.png",
         url: "https://css-player.vercel.app/?url=https://live.dinesh29.com.np/stream/jiotvplus/starsportshd1hindi/master.m3u8"
       }
-    ]; // FIXED: Removed extra closing bracket
+    ];
 
-    // App State
-    let currentTheme = localStorage.getItem('theme') || 'dark';
-    let searchTerm = '';
-    let countdownInterval = null;
-    let countdownDelayTimer = null;
+    let selectedChannelData = null;
 
-    // Enhanced debounced search
-    function debounceSearch(func, delay) {
-      return function(args) {
-        clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(() => func.apply(this, args), delay);
-      };
-    }
-
-    // Update timestamp function
     function updateTimestamp() {
       try {
-        document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString('en-US', { 
-          timeZone: 'Asia/Kolkata', 
-          hour12: true 
+        document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString('en-US', {
+          timeZone: 'Asia/Kolkata',
+          hour12: true
         });
       } catch (error) {
         console.error('Error updating timestamp:', error.message);
@@ -1862,227 +1018,57 @@
       }
     }
 
-    // Verification functions
-    function checkVerification() {
-      const verifiedUntil = localStorage.getItem('verified_until');
-      const now = Date.now();
-      return verifiedUntil && parseInt(verifiedUntil) > now;
-    }
+    // Main Screen Functions - KEEP PLAYER CODE UNCHANGED
+    function loadChannelOnMainScreen(channelData) {
+      const mainScreen = document.getElementById('mainScreen');
+      const placeholder = document.getElementById('screenPlaceholder');
 
-    function showVerificationModal() {
-      document.getElementById('verifyModal').classList.add('active');
-      document.body.style.overflow = 'hidden';
-      document.getElementById('mainContent').classList.add('blur-background');
-      document.querySelector('header').classList.add('blur-background');
-      document.querySelector('footer').classList.add('blur-background');
-      document.querySelector('.live-counter-container')?.classList.add('blur-background');
-      document.getElementById('telegramPopup').classList.add('blur-background');
-    }
+      // Hide placeholder
+      placeholder.style.display = 'none';
 
-    function hideVerificationModal() {
-      document.getElementById('verifyModal').classList.remove('active');
-      document.body.style.overflow = 'auto';
-      document.getElementById('mainContent').classList.remove('blur-background');
-      document.querySelector('header').classList.remove('blur-background');
-      document.querySelector('footer').classList.remove('blur-background');
-      document.querySelector('.live-counter-container')?.classList.remove('blur-background');
-      document.getElementById('telegramPopup').classList.remove('blur-background');
-    }
-
-    function handleVerification() {
-      const verifyButton = document.querySelector('.verify-button');
-      verifyButton.disabled = true;
-      verifyButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-      
-      setTimeout(() => {
-        const expire = Date.now() + (24 * 60 * 60 * 1000);
-        localStorage.setItem('verified_until', expire.toString());
-        
-        const countdownElement = document.getElementById('verificationCountdown');
-        countdownElement.classList.remove('visible');
-        
-        const delayMinutes = 30 + Math.floor(Math.random() * 60);
-        const delayMs = delayMinutes * 60 * 1000;
-        
-        if (countdownDelayTimer) {
-          clearTimeout(countdownDelayTimer);
-        }
-        
-        countdownDelayTimer = setTimeout(() => {
-          updateVerificationCountdown();
-          countdownElement.classList.add('visible');
-        }, delayMs);
-        
-        window.location.href = 'https://vplink.in/H0lJs';
-      }, 3000);
-    }
-
-    // Countdown functions
-    function updateVerificationCountdown() {
-      const verifiedUntil = localStorage.getItem('verified_until');
-      const countdownElement = document.getElementById('verificationCountdown');
-      const countdownText = document.getElementById('countdownText');
-      
-      if (!verifiedUntil) {
-        countdownElement.classList.remove('visible');
-        if (countdownInterval) {
-          clearInterval(countdownInterval);
-          countdownInterval = null;
-        }
-        return;
+      // Create and load iframe with proper permissions
+      let iframe = mainScreen.querySelector('iframe');
+      if (!iframe) {
+        iframe = document.createElement('iframe');
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.border = 'none';
+        iframe.style.borderRadius = '1.5rem';
+        iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen; clipboard-write';
+        iframe.referrerPolicy = 'no-referrer';
+        iframe.allowFullscreen = true;
+        mainScreen.appendChild(iframe);
       }
-      
-      const now = Date.now();
-      const timeLeft = parseInt(verifiedUntil) - now;
-      
-      if (timeLeft <= 0) {
-        countdownElement.classList.remove('visible');
-        localStorage.removeItem('verified_until');
-        if (countdownInterval) {
-          clearInterval(countdownInterval);
-          countdownInterval = null;
-        }
-        return;
-      }
-      
-      const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-      
-      countdownText.textContent = `Verification: ${hours}h ${minutes}m`;
-      
-      if (hours < 1) {
-        countdownElement.classList.add('danger');
-        countdownElement.classList.remove('warning');
-      } else if (hours < 6) {
-        countdownElement.classList.add('warning');
-        countdownElement.classList.remove('danger');
+
+      iframe.src = channelData.url;
+      selectedChannelData = channelData;
+    }
+
+    function handleChannelPlay(url, name) {
+      loadChannelOnMainScreen({ name, url });
+      const mainEl = document.getElementById('mainScreen');
+      if (mainEl && typeof mainEl.scrollIntoView === 'function') {
+        mainEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
       } else {
-        countdownElement.classList.remove('warning', 'danger');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
 
-    function startCountdownTimer() {
-      if (countdownInterval) {
-        clearInterval(countdownInterval);
-      }
-      
-      updateVerificationCountdown();
-      countdownInterval = setInterval(updateVerificationCountdown, 60000);
+    function createChannelCard(channel, isLiveEvent = false, index = 0) {
+      return `
+        <div class="channel-card" style="animation-delay: ${index * 0.1}s" onclick="handleChannelPlay('${channel.url}', '${channel.name}')" aria-label="Play ${channel.name} on big screen">
+          <div class="channel-logo-container">
+            <img src="${channel.logo}" alt="${channel.name}" class="channel-logo" loading="lazy" />
+            ${isLiveEvent && channel.live ? '<div class="live-badge"><i class="fas fa-circle"></i> LIVE</div>' : ''}
+          </div>
+          <div class="channel-name">${channel.name}</div>
+          <button class="play-button">
+            <i class="fas fa-play"></i>
+            ${isLiveEvent ? 'Watch Live' : 'Play'}
+          </button>
+        </div>
+      `;
     }
-
-    // Channel functions
-    function handleChannelPlay(url, isLiveEvent = false, name = '', openInNewTab = false) {
-      if (!checkVerification()) {
-        showVerificationModal();
-        return;
-      }
-
-      if (isLiveEvent && openInNewTab) {
-        window.open(url, '_blank');
-      } else if (isLiveEvent) {
-        openVideoModal(name, url);
-      } else {
-        window.open(url, '_blank');
-      }
-    }
-
-    function openVideoModal(title, url) {
-      document.getElementById('videoTitle').textContent = title;
-      document.getElementById('videoFrame').src = url;
-      document.getElementById('videoModal').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeVideoModal() {
-      document.getElementById('videoModal').classList.remove('active');
-      document.getElementById('videoFrame').src = '';
-      document.body.style.overflow = 'auto';
-    }
-
-    // Helper function to format start time in IST
-    function formatStartTime(timestamp) {
-      if (!timestamp) return "Soon";
-      
-      try {
-        const date = new Date(timestamp);
-        const options = { 
-          month: 'short', 
-          day: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-          timeZone: 'Asia/Kolkata'
-        };
-        return date.toLocaleDateString('en-IN', options) + ' IST';
-      } catch (e) {
-        return "Soon";
-      }
-    }
-
-function openInMiniPlayer(url, name) {
-  const modal = document.getElementById("videoModal");
-  const iframe = document.getElementById("videoFrame");
-  const title = document.getElementById("videoTitle");
-
-  // Set video info
-  iframe.src = url;
-  title.textContent = name;
-
-  // Show modal
-  modal.classList.add("active");
-
-  // Prevent background scroll
-  document.body.style.overflow = "hidden";
-}
-
-// Close modal when clicking the "X" button
-function closeVideoModal() {
-  const modal = document.getElementById("videoModal");
-  const iframe = document.getElementById("videoFrame");
-
-  // Hide modal
-  modal.classList.remove("active");
-
-  // Stop video playback
-  iframe.src = "";
-
-  // Allow background scroll again
-  document.body.style.overflow = "auto";
-}
-
-
-// Render functions with staggered animations
-function createChannelCard(channel, isLiveEvent = false, index = 0) {
-  const isUpcoming = channel.upcoming;
-
-  return `
-    <div class="channel-card" data-name="${channel.name.toLowerCase()}" style="animation-delay: ${index * 0.1}s">
-      <div class="channel-logo-container">
-        <img src="${channel.logo}" alt="${channel.name}" class="channel-logo" loading="lazy" loading="lazy" />
-        ${isLiveEvent && channel.live ? '<div class="live-badge"><i class="fas fa-circle"></i> LIVE</div>' : ''}
-      </div>
-      <div class="channel-name">${channel.name}</div>
-      ${isUpcoming ? 
-        `<button class="upcoming-button">
-          <i class="fas fa-clock"></i>
-          ${formatStartTime(channel.startTime)}
-        </button>` : 
-        `<button class="play-button" onclick="handleChannelPlay('${channel.url}', '${channel.name}', ${channel.openInNewTab || false})">
-          <i class="fas fa-play"></i>
-          ${isLiveEvent ? 'Watch Live' : 'Play'}
-        </button>`
-      }
-    </div>
-  `;
-}
-
-// New helper: handle how channels open
-function handleChannelPlay(url, name, openInNewTab) {
-  if (openInNewTab) {
-    window.open(url, "_blank");
-  } else {
-    openInMiniPlayer(url, name); // 👈 your mini player function
-  }
-}
 
     function renderChannels() {
       const liveEventsGrid = document.getElementById('liveEventsGrid');
@@ -2095,39 +1081,10 @@ function handleChannelPlay(url, name, openInNewTab) {
       sportsGrid.innerHTML = sportsChannels.map((channel, index) => createChannelCard(channel, false, index)).join('');
     }
 
-    const debouncedFilter = debounceSearch(() => {
-      const cards = document.querySelectorAll('.channel-card');
-      cards.forEach(card => {
-        const name = card.getAttribute('data-name');
-        const shouldShow = name.includes(searchTerm.toLowerCase());
-        card.style.display = shouldShow ? 'block' : 'none';
-        card.style.opacity = shouldShow ? '1' : '0';
-      });
-    }, 300);
 
-    function filterChannels() {
-      debouncedFilter();
-    }
 
-    // Theme functions
-    function toggleTheme() {
-      currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      document.body.classList.toggle('light', currentTheme === 'light');
-      
-      const themeIcon = document.querySelector('#themeToggle i');
-      themeIcon.className = currentTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
-      
-      localStorage.setItem('theme', currentTheme);
-    }
-
-    // Event listeners
+    // Event Listeners
     document.addEventListener('DOMContentLoaded', function() {
-      // Initialize theme
-      if (currentTheme === 'light') {
-        document.body.classList.add('light');
-        document.querySelector('#themeToggle i').className = 'fas fa-sun';
-      }
-
       // Render channels
       renderChannels();
 
@@ -2135,55 +1092,10 @@ function handleChannelPlay(url, name, openInNewTab) {
       updateTimestamp();
       setInterval(updateTimestamp, 120000);
 
-      // Start countdown timer
-      startCountdownTimer();
-
-      // Check verification
-      if (!localStorage.getItem('firstVisitShown')) {
-        showVerificationModal();
-        localStorage.setItem('firstVisitShown', 'true');
-      } else if (!checkVerification()) {
-        showVerificationModal();
-      }
-
-      // Enhanced search with debouncing
-      document.getElementById('searchInput').addEventListener('input', function(e) {
-        searchTerm = e.target.value;
-        filterChannels();
-      });
-
-      // Theme toggle
-      document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-
-      // Modal close handlers
-      document.getElementById('videoModal').addEventListener('click', function(e) {
-        if (e.target === this) {
-          closeVideoModal();
-        }
-      });
-
-      document.getElementById('verifyModal').addEventListener('click', function(e) {
-        if (e.target === this) {
-          hideVerificationModal();
-        }
-      });
-
-      // Security measures
-      document.addEventListener('contextmenu', e => e.preventDefault());
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'F12' || 
-            (e.ctrlKey && e.shiftKey && e.key === 'I') ||
-            (e.ctrlKey && e.shiftKey && e.key === 'J') ||
-            (e.ctrlKey && e.key === 'U')) {
-          e.preventDefault();
-        }
-      });
-
       // Performance logging
       const loadTime = performance.now() - startTime;
       console.log(`Page loaded in ${loadTime.toFixed(2)}ms`);
     });
-  
     // === Scheduled Unlock for All Live Events ===
     const eventStartTime = new Date("2025-09-05T23:45:00+05:30").getTime();
 
