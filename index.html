@@ -1,15 +1,11 @@
-
-
-
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
 <title>MatchesLinks – Premium Sports Channels</title>
 <meta content="Watch live sports channels in a big-screen player with fast, clean UI and crisp playback." name="description"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 <style>
     :root {
@@ -76,9 +72,12 @@
       touch-action: manipulation;
       line-height: 1.6;
       font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      /* Performance optimizations */
+      will-change: auto;
+      transform: translateZ(0);
     }
 
-    /* Animated Background with Enhanced Glows */
+    /* Animated Background with Enhanced Glows - Optimized for mobile */
     body::before {
       content: '';
       position: fixed;
@@ -93,6 +92,7 @@
         radial-gradient(circle at 60% 30%, hsla(var(--primary), 0.1) 0%, transparent 40%);
       z-index: -1;
       animation: backgroundShift 20s ease-in-out infinite;
+      will-change: opacity;
     }
 
     @keyframes backgroundShift {
@@ -100,7 +100,7 @@
       50% { opacity: 0.8; }
     }
 
-    /* Enhanced Glow Effects */
+    /* Enhanced Glow Effects - Reduced for mobile performance */
     body::after {
       content: '';
       position: fixed;
@@ -113,11 +113,24 @@
         radial-gradient(circle at 75% 75%, hsla(282, 83%, 65%, 0.05) 0%, transparent 50%);
       z-index: -1;
       animation: slowRotate 60s linear infinite;
+      will-change: transform;
     }
 
     @keyframes slowRotate {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
+    }
+
+    /* Reduce animations on mobile for better performance */
+    @media (max-width: 768px) {
+      body::after {
+        animation: none;
+      }
+      
+      /* Disable heavy animations on mobile */
+      .main-screen-container::before {
+        animation: none !important;
+      }
     }
 
     /* Utility Classes */
@@ -278,6 +291,23 @@
       flex-direction: column;
       justify-content: space-between;
       cursor: pointer;
+      /* Performance optimization */
+      will-change: transform;
+      /* Initial state for animation */
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    /* Animation classes for lazy loading */
+    .channel-card.fade-in {
+      animation: channelFadeIn 0.6s ease-out forwards;
+    }
+
+    @keyframes channelFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .channel-card:hover {
@@ -287,6 +317,12 @@
         0 0 30px hsla(var(--primary), 0.2);
       border-color: hsl(var(--primary));
       background: hsl(var(--surface-hover));
+    }
+
+    /* Mobile touch optimization */
+    .channel-card:active {
+      transform: translateY(-2px);
+      transition: var(--transition-fast);
     }
 
     .channel-card::before {
@@ -360,6 +396,8 @@
       justify-content: center;
       gap: 0.3rem;
       box-shadow: 0 2px 8px hsla(var(--primary), 0.3);
+      /* Mobile touch optimization */
+      min-height: 44px;
     }
 
     .play-button:hover {
@@ -367,6 +405,10 @@
       box-shadow: 
         0 4px 15px hsla(var(--primary), 0.5),
         0 0 20px hsla(var(--primary), 0.3);
+    }
+
+    .play-button:active {
+      transform: translateY(0);
     }
 
     /* Live badge with enhanced glow */
@@ -387,6 +429,27 @@
       box-shadow: 
         0 4px 12px hsla(var(--danger), 0.4),
         0 0 20px hsla(var(--danger), 0.3);
+      z-index: 5;
+    }
+
+    /* Countdown badge for upcoming events */
+    .countdown-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: linear-gradient(135deg, hsl(var(--warning)), hsl(45, 90%, 45%));
+      color: white;
+      padding: 0.3rem 0.6rem;
+      border-radius: 1.5rem;
+      font-size: 0.6rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      box-shadow: 
+        0 4px 12px hsla(var(--warning), 0.4),
+        0 0 20px hsla(var(--warning), 0.3);
+      z-index: 5;
     }
 
     @keyframes pulse {
@@ -476,6 +539,8 @@
         0 0 25px rgba(0, 123, 255, 0.3);
       transition: var(--transition);
       opacity: 0.9;
+      /* Mobile touch optimization */
+      min-height: 44px;
     }
 
     .telegram-popup:hover {
@@ -486,7 +551,7 @@
       opacity: 1;
     }
 
-    /* Responsive Design */
+    /* Responsive Design - Enhanced Mobile Optimizations */
     @media (max-width: 1024px) {
       .main-screen {
         height: 60vh;
@@ -494,8 +559,12 @@
       }
 
       .channels-grid {
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 1rem;
+      }
+
+      .category-title {
+        font-size: 1.5rem;
       }
     }
 
@@ -509,12 +578,72 @@
         min-height: 350px;
       }
 
+      .main-screen-container {
+        margin-bottom: 2rem;
+        border-radius: 1rem;
+      }
+
+      .main-screen {
+        border-radius: 1rem;
+      }
+
+      .main-screen iframe {
+        border-radius: 1rem;
+      }
+
       .channels-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 0.75rem;
+      }
+
+      .channel-card {
+        height: 160px;
+        padding: 0.75rem;
+      }
+
+      .category-title {
+        font-size: 1.3rem;
+      }
+
+      .category-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+
+      .screen-placeholder i {
+        font-size: 3rem;
+      }
+
+      .screen-placeholder h3 {
+        font-size: 1.2rem;
+      }
+
+      /* Mobile-specific performance optimizations */
+      .glass, .glass-heavy {
+        backdrop-filter: blur(10px);
+      }
+
+      /* Reduce fixed element sizes on mobile */
+      .live-counter-container {
+        bottom: 1rem;
+        right: 1rem;
+        padding: 0.5rem 0.75rem;
+      }
+
+      .telegram-popup {
+        bottom: 1rem;
+        left: 1rem;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
       }
     }
 
     @media (max-width: 480px) {
+      .container {
+        padding: 1rem 0.75rem;
+      }
+
       .main-screen {
         height: 45vh;
         min-height: 300px;
@@ -522,21 +651,76 @@
 
       .channels-grid {
         grid-template-columns: 1fr 1fr;
-        gap: 0.75rem;
+        gap: 0.5rem;
       }
 
       .channel-card {
-        height: 200px;
-        padding: 1rem;
+        height: 180px;
+        padding: 0.75rem;
       }
 
       .channel-logo-container {
-        height: 60px;
+        height: 50px;
       }
 
       .channel-logo {
-        max-height: 60px;
-        max-width: 120px;
+        max-height: 50px;
+        max-width: 100px;
+      }
+
+      .category-title {
+        font-size: 1.1rem;
+      }
+
+      .category-section {
+        margin-bottom: 2rem;
+      }
+
+      .category-header {
+        margin-bottom: 1.5rem;
+      }
+
+      .play-button {
+        font-size: 0.7rem;
+        padding: 0.4rem;
+      }
+
+      .channel-name {
+        font-size: 0.8rem;
+        height: 36px;
+      }
+
+      /* Stack fixed elements on very small screens */
+      .live-counter-container {
+        bottom: 0.5rem;
+        right: 0.5rem;
+        font-size: 0.7rem;
+        padding: 0.4rem 0.6rem;
+      }
+
+      .telegram-popup {
+        bottom: 0.5rem;
+        left: 0.5rem;
+        font-size: 0.7rem;
+        padding: 0.4rem 0.6rem;
+      }
+    }
+
+    /* Performance optimizations for low-end devices */
+    @media (max-width: 480px) and (max-height: 720px) {
+      .main-screen {
+        height: 40vh;
+        min-height: 250px;
+      }
+      
+      /* Disable heavy visual effects on small screens */
+      .channel-card:hover {
+        transform: none;
+        box-shadow: var(--shadow-sm);
+      }
+      
+      .play-button:hover {
+        transform: none;
       }
     }
 
@@ -556,6 +740,31 @@
 
     ::-webkit-scrollbar-thumb:hover {
       background: hsl(var(--primary));
+    }
+
+    /* Accessibility improvements */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      
+      body::before,
+      body::after {
+        animation: none !important;
+      }
+    }
+
+    /* High contrast mode support */
+    @media (prefers-contrast: high) {
+      .channel-card {
+        border: 2px solid var(--glass-border);
+      }
+      
+      .play-button {
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
     }
   </style>
 <style>
@@ -579,7 +788,8 @@
 		font-weight: 400 !important;
 	}
 </style>
-<meta content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2b67f453-2ce3-4946-a742-1014db8326a2/id-preview-1c7b57c6--4e31b2cf-8b5c-4f8b-9a7f-fa0a650a1c75.lovable.app-1757743857515.png" name="twitter:image"/></head>
+<meta content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2b67f453-2ce3-4946-a742-1014db8326a2/id-preview-1c7b57c6--4e31b2cf-8b5c-4f8b-9a7f-fa0a650a1c75.lovable.app-1757743857515.png" name="twitter:image"/>
+</head>
 <body>
 <main>
 <div class="container">
@@ -658,7 +868,7 @@
         live: true,
         openInNewTab: false,
         upcoming: true,
-        unlockTime: new Date("2025-09-17T19:00:00+05:30").getTime(), // 18 Sept 7:00 PM IST
+        unlockTime: new Date("2025-09-27T19:00:00+05:30").getTime(), // 18 Sept 7:00 PM IST
       },
       {
         name: "India Vs Pakistan (Sony Ten 3 HD)",
@@ -1053,7 +1263,7 @@
 
     function createChannelCard(channel, isLiveEvent = false, index = 0) {
       return `
-        <div class="channel-card" style="animation-delay: ${index * 0.1}s" onclick="handleChannelPlay('${channel.url}', '${channel.name}')" aria-label="Play ${channel.name} on big screen">
+        <div class="channel-card" data-index="${index}" onclick="handleChannelPlay('${channel.url}', '${channel.name}')" aria-label="Play ${channel.name} on big screen">
           <div class="channel-logo-container">
             <img src="${channel.logo}" alt="${channel.name}" class="channel-logo" loading="lazy" />
             ${isLiveEvent && channel.live ? '<div class="live-badge"><i class="fas fa-circle"></i> LIVE</div>' : ''}
@@ -1067,31 +1277,92 @@
       `;
     }
 
-    function renderChannels() {
+    // Optimized lazy loading renderer with staggered animations
+    function renderChannelsLazy() {
+      // Render live events first (priority)
       const liveEventsGrid = document.getElementById('liveEventsGrid');
       liveEventsGrid.innerHTML = liveEvents.map((event, index) => createChannelCard(event, true, index)).join('');
+      animateChannelsInView(liveEventsGrid);
 
-      const internationalGrid = document.getElementById('internationalGrid');
-      internationalGrid.innerHTML = internationalChannels.map((channel, index) => createChannelCard(channel, false, index)).join('');
+      // Render international channels with delay
+      setTimeout(() => {
+        const internationalGrid = document.getElementById('internationalGrid');
+        internationalGrid.innerHTML = internationalChannels.map((channel, index) => createChannelCard(channel, false, index)).join('');
+        animateChannelsInView(internationalGrid);
+      }, 100);
 
-      const sportsGrid = document.getElementById('sportsGrid');
-      sportsGrid.innerHTML = sportsChannels.map((channel, index) => createChannelCard(channel, false, index)).join('');
+      // Render sports channels with more delay
+      setTimeout(() => {
+        const sportsGrid = document.getElementById('sportsGrid');
+        sportsGrid.innerHTML = sportsChannels.map((channel, index) => createChannelCard(channel, false, index)).join('');
+        animateChannelsInView(sportsGrid);
+      }, 200);
+    }
+
+    // Animate channels as they come into view
+    function animateChannelsInView(grid) {
+      const cards = grid.querySelectorAll('.channel-card');
+      cards.forEach((card, index) => {
+        setTimeout(() => {
+          card.classList.add('fade-in');
+        }, index * 50); // 50ms stagger between each card
+      });
+    }
+
+    // Intersection Observer for performance optimization
+    function setupIntersectionObserver() {
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const cards = entry.target.querySelectorAll('.channel-card:not(.fade-in)');
+              cards.forEach((card, index) => {
+                setTimeout(() => {
+                  card.classList.add('fade-in');
+                }, index * 30);
+              });
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '50px 0px'
+        });
+
+        // Observe all channel grids
+        const grids = document.querySelectorAll('.channels-grid');
+        grids.forEach(grid => observer.observe(grid));
+      } else {
+        // Fallback for older browsers
+        renderChannelsLazy();
+      }
+    }
+
+    // Legacy function for backward compatibility
+    function renderChannels() {
+      renderChannelsLazy();
     }
 
 
 
     // Event Listeners
     document.addEventListener('DOMContentLoaded', function() {
-      // Render channels
-      renderChannels();
+      // Use requestAnimationFrame for smooth rendering
+      requestAnimationFrame(() => {
+        // Set up intersection observer for lazy loading
+        setupIntersectionObserver();
+        
+        // Render channels with lazy loading
+        renderChannelsLazy();
 
-      // Update timestamp
-      updateTimestamp();
-      setInterval(updateTimestamp, 120000);
+        // Update timestamp
+        updateTimestamp();
+        setInterval(updateTimestamp, 120000);
 
-      // Performance logging
-      const loadTime = performance.now() - startTime;
-      console.log(`Page loaded in ${loadTime.toFixed(2)}ms`);
+        // Performance logging
+        const loadTime = performance.now() - startTime;
+        console.log(`Page loaded in ${loadTime.toFixed(2)}ms`);
+      });
     });
     // === Scheduled Unlock for All Live Events ===
     const eventStartTime = new Date("2025-09-05T23:45:00+05:30").getTime();
